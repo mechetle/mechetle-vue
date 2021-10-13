@@ -1,13 +1,13 @@
 <template>
-    <NuxtPage/>
+  
 </template>
 
 <script>
 export default {
-
+    name: 'source-console',
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 </style>
