@@ -107,5 +107,37 @@
             "</style>"
         ],
         "description": "Create new vue document template"
+    },
+    "Title comment": {
+        "prefix": "title-comment",
+        "body": [
+            "<!--",
+            "$1:",
+            "==",
+            "$2",
+            "-->"
+        ],
+        "description": "Makes a title comment"
+    },
+    "Get comps": {
+        "scope": "javascript",
+        "prefix": "v-comps",
+        "body": [
+            "components: {",
+            "\t$1",
+            "},"
+        ],
+        "description": "makes components: {}"
+    },
+    "Make comp": {
+        "scope": "javascript",
+        "prefix": "v-comp",
+        "body": [
+            "name: '$1',",
+            "props: {",
+            "   $2",
+            "},"
+        ],
+        "description": "makes new comp"
     }
 }

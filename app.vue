@@ -6,6 +6,11 @@
 </template>
 
 <script>
+/* function loadScript(url) {
+		let externalScript = document.createElement('script');
+		externalScript.setAttribute("src", url);
+		document.querySelector('body').appendChild(externalScript)
+} */
 export default {
     head: {
         link: [
@@ -34,20 +39,17 @@ export default {
             {
                 src: "/js/rellax.min.js",
             },
+            {
+                src: "/js/anime.min.js",
+            },
         ],
     },
 
     mounted() {
-        let scripts = [
-            "/js/mechetle-core.js",
-            "/js/mechetle-core-animations.js",
-        ]
-
-        scripts.forEach(element => {
-            let externalScript = document.createElement('script')
-            externalScript.setAttribute('src', element)
-            document.head.appendChild(externalScript)
-        });
+		//loadScript("https://mechetle.com/js/mechetle-core.js")
+		//loadScript("https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+		//loadScript("https://mechetle.com/js/mechetle-core-animations.js")
+        // (Loading scripts at the end is now handled by footer.vue)
     }
 
 }
