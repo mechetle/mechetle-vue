@@ -1,0 +1,57 @@
+/*
+// html / wrappers
+*/
+
+html {
+  font-size: 58.5%;
+  scroll-behavior: smooth;
+}
+
+html.noScroll {
+  overflow: hidden;
+}
+
+// html, body {
+//   height: 100%;
+//   // overflow-x: hidden;
+//   overscroll-behavior-x: none;
+//   margin: 0;
+// }
+
+//
+
+body {
+  font-size: 2rem;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #000;
+  background: #fff;
+}
+
+.grid-container {
+  max-width: 160rem;
+  &.extended {
+    padding: 0 4.5em;
+  }
+}
+
+figcaption {
+  border-left: #01579B solid 12.5px;
+  padding-left: 20px;
+}
+
+code {
+  padding: 0.7em;
+  background: #e0e0e0;
+  border-radius: 12.5px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: gray;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}

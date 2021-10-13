@@ -1,0 +1,69 @@
+/*
+Footer:
+*/
+footer {
+  background: linear-gradient(-45deg, #D81B60, #A33B81, #01579B, #039BE5) #01579B;
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  padding: 3em 0;
+}
+
+/* Footer widget
+*/
+.footer-widget {
+  a {
+    transition-duration: 0.12s;
+    transition-timing-function: cubic-bezier(0.79, 0.11, 0.28, 0.97);
+    padding-left: 0;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.7) !important;
+      transform: translateX(1.2);
+      padding-left: 10px;
+    }
+  }
+
+  .fab { // Font awesome
+    width: 1.5em;
+
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    &:hover a {
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+  }
+
+  a {
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    margin-block-end: 1em;
+  }
+}
+
+.footer-note {
+  padding-top: 2em;
+}
+
+/* Animating background:
+*/
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
