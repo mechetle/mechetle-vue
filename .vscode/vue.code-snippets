@@ -135,9 +135,18 @@
         "body": [
             "name: '$1',",
             "props: {",
-            "   $2",
+            "    $2",
             "},"
         ],
         "description": "makes new comp"
+    },
+    "mounted": {
+        "scope": "javascript",
+        "prefix": "v-mounted",
+        "body": [
+            "mounted() {",
+            "    $1",
+            "}",
+        ]
     }
 }

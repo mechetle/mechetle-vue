@@ -9,4 +9,6 @@ export default defineNuxtConfig({
     '~/assets/scss/stylesheet.scss'
   ],
 
+  generate: { fallback: '404.html' }
+
 })

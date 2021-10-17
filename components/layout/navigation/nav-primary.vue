@@ -7,7 +7,7 @@ The one that you will see on every page
     <div class="nav-primary navigation nav-header-main">
         <div class="grid-container fluid">
             <div class="logo-space logo-anim-nav"><a href="/" alt="Home">
-                    <img src="~/assets/img/mechetleweb-svglogo.svg" alt="Mechetle logo">
+                    <img src="assets/img/mechetleweb-svglogo.svg" alt="Mechetle logo">
                     <h1 class="logo-text">MECHETLE</h1>
                 </a>
             </div>

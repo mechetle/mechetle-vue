@@ -23,6 +23,7 @@ export default {
        bg_img: String,
        video: String,
     },
+
 }
 </script>
 
