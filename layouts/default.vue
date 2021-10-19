@@ -1,7 +1,7 @@
 <template>
     <NavPrimary/>
     <slot />
-    <Beta />
+    <!-- <Beta /> -->
     <Footer />
 </template>
 

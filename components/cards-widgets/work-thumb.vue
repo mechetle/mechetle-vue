@@ -5,11 +5,12 @@ Seen on the home and portfolio page.
 
 TODO:
 - convert <a></a> into <NuxtLink :to="`/work/${slug}`"></NuxtLink>
+- :to="{ name: 'portfolio-slug', params: { slug: slug } }"
 -->
 <template>
     <div :class="['cell', 'medium-6', columns, 'work-thumb']">
-        <NuxtLink
-          :to="{ name: 'portfolio-slug', params: { slug: slug } }"
+        <a
+          :href="`/portfolio/${slug}`"
         ><div class="work-thumb-wrapper">
                 <div class="work-thumb-wrapper-cont">
                     <img :src="imgSrc" :alt="alt">
@@ -28,7 +29,7 @@ TODO:
                     <div class="btn-read-more">See</div>
                 </div>
             </div>
-        </NuxtLink>
+        </a>
     </div>
 </template>
 
@@ -77,6 +78,7 @@ export default {
             }
         }
     }
+
 }
 </script>
 

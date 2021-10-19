@@ -49,7 +49,7 @@ console.log(
 
 
 
-//// Beta mode switch:
+/* //// Beta mode switch:
 var beta = localStorage.getItem("beta");
 var firstTimer = localStorage.getItem("firstTimer");
 
@@ -129,6 +129,8 @@ if (typeof (Storage) !== "undefined") {
     // document.getElementById("error").innerHTML = "Oopsies, your browser is too old that this function would not work";
     // to-do: add mchtl-Nortifications.js into here.
 }
+
+ */
 
 
 // wraps element

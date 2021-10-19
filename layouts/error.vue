@@ -1,7 +1,7 @@
 <template>
     <slot />
     <Kettle/>
-    <Beta />
+    <!-- <Beta /> -->
     <Footer />
 </template>
 
