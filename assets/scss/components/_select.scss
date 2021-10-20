@@ -4,6 +4,8 @@
 */
  //@use "../vendors/foundation/util/util" as *;
 
+@use "sass:math";
+
 .select-row {
     align-self: flex-end;
     padding-bottom: 1.38rem;
@@ -129,7 +131,7 @@
 
     @function em2px($target, $context: $base-font-size-em) {
         @if $target == 0 { @return 0 }
-        @return ($target / 1em) * ($context / 1em) * 16 + 0px;
+        @return math.div($target, 1em) * math.div($context, 1em) * 16 + 0px;
      }
 
     select {

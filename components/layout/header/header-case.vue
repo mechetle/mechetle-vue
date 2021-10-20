@@ -11,7 +11,7 @@ bg_img : Image in the background
 video: Video in the video container if type == 'video'
 -->
 <template>
-  
+  <h1>Header case lol</h1>
 </template>
 
 <script>

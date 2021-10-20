@@ -1,13 +1,16 @@
 <template>
   <p>this is a case</p>
-  <HeaderCase/>
+  <header-case/>
 </template>
 
 <script>
-import HeaderCase from "../../../components/layout/header/header-case.vue";
 export default {
 
 }
+</script>
+
+<script setup>
+import HeaderCase from "../../../components/layout/header/header-case.vue";
 </script>
 
 <style lang="scss" scoped>
