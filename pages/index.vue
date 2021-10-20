@@ -109,6 +109,9 @@
 
                 <WorkThumb v-for="mountain in mountains" :key="mountain.title" :title="mountain.title" :slug="mountain.slug" :img-src="mountain.img" :desc="mountain.desc" :cat="mountain.cat" :size="mountain.cols"/>
 
+
+                <p> {{data}}</p>
+
                 <div class="cell">
                     <button class="button">See more!</button>
                 </div>
@@ -123,9 +126,10 @@
 
 <script>
 export default {
-    beforeCreate() {
+    // this is cause error 505
+    /* beforeCreate() {
     document.body.id = "homepage"
-    },
+    }, */
 
     mounted() {
         /* 
@@ -172,9 +176,13 @@ export default {
     import HeaderFp from "../components/layout/header/header-fp.vue";
     import Cta from "../components/sections/cta.vue";
     import WorkThumb from "../components/cards-widgets/work-thumb.vue";
+
     /* const mountains = await fetch(
       "https://api.nuxtjs.dev/mountains"
     ).then((res) => res.json()); */
+
+    const {data} = await useFetch("/api/data?search=hey")
+
     const mountains = ref([
         {
             title: 'Project 1',
