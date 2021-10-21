@@ -13,7 +13,8 @@
 export default {
     layout: "error",
 
-    beforeCreate() {
+    // this used to cause error 505, but may cause other issues
+    beforeMount() {
         document.body.id = "fourOfour"
     },
 }

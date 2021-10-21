@@ -107,7 +107,7 @@
                     </a>
                 </div>
 
-                <WorkThumb v-for="mountain in mountains" :key="mountain.title" :title="mountain.title" :slug="mountain.slug" :img-src="mountain.img" :desc="mountain.desc" :cat="mountain.cat" :size="mountain.cols"/>
+                <WorkThumb v-for="post in posts" :key="post.title" :title="post.title" :slug="post.slug" :img-src="post.img + '?' + post.id" :desc="post.alt" :cat="post.category" :size="post.columns"/>
 
 
                 <p> {{data}}</p>
@@ -126,10 +126,10 @@
 
 <script>
 export default {
-    // this is cause error 505
-    /* beforeCreate() {
-    document.body.id = "homepage"
-    }, */
+    // this used to cause error 505, but may cause other issues
+    beforeMount() {
+        document.querySelector("#__nuxt > div").id = "homepage"
+    },
 
     mounted() {
         /* 
@@ -177,41 +177,8 @@ export default {
     import Cta from "../components/sections/cta.vue";
     import WorkThumb from "../components/cards-widgets/work-thumb.vue";
 
-    /* const mountains = await fetch(
-      "https://api.nuxtjs.dev/mountains"
-    ).then((res) => res.json()); */
+    const {data: posts} = await useFetch("/api/data?limit=4")
 
-    const {data} = await useFetch("/api/data?search=hey")
-
-    const mountains = ref([
-        {
-            title: 'Project 1',
-            desc: 'This is a project ayye',
-            cat: 'Sandbagging',
-            img: '/assets/img/thumbs/nihdc4.png',
-            slug: 'prj1',
-            cols: 7,
-            case: 'True'
-        },
-        {
-            title: 'Project 2',
-            desc: 'Another one',
-            cat: 'Mudball designing',
-            img: '/assets/img/thumbs/maribsc.png',
-            slug: 'prj2',
-            cols: 5,
-            case: 'True'
-        },
-        {
-            title: 'Project 3',
-            desc: '🤔🤔🤔🤔🤔🤔',
-            cat: 'Bonsai architect',
-            img: '/assets/img/Portfolio/nihdc4/still-frame-3-halfres.png',
-            slug: 'prj3',
-            cols: 7,
-            case: 'True'
-        },
-    ])
 
 </script>
 

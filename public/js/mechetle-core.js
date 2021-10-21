@@ -472,10 +472,10 @@ function tglSpoiler(id) {
     
 }
 
-if (beta == "on") {
+/* if (beta == "on") {
     tglSpoiler('aboutSpoiler');
 }
-
+ */
 
 
 //// Discord modal:
@@ -594,7 +594,7 @@ try {
           // supported
         } else {
           // not-supported
-          console.log("webp lossless is supported");
+          console.log("webp lossless is not supported");
           headerImage.querySelector("img").src = headerImageSrc.replace("webp", "png");
         }
      });

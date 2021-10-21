@@ -11,11 +11,13 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   let url_mod = api_url
   let data = { data: [{ data: "" }] };
 
-  const queryObject = url.parse(req.url as string, true).query;   // this need fixing
+  
+  const queryObject = url.parse(req.url as string, true).query;   
+  console.log("queryObject:");
   console.log(queryObject);
   // data?search=420  --> search: 420
   // data?limit=2  --> limits to 2 entries
-  const { search, limit } = queryObject;
+  const { search, limit } = queryObject; // this need fixing
 
   if (limit) {
     url_mod += `page=1&limit=${limit}`
@@ -28,7 +30,17 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   
   console.log("headers:", res.getHeaders());
 
+  console.log("dsfsdfsdfsfs", Object.keys(data).length)
+
+  // if queried data is only 1, focus on to that object:
+  if (Object.keys(data).length != 1) {
+    data = data
+  } else {
+    data = data[0]
+  }
+
   res.writeHead(200, { "Content-Type": "application/json" });
+
   res.write(JSON.stringify(data));
   res.end();
 };
