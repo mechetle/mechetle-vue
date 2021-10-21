@@ -4,13 +4,10 @@
 import type { IncomingMessage, ServerResponse } from "http";
 import * as url from "url";
 
-// import axios from "axios";
-// import useFetch from "nuxt3";
 const api_url = `https://6170134923781c0017289827.mockapi.io/posts?`
 export default async (req: IncomingMessage, res: ServerResponse) => {
   let url_mod = api_url
   let data = { data: [{ data: "" }] };
-
   
   const queryObject = url.parse(req.url as string, true).query;   
   console.log("queryObject:");
@@ -29,7 +26,6 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   }
   
   console.log("headers:", res.getHeaders());
-
   console.log("dsfsdfsdfsfs", Object.keys(data).length)
 
   // if queried data is only 1, focus on to that object:
