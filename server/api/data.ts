@@ -8,7 +8,6 @@ const api_url = `https://6170134923781c0017289827.mockapi.io/posts?`
 export default async (req: IncomingMessage, res: ServerResponse) => {
   let url_mod = api_url
   let data = { data: [{ data: "" }] };
-
   
   const queryObject = url.parse(req.url as string, true).query;   // this is legacy according to node.js docs
   console.log("queryObject:");
