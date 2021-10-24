@@ -13,11 +13,11 @@
                             </ol>
                         </nav>
 
-                        <h1 class="post">{{post.title}}</h1>
+                        <h1 class="post">{{postShown.title}}</h1>
                     </div>
 
                     <main class="work-details">
-                        <q>{{post.desc}}</q>
+                        <q>{{postShown.desc}}</q>
 
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis magna sagittis, tincidunt urna mattis, pharetra massa. Sed turpis tellus, laoreet at tellus at, tristique consequat dui. Ut condimentum a risus eu molestie.</p>
 
@@ -25,19 +25,19 @@
                             <div class="little-bits-cols">
                                 <p>
                                     <b>Context of work:</b><br>
-                                    {{post.design_context}}
+                                    {{postShown.design_context}}
                                 </p>
 
                             </div>
                             <div class="little-bits-cols">
                                 <p>
                                     <b>Client:</b><br>
-                                    {{post.client}}
+                                    {{postShown.client}}
                                 </p>
 
                                 <p>
                                     <b>Client field:</b><br>
-                                    {{post.client_field}}
+                                    {{postShown.client_field}}
                                 </p>
 
                             </div>
@@ -78,7 +78,7 @@
 
         <div id="header-bg" class="header-post-image rellax" data-rellax-speed="-4">
             <div class="image-header">
-                <img :src="post.img" class="image-header-temp">
+                <img :src="postShown.img" class="image-header-temp">
             </div>
             <div class="transition"></div>
         </div>
@@ -86,8 +86,25 @@
         <div class="border-bottom-naturalize"></div>
     </header>
     
-    <section>
+    <section id="similar-work" class="grid-container fluid extended">
+        <h2>Other logo animations</h2>
+        <div class="grid-x grid-margin-x">
+            <WorkThumb v-for="post in posts" :key="post.title" :title="post.title" :slug="post.slug" :img-src="post.img + '?' + post.id" :desc="post.alt" :size="3"/>
 
+            <!-- <p>{{posts}}</p> -->
+        </div>
+    </section>
+
+    <section id="next-prev-work" class="grid-container fluid extended">
+        <div class="grid-x grid-margin-x">
+            <div class="cell large-6">
+                <h2><span>Previous project</span><span class="hoz-arrow-extended"></span></h2>
+            </div>
+
+            <WorkThumb :key="nPost.title" :title="nPost.title" :slug="nPost.slug" :img-src="nPost.img + '?' + nPost.id" :desc="nPost.alt" :size="6" :cat="nPost.category"/>
+
+            <!-- <p>{{nPost}}</p> -->
+        </div>
     </section>
 
 </template>
@@ -106,6 +123,8 @@ export default {
 </script>
 
 <script setup>
+    import WorkThumb from "~/components/cards-widgets/work-thumb.vue";
+
     import { useRouter, useRoute } from 'vue-router'
     const router = useRouter()
     const route = useRoute()
@@ -127,7 +146,7 @@ export default {
     "oneByOne": true
     */
     
-    const {data: post} = await useFetch(`/api/data?search=${route.params.project}`, {
+    const {data: postShown} = await useFetch(`/api/data?search=${route.params.project}`, {
         pick: [
             "title",
             "category",
@@ -142,10 +161,17 @@ export default {
             "img",
             "oneByone",
             "video",
+            "tags",
+            "id"
         ]
     })
 
-    console.log(post.value)
+    console.log(postShown.value)
+    let tags = postShown.value.tags[0]
+    let id = postShown.value.id[0]
+
+    const {data: posts} = await useFetch(`/api/data?limit=4&search=${tags}`)
+    const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
 </script>
 
 <style lang="scss" scoped>
@@ -292,5 +318,9 @@ export default {
         .transition {
             background: #eceff1;
         }
+    }
+
+    section#similar-work {
+        padding-top: 0;
     }
 </style>
