@@ -99,6 +99,13 @@
         <div class="grid-x grid-margin-x">
             <div class="cell large-6">
                 <h2><span>Previous project</span><span class="hoz-arrow-extended"></span></h2>
+
+                <a href="/portfolio" class="go-explore">
+                    <div>
+                        <h2>Explore other projects</h2>
+                        <div class="m-icon arrow-left">⬅️</div> <!-- temporary -->
+                    </div>
+                </a>
             </div>
 
             <WorkThumb :key="nPost.title" :title="nPost.title" :slug="nPost.slug" :img-src="nPost.img + '?' + nPost.id" :desc="nPost.alt" :size="6" :cat="nPost.category"/>
@@ -322,5 +329,44 @@ export default {
 
     section#similar-work {
         padding-top: 0;
+    }
+
+    section#next-prev-work {
+        background: #eceff1;    // maybe no???
+
+        h2 {
+            display: flex;
+            // flex-direction: row;
+
+            > span {
+                font-family: inherit;
+
+                &:first-of-type {
+                    flex: none;
+                }
+
+                &:last-of-type {
+                    width: 100%;
+                    background: #0b233d;
+                    margin-left: 0.5em;
+                    height: 15px;
+                    align-self: center;
+                }
+            }
+        }
+    }
+
+    .go-explore {
+        margin-top: 5em;
+        padding: 3em 4.5em;
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: #d81b60;
+
+        a {
+            color: #fff;
+        }
     }
 </style>

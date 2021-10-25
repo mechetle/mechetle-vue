@@ -76,7 +76,7 @@ function loadScript(url) {
 		document.querySelector('body').appendChild(externalScript)
 }
 export default {
-    name: 'footer',
+    name: 'footer-m',
 
     components: {
         DiscordModal

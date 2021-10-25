@@ -50,9 +50,9 @@ export default {
             type: String,
             default: 'Hey bruv, there is no description'
         },
-        alt: {
+        /* alt: {
             type: String,
-        },
+        }, */
         cat: {
             type: String,
             default: ' '
