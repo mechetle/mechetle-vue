@@ -2,32 +2,24 @@
     <HeaderFp />
 
     <section id="who-am-i">
-        <div class="grid-container fluid">
-            <div class="grid-x">
+        <Container class="fluid">
+            <GridX>
                 <div class="cell medium-8 large-5" id="wai-wrapper">
                     <h2>Who am I?</h2>
                     <q>Hello I’m Steven B-M Nguyen, an enthusiastic and cheerful motion, web and graphic designer from
                         Melbourne, Australia.</q>
-                    <!-- <div class="spoiler" id="aboutSpoiler">
-                        <p>I was introduced to “graphic design” during Primary School when my friend asked me what I wanted to be when I grew up, I said I didn’t know, so she suggested that I’d become a graphic designer, she introduced me to the world of design, I thought it was incredible.</p>
-                        <p>
-                        When I showed my first ever graphic design piece to her, she flamed me. However, this did not stop me, I kept on experimenting and created “logos” for my friends for fun.</p> 
-                        <p>
-                        Over the years, I decided to mess around with motion design as well after seeing a video from my favourite YouTuber at the time and came to the realisation that it was fun too. Feedback and advice from peers turned my fun hobby into something I could do in my free time, whilst be able to help others by supplying designs that fit their need.</p>
-                    </div>
-                    
-                    <button class="button" onclick="tglSpoiler('aboutSpoiler')">Read more</button> -->
+
                     <a href="/about-me" class="button">Read more</a>
                 </div>
 
-            </div>
-        </div>
+            </GridX>
+        </Container>
     </section>
 
     <section id="featured-work">
-        <div class="grid-container fluid extended">
+        <Container class="fluid extended">
             <h2>Some of my work</h2>
-            <div class="grid-x grid-margin-x">
+            <GridX class="grid-margin-x">
                 <div class="cell medium-6 large-6 work-thumb">
                     <a href="/portfolio/case/nihdc4">
                         <div class="work-thumb-wrapper">
@@ -115,8 +107,8 @@
                 <div class="cell">
                     <button class="button">See more!</button>
                 </div>
-            </div>
-        </div>
+            </GridX>
+        </Container>
 
 
     </section>
@@ -173,11 +165,14 @@ export default {
 </script>
 
 <script setup>   
-    import HeaderFp from "../components/layout/header/header-fp.vue";
-    import Cta from "../components/sections/cta.vue";
-    import WorkThumb from "../components/cards-widgets/work-thumb.vue";
+import HeaderFp from "../components/layout/header/header-fp.vue";
+import Cta from "../components/sections/cta.vue";
+import WorkThumb from "../components/cards-widgets/work-thumb.vue";
+import Container from "../components/layout/grid/container.vue";
+import GridX from "../components/layout/grid/grid-x.vue";
+import GridX1 from "../components/layout/grid/grid-x.vue";
 
-    const {data: posts} = await useFetch("/api/data?limit=4")
+const {data: posts} = await useFetch("/api/data?limit=4")
 
 
 </script>

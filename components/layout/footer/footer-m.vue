@@ -5,8 +5,8 @@ Its a fucking footer lol
 -->
 <template>
 <footer>
-    <div class="grid-container">
-        <div class="grid-x">
+    <Container>
+        <GridX>
             <div class="cell medium-6 large-3 ftr-fst">
                 <div class="footer-widget other-pages">
                     <h5>Other Pages</h5>
@@ -54,9 +54,9 @@ Its a fucking footer lol
                 </p>
                     <div id="last-modified"></div>  
             </div>
-        </div>
+        </GridX>
 
-    </div>
+    </Container>
 
 
     <DiscordModal/>
@@ -70,6 +70,8 @@ Its a fucking footer lol
 
 <script>
 import DiscordModal from "./discord-modal.vue";
+import GridX from "../grid/grid-x.vue";
+import Container from "../grid/container.vue";
 function loadScript(url) {
 		let externalScript = document.createElement('script');
 		externalScript.setAttribute("src", url);
@@ -79,8 +81,10 @@ export default {
     name: 'footer-m',
 
     components: {
-        DiscordModal
-    },
+    DiscordModal,
+    GridX,
+    Container
+},
 
     mounted() {
 		loadScript("/js/mechetle-core.js")

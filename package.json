@@ -1,4 +1,8 @@
 {
+  "name": "mechetle-site",
+  "version": "2.1.0",
+  "description": "Mechetle's website",
+  "author": "Steven B-m Nguyen - Mechetle<me@mechetle.com>",
   "private": true,
   "scripts": {
     "dev": "nuxt dev",

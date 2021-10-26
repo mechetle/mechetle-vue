@@ -1,8 +1,8 @@
 <template>
     <header>
         <div class="border-top-naturalize"></div>
-        <div id="header-wrapper" class="grid-container fluid">
-            <div class="grid-x">
+        <Container id="header-wrapper" class="fluid">
+            <GridX>
                 <div class="cell large-7 post-details">
                     <div class="text-wrapper">
                         <nav aria-label="breadcrumb">
@@ -72,9 +72,9 @@
                     </div>
 
                 </div>
-            </div>
+            </GridX>
 
-        </div>
+        </Container>
 
         <div id="header-bg" class="header-post-image rellax" data-rellax-speed="-4">
             <div class="image-header">
@@ -88,30 +88,28 @@
     
     <section id="similar-work" class="grid-container fluid extended">
         <h2>Other logo animations</h2>
-        <div class="grid-x grid-margin-x">
+        <GridX class="grid-margin-x">
             <WorkThumb v-for="post in posts" :key="post.title" :title="post.title" :slug="post.slug" :img-src="post.img + '?' + post.id" :desc="post.alt" :size="3"/>
 
             <!-- <p>{{posts}}</p> -->
-        </div>
+        </GridX>
     </section>
 
     <section id="next-prev-work" class="grid-container fluid extended">
-        <div class="grid-x grid-margin-x">
+        <GridX class="grid-margin-x">
             <div class="cell large-6">
                 <h2><span>Previous project</span><span class="hoz-arrow-extended"></span></h2>
 
                 <a href="/portfolio" class="go-explore">
-                    <div>
-                        <h2>Explore other projects</h2>
-                        <div class="m-icon arrow-left">⬅️</div> <!-- temporary -->
-                    </div>
+                    <h2>Explore other projects</h2>
+                    <div class="m-icon arrow-left">⬅️</div> <!-- temporary -->
                 </a>
             </div>
 
             <WorkThumb :key="nPost.title" :title="nPost.title" :slug="nPost.slug" :img-src="nPost.img + '?' + nPost.id" :desc="nPost.alt" :size="6" :cat="nPost.category"/>
 
             <!-- <p>{{nPost}}</p> -->
-        </div>
+        </GridX>
     </section>
 
 </template>
@@ -130,55 +128,57 @@ export default {
 </script>
 
 <script setup>
-    import WorkThumb from "~/components/cards-widgets/work-thumb.vue";
+import WorkThumb from "~/components/cards-widgets/work-thumb.vue";
 
-    import { useRouter, useRoute } from 'vue-router'
-    const router = useRouter()
-    const route = useRoute()
+import { useRouter, useRoute } from 'vue-router'
+import Container from "../../components/layout/grid/container.vue";
+import GridX from "../../components/layout/grid/grid-x.vue";
+const router = useRouter()
+const route = useRoute()
 
-    console.log("routed to...", route.params.project)
+console.log("routed to...", route.params.project)
 
-    /* SAMPLE DATA:
-    "title": "Leffler - Nolan",
-    "category": "Executive",
-    "slug": "et-laboriosam-in",
-    "case": false,
-    "client": "Welch - Beahan",
-    "client_field": true
-    "design_context": true
-    "desc": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
-    "alt": "Tempora facere autem aspernatur quisquam dolorem sed quo.",
-    "columns": 6,
-    "img": "https://source.unsplash.com/random/1200x720", 
-    "oneByOne": true
-    */
-    
-    const {data: postShown} = await useFetch(`/api/data?search=${route.params.project}`, {
-        pick: [
-            "title",
-            "category",
-            //"slug",
-            //"case",
-            "client",
-            "client_field",
-            "desc",
-            "design_context",
-            //"alt",
-            //"columns",
-            "img",
-            "oneByone",
-            "video",
-            "tags",
-            "id"
-        ]
-    })
+/* SAMPLE DATA:
+"title": "Leffler - Nolan",
+"category": "Executive",
+"slug": "et-laboriosam-in",
+"case": false,
+"client": "Welch - Beahan",
+"client_field": true
+"design_context": true
+"desc": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+"alt": "Tempora facere autem aspernatur quisquam dolorem sed quo.",
+"columns": 6,
+"img": "https://source.unsplash.com/random/1200x720", 
+"oneByOne": true
+*/
 
-    console.log(postShown.value)
-    let tags = postShown.value.tags[0]
-    let id = postShown.value.id[0]
+const {data: postShown} = await useFetch(`/api/data?search=${route.params.project}`, {
+    pick: [
+        "title",
+        "category",
+        //"slug",
+        //"case",
+        "client",
+        "client_field",
+        "desc",
+        "design_context",
+        //"alt",
+        //"columns",
+        "img",
+        "oneByone",
+        "video",
+        "tags",
+        "id"
+    ]
+})
 
-    const {data: posts} = await useFetch(`/api/data?limit=4&search=${tags}`)
-    const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
+console.log(postShown.value)
+let tags = postShown.value.tags[0]
+let id = postShown.value.id[0]
+
+const {data: posts} = await useFetch(`/api/data?limit=4&search=${tags}`)
+const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
 </script>
 
 <style lang="scss" scoped>
@@ -332,7 +332,8 @@ export default {
     }
 
     section#next-prev-work {
-        background: #eceff1;    // maybe no???
+        //background: #eceff1;    // maybe no???
+        padding-bottom: 5em;
 
         h2 {
             display: flex;
@@ -357,16 +358,14 @@ export default {
     }
 
     .go-explore {
-        margin-top: 5em;
+        margin-top: 6em;
+        margin-left: -4.5em;
         padding: 3em 4.5em;
         height: 60vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         background: #d81b60;
-
-        a {
-            color: #fff;
-        }
+        color: #fff;
     }
 </style>
