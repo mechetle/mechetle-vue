@@ -2,7 +2,7 @@
     <slot />
     <Kettle/>
     <!-- <Beta /> -->
-    <FooterM />
+    
 </template>
 
 <script setup>

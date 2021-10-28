@@ -72,11 +72,11 @@
                     </div>
 
                 </div>
-                <div v-else class="cell large-10 rellax wide-vid" data-rellax-speed="2">
+                <div v-else class="cell large-10 rellax wide-vid" data-rellax-speed="3">
                     <div class="video-wrapper">
                         <div class="play-button-wrapper">
                             <div class="play-button">
-                                ▶️<span class="pb-text"> Play video</span>
+                                ▶️<span class="pb-text">&nbsp; Play video</span>
                             </div>
                         </div>
                         <div class="video-overflow widescreen">
@@ -167,9 +167,10 @@
             <div class="cell large-6">
                 <h2><span>Previous project</span><span class="hoz-arrow-extended"></span></h2>
 
-                <a href="/portfolio" class="go-explore">
-                    <h2>Explore other projects</h2>
-                    <div class="m-icon arrow-left">⬅️</div> <!-- temporary -->
+                <a href="/portfolio" class="go-explore rellax" data-rellax-speed="2" data-rellax-percentage="0.5">
+                    <h2 class="rellax" data-rellax-speed="1" data-rellax-percentage="0.5">Explore other projects
+                        <div class="m-icon arrow-left">⬅️</div> <!-- temporary -->
+                    </h2>
                 </a>
             </div>
 
@@ -305,6 +306,10 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
                     }
                 }
             }
+        }
+
+        .video-wrapper {
+            position: relative;
         }
 
         .video-overflow {
@@ -510,7 +515,7 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
                 display: inline-flex;
                 transition-duration: 0.45s;
                 transition-property: cubic-bezier(0.91, 0.13, 0.06, 0.87);
-                width: 4.3em;
+                width: 5em;
                 white-space: nowrap
             }
 
