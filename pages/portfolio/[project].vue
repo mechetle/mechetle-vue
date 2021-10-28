@@ -16,7 +16,7 @@
                         <h1 class="post">{{postShown.title}}</h1>
                     </div>
 
-                    <main class="work-details">
+                    <main v-if="postShown.oneByOne === true" class="work-details">
                         <q>{{postShown.desc}}</q>
 
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis magna sagittis, tincidunt urna mattis, pharetra massa. Sed turpis tellus, laoreet at tellus at, tristique consequat dui. Ut condimentum a risus eu molestie.</p>
@@ -44,7 +44,7 @@
                         </div>
                     </main>
                 </div>
-                <div class="cell large-5 rellax" data-rellax-speed="2">
+                <div v-if="postShown.oneByOne === true" class="cell large-5 rellax" data-rellax-speed="2">
                     <div class="video-wrapper">
                         <div class="video-overflow">
                             <div class="video">
@@ -72,6 +72,28 @@
                     </div>
 
                 </div>
+                <div v-else class="cell large-10 rellax wide-vid" data-rellax-speed="2">
+                    <div class="video-wrapper">
+                        <div class="play-button-wrapper">
+                            <div class="play-button">
+                                ▶️<span class="pb-text"> Play video</span>
+                            </div>
+                        </div>
+                        <div class="video-overflow widescreen">
+                            <div class="video">
+                                <p><i>Project logo animation gif here
+                                </i>
+                                </p>
+                            </div>
+                            
+                        </div>
+
+                        <!--
+                        <button class="small-button">Play / Pause</button>
+                        <button class="small-button">Mute</button>
+                        <button class="small-button">Watch on YouTube</button>-->
+                    </div>
+                </div>
             </GridX>
 
         </Container>
@@ -85,6 +107,51 @@
 
         <div class="border-bottom-naturalize"></div>
     </header>
+
+    <main v-if="postShown.oneByOne === false" class="work-details wide-vid">
+        <Container class="fluid extended">
+            <GridX class="grid-margin-x">
+                <Cell class="large-7 work-details">
+                    <q>{{postShown.desc}}</q>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis magna sagittis, tincidunt urna mattis, pharetra massa. Sed turpis tellus, laoreet at tellus at, tristique consequat dui. Ut condimentum a risus eu molestie.</p>
+
+                    <div class="little-bits">
+                        <div class="little-bits-cols">
+                            <p>
+                                <b>Context of work:</b><br>
+                                {{postShown.design_context}}
+                            </p>
+
+                        </div>
+                        <div class="little-bits-cols">
+                            <p>
+                                <b>Client:</b><br>
+                                {{postShown.client}}
+                            </p>
+
+                            <p>
+                                <b>Client field:</b><br>
+                                {{postShown.client_field}}
+                            </p>
+
+                        </div>
+                    </div>
+                </Cell>
+                <Cell class="large-5">
+                    <div class="nerdy-details">
+                        <b>Nerdy details:</b>
+                        <p>
+                            Dimensions: &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp 1080x1080px
+                            <br> Exported: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp .webm, .mov, .gif, image-sequence, .json (lottie)
+                            <br> Client supplied: &nbsp &nbsp &nbsp &nbsp vector file of logo
+                            <br> Finished:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 20-12-3008
+                        </p>
+                    </div>
+                </Cell>
+            </GridX>
+        </Container>
+    </main>
     
     <section id="similar-work" class="grid-container fluid extended">
         <h2>Other logo animations</h2>
@@ -122,6 +189,27 @@ export default {
             vertical: true,
             horizontal: false
         });
+
+        function videoPB() {
+            let pbw = document.querySelector(".play-button-wrapper");
+            let pb = document.querySelector(".play-button");
+
+            let pbw_bottom = pbw.getBoundingClientRect().bottom;
+            let pb_bottom = pb.getBoundingClientRect().bottom;
+
+            if (pb_bottom > 0) {
+                console.log(pbw_bottom, pb_bottom, pbw_bottom == pb_bottom);
+            } 
+            
+            if (pb_bottom == pbw_bottom) {
+                pb.classList.add("rest-end")
+            } else {
+                pb.classList.remove("rest-end")
+            }
+            
+        }
+
+        window.addEventListener("scroll", () => videoPB(),{ passive: true });
     }
 
 }
@@ -129,10 +217,11 @@ export default {
 
 <script setup>
 import WorkThumb from "~/components/cards-widgets/work-thumb.vue";
-
 import { useRouter, useRoute } from 'vue-router'
 import Container from "../../components/layout/grid/container.vue";
 import GridX from "../../components/layout/grid/grid-x.vue";
+import Cell from "../../components/layout/grid/cell.vue";
+
 const router = useRouter()
 const route = useRoute()
 
@@ -166,7 +255,7 @@ const {data: postShown} = await useFetch(`/api/data?search=${route.params.projec
         //"alt",
         //"columns",
         "img",
-        "oneByone",
+        "oneByOne",
         "video",
         "tags",
         "id"
@@ -182,6 +271,12 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
 </script>
 
 <style lang="scss" scoped>
+    .nerdy-details {
+        background: #0b233d;
+        color: #cfd8dc;
+        padding: 3em;
+    }
+
     header {
         outline-color: #ffffff;
         background: none;
@@ -190,21 +285,6 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
             height: unset;
 
             h1 {padding-right: 6.8rem;}
-        }
-
-        .little-bits {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            margin-top: 4em;
-
-            .little-bits-cols {
-                width: 50%;
-
-                &:last-child {
-                    padding-left: 3em;
-                }
-            }
         }
 
         .grid-x {
@@ -218,6 +298,10 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
                     flex-direction: column;
                     justify-content: flex-end;
                     margin-top: 66px * 2 + 16.5;
+
+                    &.wide-vid {
+                        margin-top: 0;
+                    }
                 }
             }
         }
@@ -229,7 +313,8 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
 
             .video {
                 //background: #cfd8dc;
-                background: #eceff1;
+                //background: #eceff1;
+                background: #bcaaa4;
                 aspect-ratio: 1 / 1;
                 width: 100%;
                 //margin-top: -19px;
@@ -244,6 +329,13 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
 
                 &.load-header {
                     transform: translateY(0);
+                }
+            }
+
+            &.widescreen {
+                aspect-ratio: 16 / 9;
+                .video {
+                    aspect-ratio: 16 / 9;
                 }
             }
         }
@@ -308,23 +400,33 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
             }
         }
         .nerdy-details {
-            background: #0b233d;
             margin-right: -6.8rem;
             padding-right: 6.8rem;
-            //margin-top: -20vh;
-            //padding-top: 20vh;
-
-            padding-top: 3em;
-            padding-bottom: 3em;
-            padding-left: 3em;
-
-            color: #cfd8dc;
         }
     
 
         .transition {
             background: #eceff1;
         }
+    }
+
+    .little-bits {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 4em;
+
+        .little-bits-cols {
+            width: 50%;
+
+            &:last-child {
+                padding-left: 3em;
+            }
+        }
+    }
+
+    .work-details.wide-vid {
+        margin-bottom: 7em;
     }
 
     section#similar-work {
@@ -367,5 +469,77 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
         justify-content: center;
         background: #d81b60;
         color: #fff;
+    }
+
+    .play-button-wrapper {
+        $button-rest-height: 60px;
+
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        position: absolute;
+        height: calc(50% + $button-rest-height / 2);
+        //background: rgba(11, 35, 61, 0.2);
+        z-index: 1;
+
+        .play-button {
+            position: sticky;
+            top: calc(100vh - $button-rest-height - 33px);
+            height: $button-rest-height;
+            text-align: center;
+            border-radius: 0.15em;
+            color: #fff;
+            padding: 0.9em 2em;
+            user-select: none;
+            cursor: pointer;
+
+            transition-duration: 0.75s;
+            transition-property: cubic-bezier(0.91, 0.13, 0.06, 0.87);
+            transition-delay: 0.12s;
+
+            &:hover {
+                .pb-text {
+                    color: #0b233d
+                }
+            }
+
+            .pb-text {
+                overflow: hidden;
+                display: inline-flex;
+                transition-duration: 0.45s;
+                transition-property: cubic-bezier(0.91, 0.13, 0.06, 0.87);
+                width: 4.3em;
+                white-space: nowrap
+            }
+
+            &.rest-end {
+                .pb-text {
+                    //display: none;
+                    width: 0;
+                }
+
+                &::after {
+                    border-radius: 48px;
+                    transform: scale(1.5);
+                }
+                
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 0.15em;
+                background: #d81b60;
+                top: 0;
+                left: 0;
+                z-index: -1;
+
+                transition-duration: 0.45s;
+                transition-property: cubic-bezier(0.91, 0.13, 0.06, 0.87);
+                transition-delay: 0.05s;
+            }
+        }
     }
 </style>
