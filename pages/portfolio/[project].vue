@@ -300,6 +300,7 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
                     margin-top: 66px * 2 + 16.5;
 
                     &.wide-vid {
+                        margin: auto;
                         margin-top: 0;
                     }
                 }
@@ -484,7 +485,8 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
 
         .play-button {
             position: sticky;
-            top: calc(100vh - $button-rest-height - 33px);
+            //top: calc(100vh - $button-rest-height * 2 - 33px);
+            top: calc(100vh - $button-rest-height);
             height: $button-rest-height;
             text-align: center;
             border-radius: 0.15em;
