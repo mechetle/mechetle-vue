@@ -73,17 +73,19 @@
 
                 </div>
                 <div v-else class="cell large-10 rellax wide-vid" data-rellax-speed="3">
-                    <div class="video-wrapper">
-                        <div class="play-button-wrapper">
-                            <div class="play-button">
-                                ▶️<span class="pb-text">&nbsp; Play video</span>
+                    <div class="video-wrapper" oncontextmenu="return false;">
+                        <div class="video-controls">
+                            <div class="play-button-wrapper" style="transform: translateY(70px)">
+                                <div class="play-button" @click="playPauseVideo">
+                                    ▶️<span class="pb-text">&nbsp; Play video</span>
+                                </div>
                             </div>
+
+                            <div class="fullscreen-button" @click="vidFullscreen"></div>
                         </div>
                         <div class="video-overflow widescreen">
                             <div class="video">
-                                <p><i>Project logo animation gif here
-                                </i>
-                                </p>
+                                <video id="actual-vid" width="1920" height="1080" type='video/mp4' controls controlsList="nodownload" muted></video>
                             </div>
                             
                         </div>
@@ -191,6 +193,12 @@ export default {
             horizontal: false
         });
 
+        /* Video Stuff  
+         */
+        var hiding_them;
+        // load button:
+        document.querySelector(".play-button-wrapper").style = "";
+
         function videoPB() {
             let pbw = document.querySelector(".play-button-wrapper");
             let pb = document.querySelector(".play-button");
@@ -211,6 +219,77 @@ export default {
         }
 
         window.addEventListener("scroll", () => videoPB(),{ passive: true });
+
+        let video = document.querySelector("#actual-vid");
+        fetch('/assets/video/mechetle-nihdc4.mp4')
+            .then(res => res.blob()) // response ==> blob
+            .then(blob => {
+                console.log(blob)
+                video.src = URL.createObjectURL(new Blob( [ blob ] ) );
+        });
+
+        // Detect when video has ended:
+        video.addEventListener('ended', function(){
+            // Reset video to start
+            video.currentTime = 0;
+
+            let videoWrap = document.querySelector(".video-wrapper")
+
+            if (videoWrap.classList.contains('playing')) {
+                document.querySelector(".video-wrapper").classList.remove("playing");
+            }
+        });
+
+        // video controls:
+        var timeout;
+        const videoWrap = document.querySelector(".video-wrapper");
+
+        function vidMouseMove() {
+            // when mouse moves in video wrapper show controls
+            videoWrap.classList.add("show-controls");
+
+            // reset original timeout
+            clearTimeout(timeout);
+
+            // if mouse didn't move in 2 seconds hide them
+            timeout = window.setTimeout(() => {
+                videoWrap.classList.remove("show-controls");
+            }, 1000);
+        }
+        videoWrap.addEventListener("mousemove", vidMouseMove);
+
+    },
+
+    methods: {
+        playPauseVideo() {
+            //console.log("Hey");
+            let video = document.querySelector("#actual-vid");
+            let video_wrap = document.querySelector("#actual-vid");
+            if (video.paused) {
+                document.querySelector(".video-wrapper").classList.toggle("playing");
+                
+                setTimeout(() => {
+                    video.play();
+                }, 750);
+
+            } else {
+                document.querySelector(".video-wrapper").classList.toggle("playing");
+                video.pause();
+            }
+            
+        },
+        vidFullscreen() {
+            var elem = document.querySelector("#actual-vid");
+            if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { 
+            elem.msRequestFullscreen();
+            }
+        }
     }
 
 }
@@ -278,6 +357,129 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
         padding: 3em;
     }
 
+    .video-controls {
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: absolute;
+
+        //transition-delay: 0.1s;
+        transition-duration: .30s;
+        transition-timing-function: cubic-bezier(0.86,0.05,0.15,0.93);
+
+        .fullscreen-button {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            background: #fff;
+            position: absolute;
+            bottom: 1.5em;
+            right: 1.5em;
+            z-index: 1000;
+        }
+    }
+
+    @keyframes up {
+        0% {
+            transform: translateY(70px)
+        }
+
+        100% {
+            transform: translateY(0)
+        }
+    }
+
+    .play-button-wrapper {
+        $button-rest-height: 60px;
+
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        position: absolute;
+        height: calc(50% + $button-rest-height / 2);
+        //background: rgba(11, 35, 61, 0.2);
+        z-index: 1;
+
+        //animation: up 0.6s cubic-bezier(0.91, 0.13, 0.06, 0.87) 0.85s;
+        transition-timing-function: cubic-bezier(0.91, 0.13, 0.06, 0.87);
+        transition-delay: 1s;
+
+        .play-button {
+            position: sticky;
+            //top: calc(100vh - $button-rest-height * 2 - 33px);
+            top: calc(100vh - $button-rest-height);
+            height: $button-rest-height;
+            text-align: center;
+            border-radius: 0.15em;
+            color: #fff;
+            padding: 0.9em 2em;
+            user-select: none;
+            cursor: pointer;
+            transform: scale(1);
+
+            transition-duration: 0.75s;
+            transition-property: cubic-bezier(0.91, 0.13, 0.06, 0.87);
+            transition-delay: 0.12s;
+
+            &:hover {
+                .pb-text {
+                    color: #0b233d
+                }
+                &.rest-end::after {
+                    transform: scale(1.6) !important;
+                    transition-duration: 0.35s;
+                    transition-delay: 0s;
+                }
+            }
+            &:active {
+                &.rest-end::after {
+                    transition-duration: 0.05s;
+                    transition-delay: 0s;
+                    transform: scale(1) !important;
+                }
+            }
+
+            .pb-text {
+                overflow: hidden;
+                display: inline-flex;
+                transition-duration: 0.45s;
+                transition-property: cubic-bezier(0.91, 0.13, 0.06, 0.87);
+                width: 5em;
+                white-space: nowrap
+            }
+
+            &.rest-end {
+                .pb-text {
+                    //display: none;
+                    width: 0;
+                }
+
+                &::after {
+                    border-radius: 48px;
+                    transform: scale(1.5);
+                }
+                
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 0.15em;
+                background: #d81b60;
+                top: 0;
+                left: 0;
+                z-index: -1;
+
+                transition-duration: 0.45s;
+                transition-property: cubic-bezier(0.91, 0.13, 0.06, 0.87);
+                transition-delay: 0.05s;
+            }
+        }
+    }
+
     header {
         outline-color: #ffffff;
         background: none;
@@ -310,6 +512,29 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
 
         .video-wrapper {
             position: relative;
+
+            &.playing {
+                .video-controls {
+                    opacity: 0;
+                    .play-button {
+                        transform: scale(0.35);
+                    }
+                }
+
+                &.show-controls {
+                    .video-controls {
+                        opacity: 1;
+                    }
+                    
+                    .play-button {
+                        transform: scale(1);
+                    }
+                }
+
+                .video {
+                    background: #000000;
+                }
+            }
         }
 
         .video-overflow {
@@ -320,7 +545,8 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
             .video {
                 //background: #cfd8dc;
                 //background: #eceff1;
-                background: #bcaaa4;
+                background: #263238;
+                color: #fff;
                 aspect-ratio: 1 / 1;
                 width: 100%;
                 //margin-top: -19px;
@@ -341,8 +567,15 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
             &.widescreen {
                 aspect-ratio: 16 / 9;
                 .video {
-                    aspect-ratio: 16 / 9;
+                    //aspect-ratio: 16 / 9;
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
                 }
+            }
+
+            video {
+                width: 100%;
             }
         }
         .fluid {
@@ -477,76 +710,5 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
         color: #fff;
     }
 
-    .play-button-wrapper {
-        $button-rest-height: 60px;
-
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        position: absolute;
-        height: calc(50% + $button-rest-height / 2);
-        //background: rgba(11, 35, 61, 0.2);
-        z-index: 1;
-
-        .play-button {
-            position: sticky;
-            //top: calc(100vh - $button-rest-height * 2 - 33px);
-            top: calc(100vh - $button-rest-height);
-            height: $button-rest-height;
-            text-align: center;
-            border-radius: 0.15em;
-            color: #fff;
-            padding: 0.9em 2em;
-            user-select: none;
-            cursor: pointer;
-
-            transition-duration: 0.75s;
-            transition-property: cubic-bezier(0.91, 0.13, 0.06, 0.87);
-            transition-delay: 0.12s;
-
-            &:hover {
-                .pb-text {
-                    color: #0b233d
-                }
-            }
-
-            .pb-text {
-                overflow: hidden;
-                display: inline-flex;
-                transition-duration: 0.45s;
-                transition-property: cubic-bezier(0.91, 0.13, 0.06, 0.87);
-                width: 5em;
-                white-space: nowrap
-            }
-
-            &.rest-end {
-                .pb-text {
-                    //display: none;
-                    width: 0;
-                }
-
-                &::after {
-                    border-radius: 48px;
-                    transform: scale(1.5);
-                }
-                
-            }
-
-            &::after {
-                content: '';
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                border-radius: 0.15em;
-                background: #d81b60;
-                top: 0;
-                left: 0;
-                z-index: -1;
-
-                transition-duration: 0.45s;
-                transition-property: cubic-bezier(0.91, 0.13, 0.06, 0.87);
-                transition-delay: 0.05s;
-            }
-        }
-    }
+    
 </style>
