@@ -236,6 +236,7 @@ Navigations
     margin: 0;
     padding: 0;
     float: left;
+    transition-duration: 0s;
   }
 
   .nav-link-section {
@@ -605,6 +606,7 @@ a.nav-button {
   /* display: flex; */
   /* flex-direction: column; */
   flex-wrap: wrap;
+  transition-duration: 0s;
 }
 
 /*.nav-v2 .nav-breaking-percau {    
