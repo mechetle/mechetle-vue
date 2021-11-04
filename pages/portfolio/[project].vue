@@ -74,20 +74,28 @@
                 </div>
                 <div v-else class="cell large-10 rellax wide-vid" data-rellax-speed="3">
                     <div class="video-wrapper" oncontextmenu="return false;">
-                        <div class="video-controls">
-                            <div class="play-button-wrapper" style="transform: translateY(70px)">
-                                <div class="play-button" @click="playPauseVideo">
+                        <div class="video-controls" @click="playPauseVideo">
+                            <div class="play-button-wrapper" style="transform: translateY(70px); opacity: 0">
+                                <div class="play-button">
                                     ▶️<span class="pb-text">&nbsp; Play video</span>
                                 </div>
                             </div>
-
-                            <div class="fullscreen-button" @click="vidFullscreen"></div>
                         </div>
+
+                        <div class="videobar">
+                            <div class="videobar-buttons pause-button" @click="playPauseVideo">⏯️</div>
+
+                            <div class="videobar-seek"></div>
+
+                            <div class="videobar-buttons fullscreen-button" @click="vidFullscreen"></div>
+
+                            <div class="videobar-buttons fullscreen-button" @click="vidFullscreen"></div>
+                        </div>
+
                         <div class="video-overflow widescreen">
                             <div class="video">
                                 <video id="actual-vid" width="1920" height="1080" type='video/mp4' controls controlsList="nodownload" muted></video>
                             </div>
-                            
                         </div>
 
                         <!--
@@ -228,12 +236,13 @@ export default {
                 video.src = URL.createObjectURL(new Blob( [ blob ] ) );
         });
 
+        let videoWrap = document.querySelector(".video-wrapper")
+        
         // Detect when video has ended:
         video.addEventListener('ended', function(){
             // Reset video to start
             video.currentTime = 0;
 
-            let videoWrap = document.querySelector(".video-wrapper")
 
             if (videoWrap.classList.contains('playing')) {
                 document.querySelector(".video-wrapper").classList.remove("playing");
@@ -242,18 +251,19 @@ export default {
 
         // video controls:
         var timeout;
-        const videoWrap = document.querySelector(".video-wrapper");
+        const videobar = document.querySelector(".videobar");
 
         function vidMouseMove() {
-            // when mouse moves in video wrapper show controls
-            videoWrap.classList.add("show-controls");
+            videobar.style = "";
+            videoWrap.style = "";
 
             // reset original timeout
             clearTimeout(timeout);
 
             // if mouse didn't move in 2 seconds hide them
             timeout = window.setTimeout(() => {
-                videoWrap.classList.remove("show-controls");
+                videobar.style.opacity = 0;
+                videoWrap.style.cursor = "none";
             }, 1000);
         }
         videoWrap.addEventListener("mousemove", vidMouseMove);
@@ -348,6 +358,8 @@ let id = postShown.value.id[0]
 
 const {data: posts} = await useFetch(`/api/data?limit=4&search=${tags}`)
 const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
+
+console.log(this)
 </script>
 
 <style lang="scss" scoped>
@@ -357,26 +369,89 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
         padding: 3em;
     }
 
-    .video-controls {
-        left: 0;
-        height: 100%;
-        width: 100%;
-        display: block;
-        position: absolute;
+    .video-wrapper {
+        position: relative;
 
-        //transition-delay: 0.1s;
-        transition-duration: .30s;
-        transition-timing-function: cubic-bezier(0.86,0.05,0.15,0.93);
+        .videobar {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 105px;
+            width: 100%;
+            //background: #ffffff;
+            z-index: 2;
+            opacity: 0;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5em;
 
-        .fullscreen-button {
+            transform: translateY(20px);
+            transition-duration: 0.45s;
+            transition-delay: 0.1s;
+            transition-property: cubic-bezier(0.91, 0.13, 0.06, 0.87);
+            transition-delay: 0.05s;
+        }
+
+        .video-controls {
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: block;
+            position: absolute;
+            z-index: 2;
+
+            //transition-delay: 0.1s;
+            transition-duration: .30s;
+            transition-timing-function: cubic-bezier(0.86,0.05,0.15,0.93);
+        }
+
+        .videobar-buttons {
             width: 50px;
             height: 50px;
             cursor: pointer;
             background: #fff;
-            position: absolute;
-            bottom: 1.5em;
-            right: 1.5em;
-            z-index: 1000;
+        }
+        .videobar-seek {
+            justify-self: stretch;
+            flex: 1;
+            height: 50px;
+            background: #fff;
+            margin: 0 1em;
+        }
+
+        &:hover {  
+            .videobar {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        &.playing {
+            .video-controls {
+                opacity: 0;
+                /* .play-button {
+                    transform: scale(0.35);
+                } */
+            }
+            &:hover {
+                .video-controls { 
+                    opacity: 1;
+                    .play-button-wrapper {
+                        opacity: 0;
+
+                        * {
+                            cursor: default;
+                            pointer-events: none;
+                        }  
+                    }
+                }
+            }
+
+            .video {
+                background: #000000;
+            }
         }
     }
 
@@ -404,6 +479,7 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
         //animation: up 0.6s cubic-bezier(0.91, 0.13, 0.06, 0.87) 0.85s;
         transition-timing-function: cubic-bezier(0.91, 0.13, 0.06, 0.87);
         transition-delay: 1s;
+        transition-duration: 0.65s;
 
         .play-button {
             position: sticky;
@@ -506,33 +582,6 @@ const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
                         margin: auto;
                         margin-top: 0;
                     }
-                }
-            }
-        }
-
-        .video-wrapper {
-            position: relative;
-
-            &.playing {
-                .video-controls {
-                    opacity: 0;
-                    .play-button {
-                        transform: scale(0.35);
-                    }
-                }
-
-                &.show-controls {
-                    .video-controls {
-                        opacity: 1;
-                    }
-                    
-                    .play-button {
-                        transform: scale(1);
-                    }
-                }
-
-                .video {
-                    background: #000000;
                 }
             }
         }
