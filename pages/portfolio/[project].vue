@@ -207,9 +207,12 @@ console.log("routed to...", route.params.project)
 "oneByOne": true
 */
 
-const {data: postShown} = await useFetch(`/api/data?search=${route.params.project}`, {
+console.log(`/api/data?slug=${route.params.project}`)
+
+const {data: postShown} = await useFetch(`/api/data?slug=${route.params.project}`, {
     pick: [
         "title",
+        //"finishDate",
         "category",
         //"slug",
         //"case",
@@ -223,15 +226,15 @@ const {data: postShown} = await useFetch(`/api/data?search=${route.params.projec
         "oneByOne",
         "video",
         "tags",
-        "id"
+        "_id"
     ]
 })
 
 console.log(postShown.value)
 let tags = postShown.value.tags[0]
-let id = postShown.value.id[0]
+let id = postShown.value._id
 
-const {data: posts} = await useFetch(`/api/data?limit=4&search=${tags}`)
+const {data: posts} = await useFetch(`/api/data?tags=${tags}&limit=4`)
 const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
 
 console.log(this)
