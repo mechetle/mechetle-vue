@@ -213,7 +213,9 @@ const {data: postShown} = await useFetch(`/api/data/${route.params.project}`, {
         "tags",
         "_id",
         "exported",
-        "supplied"
+        "supplied",
+        "html",
+        "css"
     ]
 })
 
@@ -239,10 +241,15 @@ let date_finished = date.toLocaleDateString(
 // Video dimensions
 onMounted(() => {
     let video = document.querySelector("#actual-vid");
-    video.addEventListener('loadeddata', function(event){
-        dimensions.y = video.videoHeight;
-        dimensions.x = video.videoWidth;
-    });
+    try {
+        video.addEventListener('loadeddata', function(event){
+            dimensions.y = video.videoHeight;
+            dimensions.x = video.videoWidth;
+        });
+    } catch (error) {
+        console.log("There are no videos oof, won't do anything", error)
+    }
+    
 })
 
 /* After shown post: */

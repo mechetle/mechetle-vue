@@ -196,6 +196,8 @@ export default {
             translateY: [-viewportHeight , 0],  // make -1000 to the height of the window - done
         })
 
+        let tah = 0
+
         function animationToggleHeadText() {
             if (tah == 0) {
                 textLogoHeader.play();
@@ -209,11 +211,12 @@ export default {
         function doSomething(scrollPos) {
             if (scrollPos >= document.getElementById("who-am-i").offsetTop) {
                 tah = 0;
-                textLogoHeader.restart();
-            }
-            if (scrollPos > 100) {
-                // console.log("scroll higher than 400");
-                animationToggleHeadText();
+                //textLogoHeader.restart();
+            } else {
+                if (scrollPos > 100) {
+                    // console.log("scroll higher than 400");
+                    animationToggleHeadText();
+                }
             }
         }
 

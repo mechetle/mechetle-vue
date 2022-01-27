@@ -85,8 +85,6 @@
                 $('.nav-primary').removeClass("nav-header-main");
                 $('.nav-primary > .grid-container ').removeClass("fluid");
 
-                animationToggleNavText();
-
             } else {
                 $('.nav-primary').addClass("nav-header-main");
                 $('.nav-primary > .grid-container ').addClass("fluid");
