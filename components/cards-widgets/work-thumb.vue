@@ -20,7 +20,12 @@ TODO:
                     <div class="cat-wrapper">
                         <div class="categories">
                             <span>&#9866; &nbsp</span>
-                            <span>{{ cat }}</span>
+
+                            <span v-for="categories in cat">
+                                {{ categories }}
+                            </span>
+                            
+                            <!-- <span>{{ cat }}</span> -->
                         </div>
                     </div>
 
@@ -54,8 +59,7 @@ export default {
             type: String,
         }, */
         cat: {
-            type: String,
-            default: ' '
+            type: Array,
         },
         slug: {
             type: String,

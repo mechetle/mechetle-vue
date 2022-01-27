@@ -17,9 +17,9 @@
                     </div>
 
                     <main v-if="postShown.oneByOne === true" class="work-details">
-                        <q>{{postShown.desc}}</q>
+                        <q>{{postShown.callout}}</q>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis magna sagittis, tincidunt urna mattis, pharetra massa. Sed turpis tellus, laoreet at tellus at, tristique consequat dui. Ut condimentum a risus eu molestie.</p>
+                        <p>{{postShown.desc}}</p>
 
                         <div class="little-bits">
                             <div class="little-bits-cols">
@@ -61,15 +61,13 @@
                         <button class="small-button">Watch on YouTube</button>-->
                     </div>
 
-                    <div class="nerdy-details">
-                        <b>Nerdy details:</b>
-                        <p>
-                            Dimensions: &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp 1080x1080px
-                            <br> Exported: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp .webm, .mov, .gif, image-sequence, .json (lottie)
-                            <br> Client supplied: &nbsp &nbsp &nbsp &nbsp vector file of logo
-                            <br> Finished:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 20-12-3008
-                        </p>
-                    </div>
+                    <NerdyDetails 
+                        :dimensions="dimensions"
+                        :exported="postShown.exported"
+                        :supplied="postShown.supplied"
+                        :datefinished="date_finished"
+                        >
+                    </NerdyDetails>
 
                 </div>
                 <div v-else class="cell large-10 rellax wide-vid" data-rellax-speed="3">
@@ -93,9 +91,9 @@
         <Container class="fluid extended">
             <GridX class="grid-margin-x">
                 <Cell class="large-7 work-details">
-                    <q>{{postShown.desc}}</q>
+                    <q>{{postShown.callout}}</q>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis magna sagittis, tincidunt urna mattis, pharetra massa. Sed turpis tellus, laoreet at tellus at, tristique consequat dui. Ut condimentum a risus eu molestie.</p>
+                    <p>{{postShown.desc}}</p>
 
                     <div class="little-bits">
                         <div class="little-bits-cols">
@@ -120,27 +118,27 @@
                     </div>
                 </Cell>
                 <Cell class="large-5">
-                    <div class="nerdy-details">
-                        <b>Nerdy details:</b>
-                        <p>
-                            Dimensions: &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp 1080x1080px
-                            <br> Exported: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp .webm, .mov, .gif, image-sequence, .json (lottie)
-                            <br> Client supplied: &nbsp &nbsp &nbsp &nbsp vector file of logo
-                            <br> Finished:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 20-12-3008
-                        </p>
-                    </div>
+                    <NerdyDetails 
+                        :dimensions="dimensions"
+                        :exported="postShown.exported"
+                        :supplied="postShown.supplied"
+                        :datefinished="date_finished"
+                        >
+                    </NerdyDetails>
                 </Cell>
             </GridX>
         </Container>
     </main>
     
     <section id="similar-work" class="grid-container fluid extended">
-        <h2>Other logo animations</h2>
-        <GridX class="grid-margin-x">
-            <WorkThumb v-for="post in posts" :key="post.title" :title="post.title" :slug="post.slug" :img-src="post.img + '?' + post.id" :desc="post.alt" :size="3"/>
+        <template v-if="posts.length >= 1">
+            <h2>Other {{tags}}s</h2>
+            <GridX class="grid-margin-x">
+                <WorkThumb v-for="post in posts" :key="post.title" :title="post.title" :slug="post.slug" :img-src="post.img + '?' + post.id" :desc="post.alt" :size="3"/>
 
-            <!-- <p>{{posts}}</p> -->
-        </GridX>
+                <!-- <p>{{posts}}</p> -->
+            </GridX>
+        </template>
     </section>
 
     <section id="next-prev-work" class="grid-container fluid extended">
@@ -186,38 +184,25 @@ import Container from "../../components/layout/grid/container.vue";
 import GridX from "../../components/layout/grid/grid-x.vue";
 import Cell from "../../components/layout/grid/cell.vue";
 import VideoM from "../../components/cards-widgets/video-m.vue";
+import NerdyDetails from "~/components/cards-widgets/nerdy-details.vue";
 
 const router = useRouter()
 const route = useRoute()
 
 console.log("routed to...", route.params.project)
-
-/* SAMPLE DATA:
-"title": "Leffler - Nolan",
-"category": "Executive",
-"slug": "et-laboriosam-in",
-"case": false,
-"client": "Welch - Beahan",
-"client_field": true
-"design_context": true
-"desc": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
-"alt": "Tempora facere autem aspernatur quisquam dolorem sed quo.",
-"columns": 6,
-"img": "https://source.unsplash.com/random/1200x720", 
-"oneByOne": true
-*/
-
 console.log(`/api/data?slug=${route.params.project}`)
 
-const {data: postShown} = await useFetch(`/api/data?slug=${route.params.project}`, {
+/* Fetching data of page */
+const {data: postShown} = await useFetch(`/api/data/${route.params.project}`, {
     pick: [
         "title",
-        //"finishDate",
+        "finishDate",
         "category",
         //"slug",
         //"case",
         "client",
         "client_field",
+        "callout",
         "desc",
         "design_context",
         //"alt",
@@ -226,14 +211,41 @@ const {data: postShown} = await useFetch(`/api/data?slug=${route.params.project}
         "oneByOne",
         "video",
         "tags",
-        "_id"
+        "_id",
+        "exported",
+        "supplied"
     ]
 })
+
+let dimensions = reactive({x:1080, y:1080})
 
 console.log(postShown.value)
 let tags = postShown.value.tags[0]
 let id = postShown.value._id
 
+/* Nerdy details */
+// Finished date:
+let date = new Date(postShown.value.finishDate)
+let date_finished = date.toLocaleDateString(
+    "en-US", 
+    { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    }
+)
+
+// Video dimensions
+onMounted(() => {
+    let video = document.querySelector("#actual-vid");
+    video.addEventListener('loadeddata', function(event){
+        dimensions.y = video.videoHeight;
+        dimensions.x = video.videoWidth;
+    });
+})
+
+/* After shown post: */
 const {data: posts} = await useFetch(`/api/data?tags=${tags}&limit=4`)
 const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
 
@@ -241,13 +253,6 @@ console.log(this)
 </script>
 
 <style lang="scss" scoped>
-    .nerdy-details {
-        background: #0b233d;
-        color: #cfd8dc;
-        padding: 3em;
-    }
-
-
 
     header {
         outline-color: #ffffff;

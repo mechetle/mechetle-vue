@@ -18,9 +18,9 @@
 
     <section id="featured-work">
         <Container class="fluid extended">
-            <h2>Some of my work</h2>
+            <h2 class="rellax" data-rellax-speed="0.5" data-rellax-percentage="1">Some of my work</h2>
             <GridX class="grid-margin-x">
-                <div class="cell medium-6 large-6 work-thumb">
+                <div class="cell medium-6 large-6 work-thumb rellax" data-rellax-speed="-1" data-rellax-percentage="0.5">
                     <a href="/portfolio/case/nihdc4">
                         <div class="work-thumb-wrapper">
                             <div class="work-thumb-wrapper-cont">
@@ -42,7 +42,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="cell medium-6 large-6 work-thumb">
+                <div class="cell medium-6 large-6 work-thumb rellax" data-rellax-speed="1" data-rellax-percentage="0.5">
                     <a href="https://www.youtube.com/watch?v=mFtwc6EQMFQ">
                         <div class="work-thumb-wrapper">
                             <div class="work-thumb-wrapper-cont">
@@ -65,7 +65,7 @@
 
                 </div>
 
-                <div class="cell medium-6 large-4 work-thumb">
+                <div class="cell medium-6 large-4 work-thumb rellax" data-rellax-speed="-1" data-rellax-percentage="0.5">
                     <a href="#null" class="disable-me">
                         <div class="work-thumb-wrapper">
                             <div class="work-thumb-wrapper-cont">
@@ -77,7 +77,7 @@
                     </a>
                 </div>
 
-                <div class="cell medium-6 large-8 work-thumb">
+                <div class="cell medium-6 large-8 work-thumb rellax" data-rellax-speed="1" data-rellax-percentage="0.5">
                     <a href="#null" class="disable-me">
                         <div class="work-thumb-wrapper">
                             <div class="work-thumb-wrapper-cont">
@@ -99,7 +99,19 @@
                     </a>
                 </div>
 
-                <WorkThumb v-for="post in posts" :key="post.title" :title="post.title" :slug="post.slug" :img-src="post.img + '?' + post.id" :desc="post.alt" :cat="post.category" :size="post.columns"/>
+                <WorkThumb 
+                    v-for="post in posts" 
+                    :key="post.title" 
+                    :title="post.title" 
+                    :slug="post.slug" 
+                    :img-src="post.img + '?' + post.id" 
+                    :desc="post.alt"  
+                    :cat="post.category" 
+                    :size="post.columns"
+                    class="rellax"
+                    :data-rellax-speed="rellaxPattern[posts.indexOf(post)]"
+                    data-rellax-percentage="0.5"
+                />
 
 
                 <p> {{data}}</p>
@@ -118,6 +130,13 @@
 
 <script>
 export default {
+    data () {
+        return { 
+            rellaxPattern: [-1, 1, -1, 1]
+            //rellaxPattern: [-4, 2, -2, 4]
+        }
+    },
+
     // this used to cause error 505, but may cause other issues
     beforeMount() {
         document.querySelector("#__nuxt > div").id = "homepage"

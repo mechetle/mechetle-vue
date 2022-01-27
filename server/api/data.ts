@@ -1,10 +1,15 @@
-// Loading in enviroment variables
-// var dotenv = require('dotenv');
-// this will be used to fetch data in the backend
-// temporary:
+/*
+Client side's "api":
+====================
+Fetches data from
+actual rest api, only
+allowing it to read
+the data.
+*/
+
 
 import type { IncomingMessage, ServerResponse } from "http";
-import * as url from "url";
+//import * as url from "url";
 
 const api_url = `https://mache.mechetle.com/api`
 export default async (req: IncomingMessage, res: ServerResponse) => {

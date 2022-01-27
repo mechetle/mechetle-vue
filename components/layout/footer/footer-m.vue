@@ -49,7 +49,7 @@ Its a fucking footer lol
             <div class="small-12 show-for-small-only">
                 <p class="footer-note">
                     Website by Mechetle.<br>
-                    Steven B-M Nguyen<br>
+                    Stevenn B-M Nguyen<br>
                     &copy; <span class="year"></span> Mechetle
                 </p>
                     <div id="last-modified"></div>  
