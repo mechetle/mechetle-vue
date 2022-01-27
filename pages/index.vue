@@ -152,11 +152,12 @@ export default {
             horizontal: false
         });
 
-        // Wrap every letter in logo-text with a span (deprecated)
-        /* var textWrapper = document.querySelector('.logo-text');
-        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>"); */
-
-        $("#me-mechetle > .rellax").slice(2).contents().wrap("<span class='header-letter'></span>");
+        // Wrap every letter in MECHETLE in header
+        let textWrapper = document.querySelectorAll('#me-mechetle > .rellax:nth-child(n+3)');
+        textWrapper.forEach(element => {
+            element.innerHTML = element.textContent.replace(/\S/g, "<span class='header-letter'>$&</span>");
+        });
+        
 
         // loading in swave:
         var swaveOne = bodymovin.loadAnimation({
@@ -179,6 +180,56 @@ export default {
             swaveOne.play();
             swaveTwo.play();
         });
+
+        // text logo header in
+        var textLogoHeader = anime.timeline({
+            easing: "spring(0.7, 100, 10, 4)",
+            duration: 400,
+            delay: anime.stagger(50),
+            loop: false,
+            autoplay: false,
+        });
+
+        textLogoHeader.add({
+            targets: '.header-letter',
+            opacity: 1,
+            translateY: [-viewportHeight , 0],  // make -1000 to the height of the window - done
+        })
+
+        function animationToggleHeadText() {
+            if (tah == 0) {
+                textLogoHeader.play();
+                tah = 1;
+            }
+        };
+
+        let lastKnownScrollPosition = 0;
+        let ticking = false;
+
+        function doSomething(scrollPos) {
+            if (scrollPos >= document.getElementById("who-am-i").offsetTop) {
+                tah = 0;
+                textLogoHeader.restart();
+            }
+            if (scrollPos > 100) {
+                // console.log("scroll higher than 400");
+                animationToggleHeadText();
+            }
+        }
+
+        document.addEventListener('scroll', function(e) {
+        lastKnownScrollPosition = window.scrollY;
+
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+            doSomething(lastKnownScrollPosition);
+            ticking = false;
+            });
+
+            ticking = true;
+        }
+        });
+        
     }  
 }
 </script>

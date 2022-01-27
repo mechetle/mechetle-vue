@@ -632,7 +632,7 @@ try {
 
 
 
-//// Portfolio page:
+/* //// Portfolio page:
 const port_page = document.querySelector("#work");
 const port_section = port_page.querySelectorAll(".design-field");
 const sidebar_links = document.querySelectorAll(".nav-sidebar li");
@@ -665,7 +665,7 @@ function indicatorBG(e) {
     }
 
     marker.style.width = e.offsetWidth + 'px'; 
-}
+} 
     
 // Scroll event listener:
 var runOnScroll = function(evt) {
@@ -713,6 +713,6 @@ var runOnScroll = function(evt) {
 
 window.addEventListener("scroll", runOnScroll);
 
-
+*/
 /* if (port_page.length == 1) {
 } */

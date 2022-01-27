@@ -77,58 +77,6 @@
                 focusOnNavHead(); // if hamburger menu status is 0 then do those functions lol.
         });
 
-        // animations //
-        // text logo nav
-        var textLogo = anime.timeline({
-            easing: "spring(0.7, 100, 10, 0)",
-            duration: 400,
-            delay: anime.stagger(30),
-            loop: false,
-            autoplay: false,
-        });
-        textLogo
-            .add({
-                targets: '.logo-text .letter',
-                opacity: 1,
-                translateY: [-200, 0],
-                translateZ: 0
-            })
-
-        let ta = 0,
-            tah = 0;
-
-        //// text logo header in
-        var textLogoHeader = anime.timeline({
-            easing: "spring(0.7, 100, 10, 4)",
-            duration: 400,
-            delay: anime.stagger(50),
-            loop: false,
-            autoplay: false,
-        });
-
-        $(document).ready(function () {
-            textLogoHeader
-                .add({
-                    targets: '.header-letter',
-                    opacity: 1,
-                    translateY: [-viewportHeight , 0],  // make -1000 to the height of the window - done
-                })
-        });
-
-
-        function animationToggleNavText() {
-            if (ta == 0) {
-                textLogo.play();
-                ta = 1;
-            }
-        };
-
-        function animationToggleHeadText() {
-            if (0 == tah) {
-                textLogoHeader.play();
-                tah = 1;
-            }
-        };
         //// navigation bar switching
         $(window).scroll(function () {
             var scroll = $(this).scrollTop();
@@ -138,18 +86,10 @@
                 $('.nav-primary > .grid-container ').removeClass("fluid");
 
                 animationToggleNavText();
-                tah = 0;
 
             } else {
                 $('.nav-primary').addClass("nav-header-main");
                 $('.nav-primary > .grid-container ').addClass("fluid");
-                ta = 0;
-                // console.log("test" + scroll);
-
-                if (scroll > 100) {
-                    // console.log("scroll higher than 400");
-                    animationToggleHeadText();
-                }
             }
         });
 
