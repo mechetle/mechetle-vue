@@ -12,13 +12,17 @@
                     <a href="/about-me" class="button">Read more</a>
                 </div>
 
+                <div class="cell medium-4 large-5"> 
+                    <!-- <VideoM></VideoM> -->
+                </div>
+
             </GridX>
         </Container>
     </section>
 
     <section id="featured-work">
         <Container class="fluid extended">
-            <h2 class="rellax" data-rellax-speed="0.5" data-rellax-percentage="1">Some of my work</h2>
+            <h2 class="rellax" data-rellax-speed="-0.8" data-rellax-percentage="1">Some of my work</h2>
             <GridX class="grid-margin-x">
                 <div class="cell medium-6 large-6 work-thumb rellax" data-rellax-speed="-1" data-rellax-percentage="0.5">
                     <a href="/portfolio/case/nihdc4">
@@ -132,7 +136,7 @@
 export default {
     data () {
         return { 
-            rellaxPattern: [-1, 1, -1, 1]
+            rellaxPattern: [-0.1, 0.1, -0.1, 0.1]
             //rellaxPattern: [-4, 2, -2, 4]
         }
     },
@@ -169,6 +173,21 @@ export default {
         })
         var swaveTwo = bodymovin.loadAnimation({
             container: document.getElementById('swave-2'),
+            path: 'assets/img/homepage/swave-2.json',
+            renderer: 'svg',
+            loop: false,
+            autoplay: true,
+        })
+        // loading in swave:
+        var swaveOne = bodymovin.loadAnimation({
+            container: document.getElementById('swave-1-g'),
+            path: 'assets/img/homepage/swave-1.json',
+            renderer: 'svg',
+            loop: false,
+            autoplay: true,
+        })
+        var swaveTwo = bodymovin.loadAnimation({
+            container: document.getElementById('swave-2-g'),
             path: 'assets/img/homepage/swave-2.json',
             renderer: 'svg',
             loop: false,
@@ -244,8 +263,9 @@ import WorkThumb from "../components/cards-widgets/work-thumb.vue";
 import Container from "../components/layout/grid/container.vue";
 import GridX from "../components/layout/grid/grid-x.vue";
 import GridX1 from "../components/layout/grid/grid-x.vue";
+import VideoM from "../components/cards-widgets/video-m.vue";
 
-const {data: posts} = await useFetch("/api/data?limit=4")
+const {data: posts} = await useFetch("/data?limit=4")
 
 
 </script>
