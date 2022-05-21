@@ -4,37 +4,9 @@ Front page header:
 -->
 <template>
     <header id="homepage-header">
-        <div class="border-top-naturalize"></div>
-        <div class="swave-wrapper over">
-            <div class="rellax" data-rellax-speed="-3.5">
-                <div id="swave-1" class="swaves"></div>
-            </div>
-            <div class="rellax" data-rellax-speed="-2.5">
-                <div id="swave-2" class="swaves"> </div>
-            </div>
-            
-        </div>
-        <div class="swave-wrapper">
-            <div class="rellax" data-rellax-speed="-3.5">
-                <div id="swave-1-g" class="swaves glow"></div>
-            </div>
-            <div class="rellax" data-rellax-speed="-2.5">
-                <div id="swave-2-g" class="swaves glow"> </div>
-            </div>
-            
-        </div>
         <div id="header-wrapper">
             <div class="text-wrapper">
-                <h1 class="logo-text-header"><br>
-                    <span><span class="rellax" data-rellax-speed="15">
-                            T</span><span class="rellax" data-rellax-speed="12">
-                            H</span><span class="rellax" data-rellax-speed="9">
-                            I</span><span class="rellax" data-rellax-speed="6">
-                            S</span>
-                    </span><br>
-                    <span><span class="rellax" data-rellax-speed="8">I</span><span class="rellax" data-rellax-speed="5">
-                            S</span>
-                    </span><br>
+                <h1 class="logo-text-header display"><br>
                     <span id="me-mechetle"><span class="rellax" data-rellax-speed="4">M</span><span class="rellax"
                             data-rellax-speed="4.25">E</span><span class="rellax" data-rellax-speed="4.5">C</span><span
                             class="rellax" data-rellax-speed="4.75">H</span><span class="rellax"
