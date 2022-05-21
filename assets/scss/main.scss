@@ -1,0 +1,40 @@
+/* Sass shit */
+// this was for testing
+//body {
+//    background: black;
+//}
+
+// todo: This folder should be in base
+@use "typography/base";
+@use "typography/hover";
+
+// ported over from the over old website
+@use "components/navigation";
+@use "components/forms";
+@use "components/footer";
+@use "components/nortifications";
+@use "components/select";
+
+//pages
+// put shit here
+
+@import "settings";
+@import "../node_modules/foundation-sites/scss/foundation.scss";
+@include foundation-xy-grid-classes;
+@include foundation-float-classes;
+@include foundation-visibility-classes;
+@include foundation-reveal;
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+*, *::before, *::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
