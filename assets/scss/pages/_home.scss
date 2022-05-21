@@ -17,9 +17,9 @@ section {
     /*background: url(../img/bg-test.png);*/
   }
   &#who-am-i {
-    padding-top: 14em;
+    padding-top: 25em;
     max-height: auto;
-    min-height: 100vh;
+    min-height: 120vh;
 
   }
   #homepage &#lets-talk, &#lets-talk {
@@ -38,7 +38,8 @@ section {
     .work-thumb {
       padding-bottom: 3em;
       //margin-bottom: 0.75em;
-      margin-bottom: 2.75em;
+      margin-bottom: 1.75em;
+      //margin-bottom: 2.75em;
       //margin-bottom: 14.75em;
       //margin-bottom: 8.75em;
       /* transition-delay: 0.3s;
@@ -177,6 +178,11 @@ section {
       }
     }
   }
+
+  &#featured-work {
+    padding-top: 7em !important;
+  }
+
   #wai-wrapper {
     //background: rgb(255 255 255 / 0.6);
     //background: rgb(11 35 61 / 44%);
