@@ -1,8 +1,9 @@
 <template>
+    <div>
         <HeaderFp />
     
         <section id="who-am-i">
-            <Container class="fluid">
+            <Container>
                 <GridX>
                     <div class="cell medium-8 large-5" id="wai-wrapper">
                         <h2>Who am I?</h2>
@@ -21,7 +22,7 @@
         </section>
     
         <section id="featured-work">
-            <Container class="fluid extended">
+            <Container class="extended">
                 <h2 class="rellax" data-rellax-speed="-0.8" data-rellax-percentage="1">Some of my work</h2>
                 <GridX class="grid-margin-x">
                     <div class="cell medium-6 large-6 work-thumb rellax" data-rellax-speed="-1" data-rellax-percentage="0.5">
@@ -130,6 +131,7 @@
         </section>
     
         <Cta />
+    </div>
 </template>
 
 <script>
