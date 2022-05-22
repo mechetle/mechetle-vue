@@ -34,9 +34,6 @@ export default {
                 crossorigin: "anonymous"
             },
             {
-                src: "/js/rellax.min.js",
-            },
-            {
                 src: "/js/anime.min.js",
             },
         ],

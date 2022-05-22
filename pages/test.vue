@@ -7,10 +7,6 @@
 <script>
 export default {
     data () {
-        return { 
-            rellaxPattern: [-0.1, 0.1, -0.1, 0.1]
-            //rellaxPattern: [-4, 2, -2, 4]
-        }
     },
 
     // this used to cause error 505, but may cause other issues
@@ -18,22 +14,6 @@ export default {
     },
 
     mounted() {
-        /* 
-         * homepage animations:
-         */
-        var rellax = new Rellax('.rellax', {
-            //center: true, causes issues
-            vertical: true,
-            horizontal: false
-        });
-
-        // Wrap every letter in MECHETLE in header
-        let textWrapper = document.querySelectorAll('#me-mechetle > .rellax:nth-child(n+3)');
-        textWrapper.forEach(element => {
-            element.innerHTML = element.textContent.replace(/\S/g, "<span class='header-letter'>$&</span>");
-        });
-        
-
     }
 }
 </script>

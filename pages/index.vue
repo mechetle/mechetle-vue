@@ -6,10 +6,9 @@
             <Container>
                 <GridX>
                     <div class="cell medium-8 large-5" id="wai-wrapper">
-                        <h2>Who am I?</h2>
-                        <q>Hello I’m Steven B-M Nguyen, an enthusiastic and cheerful motion, web and graphic designer from
-                            Melbourne, Australia.</q>
-    
+                        <h2>Hey, I’m Steven B-M Nguyen</h2>
+                        <q>I am an enthusiastic, motion, brand, web designer and web developer from Melbourne, Victoria, Australia.</q>
+                        
                         <a href="/about-me" class="button">Read more</a>
                     </div>
     
@@ -151,11 +150,11 @@ export default {
         /* 
          * homepage animations:
          */
-        var rellax = new Rellax('.rellax', {
+        /* var rellax = new Rellax('.rellax', {
             //center: true, causes issues
             vertical: true,
             horizontal: false
-        });
+        }); */
 
         // Wrap every letter in MECHETLE in header
         let textWrapper = document.querySelectorAll('#me-mechetle > .rellax:nth-child(n+3)');
@@ -186,6 +185,16 @@ const {data: posts} = await useFetch("/data?limit=4")
     h1 {
         #sass {
             color: blue;
+        }
+    }
+
+    section {
+        background: #FBFDFD;
+        position: relative;
+
+        &#who-am-i {
+            background: linear-gradient(103.68deg, #D1E4FF 35.29%, rgba(209, 228, 255, 0.22) 98.9%) #001C38;
+            height: min(100vh);
         }
     }
 </style>
