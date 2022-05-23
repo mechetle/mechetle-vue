@@ -3,23 +3,14 @@ Front page header:
 ==================
 -->
 <template>
-    <header id="homepage-header">
+    <header>
         <div class="border-top-naturalize"></div>
-        <div class="swave-wrapper over">
+        <div id="swave-wrapper">
             <div class="rellax" data-rellax-speed="-3.5">
                 <div id="swave-1" class="swaves"></div>
             </div>
             <div class="rellax" data-rellax-speed="-2.5">
                 <div id="swave-2" class="swaves"> </div>
-            </div>
-            
-        </div>
-        <div class="swave-wrapper">
-            <div class="rellax" data-rellax-speed="-3.5">
-                <div id="swave-1-g" class="swaves glow"></div>
-            </div>
-            <div class="rellax" data-rellax-speed="-2.5">
-                <div id="swave-2-g" class="swaves glow"> </div>
             </div>
             
         </div>
