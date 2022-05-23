@@ -66,7 +66,7 @@
 // ---------
 
 $global-font-size: 100%;
-$global-width: rem-calc(1400);
+$global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $body-antialiased: true;
 $global-margin: 1rem;
@@ -126,12 +126,12 @@ $breakpoint-classes: (small medium large);
 
 // 3. The Grid
 // -----------
-// This may be really useless, using xy grid lol
+
 $grid-row-width: $global-width;
 $grid-column-count: 12;
 $grid-column-gutter: (
   small: 20px,
-  medium: 20px,
+  medium: 50px,
   //large: 60px
 );
 $grid-column-align-edge: true;
@@ -886,7 +886,7 @@ $grid-container: $global-width;
 $grid-columns: 12;
 $grid-margin-gutters: (
   small: 20px,
-  medium: 20px,
+  medium: 30px,
 );
 $grid-padding-gutters: $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;

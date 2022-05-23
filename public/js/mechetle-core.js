@@ -496,7 +496,7 @@ copyrightYearWrap[0].innerHTML = copyrightYear;
 copyrightYearWrap[1].innerHTML = copyrightYear;
 
 //// Lab room stuff:
-/* // SourceConsole (wip): //
+// SourceConsole (wip): //
 let scContents = `
     <div class="m-modal window" id="SourceConsole">
         <div id="SourceConsoleModal">
@@ -516,7 +516,7 @@ let scContents = `
         </div>
     </div>
 `;
-document.getElementsByTagName("footer")[0].insertAdjacentHTML('afterend', scContents); */
+document.getElementsByTagName("footer")[0].insertAdjacentHTML('afterend', scContents);
 
 /* document.onkeypress = function (e) {
     e = e || window.event;
