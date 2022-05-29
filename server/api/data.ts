@@ -11,12 +11,13 @@ the data.
 import type { IncomingMessage, ServerResponse } from "http";
 //import * as url from "url";
 
-const api_url = `https://mache.mechetle.com/api`
+const api_url = `https://mache.mechetle.com`
+
 export default async (req: IncomingMessage, res: ServerResponse) => {
   let url_mod = api_url
   let data = { data: [{ data: "" }] };
   
-  const path = req.url;   // this is legacy according to node.js docs
+  const path = req.url.replace("/data", "");   // this is legacy according to node.js docs
   console.log("URL path:", path); // https://nodejs.org/api/url.html
   
   const headers = {

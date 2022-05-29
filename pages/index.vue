@@ -9,7 +9,9 @@
                         <h2>Hey, I’m Steven B-M Nguyen</h2>
                         <q>I am an enthusiastic, motion, brand, web designer and web developer from Melbourne, Victoria, Australia.</q>
                         
-                        <a href="/about-me" class="button">Read more</a>
+                        <div class="button-row">
+                            <a href="/about-me" class="button">Read more</a>
+                        </div>
                     </div>
     
                     <div class="cell medium-4 large-5"> 
@@ -150,11 +152,14 @@ export default {
         /* 
          * homepage animations:
          */
-        /* var rellax = new Rellax('.rellax', {
-            //center: true, causes issues
-            vertical: true,
-            horizontal: false
-        }); */
+        setTimeout(() => {
+            var rellax = new Rellax('.rellax', {
+                //center: true, causes issues
+                vertical: true,
+                horizontal: false
+            });
+        
+        }, 500)
 
         // Wrap every letter in MECHETLE in header
         let textWrapper = document.querySelectorAll('#me-mechetle > .rellax:nth-child(n+3)');
@@ -176,7 +181,7 @@ import GridX from "../components/layout/grid/grid-x.vue";
 import GridX1 from "../components/layout/grid/grid-x.vue";
 import VideoM from "../components/cards-widgets/video-m.vue";
 
-const {data: posts} = await useFetch("/data?limit=4")
+const {data: posts} = await useFetch("/api/data?limit=4")
 
 
 </script>
@@ -194,7 +199,12 @@ const {data: posts} = await useFetch("/data?limit=4")
 
         &#who-am-i {
             background: linear-gradient(103.68deg, #D1E4FF 35.29%, rgba(209, 228, 255, 0.22) 98.9%) #001C38;
-            height: min(100vh);
+            height: min(132vh);
+            clip-path: polygon(53% 7%, 100% 0, 100% 93%, 53% 98%, 28% 95%, 0 100%, 0 12%, 25% 3%);
+            
+            #wai-wrapper {
+                margin-top: 14em;
+            }
         }
     }
 </style>

@@ -4,8 +4,11 @@ Front page header:
 -->
 <template>
     <header id="homepage-header">
-        <div id="foreground-wrapper">
-            <video src="/assets/video/header_foreground.webm" id="h_fg" autoplay muted></video>
+        <div id="foreground-wrapper" class="rellax" data-rellax-speed="-4">
+            <div class="video-wrapper">
+                <div id="fg-paused" class="paused"></div>
+                <video src="/assets/video/header_foreground.webm" id="h_fg" muted></video>
+            </div>
         </div>
 
         <div id="header-wrapper">
@@ -13,22 +16,25 @@ Front page header:
                 <div id="this-is">THIS IS</div>
                 <h1 class="logo-text-header display">
                     <span id="me-mechetle">
-                        <span class="rellax" data-rellax-speed="4">M</span>
-                        <span class="rellax" data-rellax-speed="4.25">E</span>
-                        <span class="rellax" data-rellax-speed="4.5">C</span>
-                        <span class="rellax" data-rellax-speed="4.75">H</span>
-                        <span class="rellax" data-rellax-speed="5">E</span>
-                        <span class="rellax" data-rellax-speed="5.25">T</span>
-                        <span class="rellax" data-rellax-speed="5.5">L</span>
-                        <span class="rellax" data-rellax-speed="5.75">E</span>
+                        <span>M</span>
+                        <span>E</span>
+                        <span>C</span>
+                        <span>H</span>
+                        <span>E</span>
+                        <span>T</span>
+                        <span>L</span>
+                        <span>E</span>
                     </span>
                 </h1>
             </div>
         </div>
         
-        <div id="background-wrapper">
+        <div id="background-wrapper" class="rellax" data-rellax-speed="-9">
             <div id="bg-circle-mask">
-                <video src="/assets/video/header_background.webm" autoplay muted></video>
+                <div class="video-wrapper">
+                    <div id="bg-paused" class="paused"></div>
+                    <video src="/assets/video/header_background.webm" id="h_bg" muted></video>
+                </div>
             </div>
         </div>
     </header>
@@ -39,7 +45,26 @@ export default {
     name: 'header-fp',
 
     mounted() {
+        let intro_ran = false;
+
         let h_fg = document.getElementById('h_fg');
+        let fg_paused = document.getElementById('fg-paused');
+        let h_bg = document.getElementById('h_bg');
+
+        h_fg.play();
+        h_bg.play();
+        
+        h_fg.addEventListener('timeupdate', () => {
+
+            console.log("playing", h_fg.currentTime )
+
+            if (h_fg.currentTime > 2.03333333333 && !intro_ran) {
+                h_fg.pause()
+                fg_paused.style.opacity = 1
+                h_fg.style.opacity = 0
+                console.log("pausing")
+            }
+        })
     }
 }
 </script>
@@ -58,8 +83,39 @@ h1.display {
 
 #foreground-wrapper {
     position: absolute;
-    top: 2.5vh;
+    width: 100%;
+    bottom: 0;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+
+    > * {
+        transform: translateY(6.5em);
+    }
+
+    video {
+        transition-duration: 0.4s;
+        transition-delay: 0.4s;
+    }
+
+    .paused {
+        opacity: 0;
+        background: url(assets/video/bgArtboard_foreground_ff.png);
+        background-size: contain;
+        background-position: top;
+    }
 }
+
+.video-wrapper > .paused {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition-duration: 0.2s;
+    transition-delay: 0.1s;
+}
+
 #background-wrapper {
     position: absolute;
     top: 0;
