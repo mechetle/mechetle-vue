@@ -19,7 +19,24 @@
                     </div>
     
                 </GridX>
+
+                <div id="play-reel">
+                    <img class="reel-button" src="/assets/img/homepage/play-reel-button.svg">
+                    <img class="reel-button-text" src="/assets/img/homepage/play-reel-text.svg">
+                </div>
             </Container>
+
+            <div id="video-overlay"></div>
+            <div id="video-bg">
+                <video 
+                    src="/assets/video/reel-preview.webm" 
+                    id="wai-video" 
+                    ref="wai-video" 
+                    muted autoplay loop
+                    class="rellax"
+                    data-rellax-speed="-2"
+                ></video>
+            </div>
         </section>
     
         <section id="featured-work">
@@ -136,6 +153,7 @@
 </template>
 
 <script>
+
 export default {
     data () {
         return { 
@@ -198,7 +216,8 @@ const {data: posts} = await useFetch("/api/data?limit=4")
         position: relative;
 
         &#who-am-i {
-            background: linear-gradient(103.68deg, #D1E4FF 35.29%, rgba(209, 228, 255, 0.22) 98.9%) #001C38;
+            //background: linear-gradient(103.68deg, #D1E4FF 35.29%, rgba(209, 228, 255, 0.22) 98.9%) rgb(0 28 56 / 0%);
+            background: rgb(0 28 56);
             height: min(132vh);
             //margin-top: 2em;
             //margin-bottom: 2em;
@@ -207,10 +226,80 @@ const {data: posts} = await useFetch("/api/data?limit=4")
             #wai-wrapper {
                 margin-top: 14em;
             }
+
+            #video-overlay {
+                position: absolute;
+                background: linear-gradient(103.68deg, #D1E4FF 35.29%, rgba(209, 228, 255, 0.22) 98.9%);
+                z-index: -1;
+                height: 100%;
+                width: 100%;
+                top:0;
+            }
+
+            #video-bg {
+                position: absolute;
+                top: 0;
+                transform: scale(1.45) translate(10vw,-4.5%);
+                z-index: -2;
+                //opacity: 0.75;
+                mix-blend-mode: overlay;
+            }
+        }
+
+        .grid-container {
+            position: relative;
         }
 
         &#featured-work {
             padding-top: 5em;
         }  
+    }
+
+    #play-reel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 12em;
+        //bottom: 2em;
+
+        > * {
+            user-drag: none;
+            -webkit-user-drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        .reel-button-text {
+            position: absolute;
+            animation: rotating 17s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            transition-duration: 0.5s;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        .reel-button {
+            position: absolute;
+            cursor: pointer;
+            border-radius: 100%;
+
+            &:hover {
+                + .reel-button-text {
+                    animation-play-state: paused;
+                    opacity: 1;
+                    //animation-duration: 20s;
+                }
+            }
+        }
+
+
+    }
+
+    @keyframes rotating {
+        from {transform: rotate(0deg)}
+        to {transform: rotate(360deg)}
     }
 </style>

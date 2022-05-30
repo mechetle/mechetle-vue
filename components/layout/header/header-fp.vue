@@ -3,7 +3,16 @@ Front page header:
 ==================
 -->
 <template>
+    <div class="scroll-down-icon rellax" data-rellax-speed="-1" @click="scrollNext">
+        <div ref="scrollDown"></div>
+    </div>
+
     <header id="homepage-header">
+        <!-- <lottie-animation
+            ref="anim"
+            :animationData="scrollDownURL"
+        /> -->
+        
         <div id="foreground-wrapper" class="rellax" data-rellax-speed="-4">
             <div class="video-wrapper">
                 <div id="fg-paused" ref="fg_paused" class="paused"></div>
@@ -28,7 +37,6 @@ Front page header:
                 </h1>
             </div>
         </div>
-        
         <div id="background-wrapper" class="rellax" data-rellax-speed="-9">
             <div id="bg-circle-mask">
                 <div class="video-wrapper">
@@ -41,8 +49,27 @@ Front page header:
 </template>
 
 <script>
+//import icon from '@/assets/lottie/scroll-down.json'
+//import * as animationData from "@/assets/lottie/scroll-down.json";
+
 export default {
     name: 'header-fp',
+
+    data () {
+        return {
+        
+        }
+    },
+
+    methods: {
+        scrollNext() {
+            window.scrollTo({
+                top: window.innerHeight * 1.15,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
+    },
 
     mounted() {
         let intro_ran = false;
@@ -75,6 +102,14 @@ export default {
                 console.log("pausing")
             }
         })
+
+        lottie.loadAnimation({
+            container: this.$refs.scrollDown, // the dom element that will contain the animation
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '/assets/lottie/scroll-down.json' // the path to the animation json
+        });
     }
 }
 </script>
@@ -162,6 +197,33 @@ h1.display {
             position: relative;
         }
     }
+}
+
+.scroll-down-icon {
+    cursor: pointer;
+    position: absolute;
+    z-index: 99;
+    bottom: 6em;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 14px;
+    
+    div {
+        transition: transform 0.35s;
+        transition-timing-function: cubic-bezier(0.75, 0.1, 0, 0.9);
+    }
+
+    &:hover > div {
+        transform: scaleX(0.5);
+    }
+    
+    &:active > div {
+        transition-duration: 0.15s;
+        transition-timing-function: cubic-bezier(0.03, 0.41, 0, 1.01);
+        transform: scaleX(2);
+    }
+
 }
 
 video {

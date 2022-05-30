@@ -10,6 +10,14 @@ export default defineNuxtConfig({
     { src: '~/assets/' }
   ],
  */
-  generate: { fallback: '404.html' }
+  generate: { fallback: '404.html' },
+
+  build: {
+    transpile: ['lottie-web-vue']
+  },
+
+  components: {
+    global: true,
+  },
 
 })
