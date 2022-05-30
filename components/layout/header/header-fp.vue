@@ -6,8 +6,8 @@ Front page header:
     <header id="homepage-header">
         <div id="foreground-wrapper" class="rellax" data-rellax-speed="-4">
             <div class="video-wrapper">
-                <div id="fg-paused" class="paused"></div>
-                <video src="/assets/video/header_foreground.webm" id="h_fg" muted></video>
+                <div id="fg-paused" ref="fg_paused" class="paused"></div>
+                <video src="/assets/video/header_foreground.webm" id="h_fg" ref="h_fg" muted></video>
             </div>
         </div>
 
@@ -33,7 +33,7 @@ Front page header:
             <div id="bg-circle-mask">
                 <div class="video-wrapper">
                     <div id="bg-paused" class="paused"></div>
-                    <video src="/assets/video/header_background.webm" id="h_bg" muted></video>
+                    <video src="/assets/video/header_background.webm" id="h_bg" ref="h_bg" muted></video>
                 </div>
             </div>
         </div>
@@ -47,14 +47,24 @@ export default {
     mounted() {
         let intro_ran = false;
 
-        let h_fg = document.getElementById('h_fg');
-        let fg_paused = document.getElementById('fg-paused');
-        let h_bg = document.getElementById('h_bg');
+        let h_fg = this.$refs.h_fg;
+        let fg_paused = this.$refs.fg_paused;
+        let h_bg = this.$refs.h_bg;
+
+        fg_paused.style.transitionProperty = 'none'
+        h_fg.style.transitionProperty = 'none'
+        h_fg.currentTime = 0;
+        intro_ran = false;
+        fg_paused.style.opacity = 0
+        h_fg.style.opacity = 1
 
         h_fg.play();
         h_bg.play();
+
         
         h_fg.addEventListener('timeupdate', () => {
+            fg_paused.style.transitionProperty = 'inherit'
+            h_fg.style.transitionProperty = 'inherit'
 
             console.log("playing", h_fg.currentTime )
 
@@ -68,6 +78,21 @@ export default {
     }
 }
 </script>
+
+<!-- <script setup>
+import { useRouter, useRoute } from 'vue-router'
+
+const route = useRoute()
+const userData = ref()
+
+// fetch the user information when params change
+watch(
+    () => route.params.id,
+    async newId => {
+    userData.value = await fetchUser(newId)
+    }
+)
+</script> -->
 
 <style lang="scss" scoped>
 h1.display {
