@@ -115,7 +115,7 @@ h1.display {
     align-items: flex-end;
 
     > * {
-        transform: translateY(6.5em);
+        transform: translateY(7em);
     }
 
     video {

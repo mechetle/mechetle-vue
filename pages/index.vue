@@ -200,11 +200,17 @@ const {data: posts} = await useFetch("/api/data?limit=4")
         &#who-am-i {
             background: linear-gradient(103.68deg, #D1E4FF 35.29%, rgba(209, 228, 255, 0.22) 98.9%) #001C38;
             height: min(132vh);
+            //margin-top: 2em;
+            //margin-bottom: 2em;
             clip-path: polygon(53% 7%, 100% 0, 100% 93%, 53% 98%, 28% 95%, 0 100%, 0 12%, 25% 3%);
             
             #wai-wrapper {
                 margin-top: 14em;
             }
         }
+
+        &#featured-work {
+            padding-top: 5em;
+        }  
     }
 </style>

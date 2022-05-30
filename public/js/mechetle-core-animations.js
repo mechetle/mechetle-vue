@@ -81,7 +81,7 @@
         $(window).scroll(function () {
             var scroll = $(this).scrollTop();
 
-            if (scroll >= $('section, #main, main').offset().top) {
+            if (scroll >= $('section, #main, main').not('#who-am-i').offset().top - 80) {
                 $('.nav-primary').removeClass("nav-header-main");
                 $('.nav-primary > .grid-container ').addClass("fluid");
 
