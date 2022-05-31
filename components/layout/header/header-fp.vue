@@ -177,16 +177,18 @@ h1.display {
 }
 
 #background-wrapper {
+    //display: none;
     position: absolute;
     top: 0;
     z-index: -2;
     width: 100%;
+    //height: 100vh;
     overflow: hidden;
     clip-path: circle(47vw at center 130vh);
 
     #bg-circle-mask {
         overflow: hidden;
-        width: 100%;
+        //width: 100%; // this causes the whoe page to move
         //border-radius: 100%;
 
         video {
