@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Temporay works page</h1>
+        <NuxtLink to="/portfolio/refc">REFC</NuxtLink>
     </div>
 </template>
 

@@ -9,7 +9,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><NuxtLink to="/">Home</NuxtLink></li>
-                                    <li class="breadcrumb-item active"><NuxtLink to="/portfolio/">Portfolio</NuxtLink></li>
+                                    <li class="breadcrumb-item active"><NuxtLink to="/portfolio">Portfolio</NuxtLink></li>
                                     <li class="breadcrumb-item active" aria-current="page">{{$route.params.project}}</li>
                                 </ol>
                             </nav>
@@ -140,6 +140,8 @@
 
 <script>
 export default {
+    scrollToTop: true,
+
     mounted() {
         var rellax = new Rellax('.rellax', {
             //center: true, causes issues
@@ -170,7 +172,7 @@ console.log("routed to...", route.params.project)
 console.log(`/api/data/${route.params.project}`)
 
 /* Fetching data of page */
-const {data: postShown} = await useFetch(`/api/data?post=refc`, {
+const {data: postShown} = await useFetch(`/api/data?post=${route.params.project}`, {
     pick: [
         "title",
         "finishDate",

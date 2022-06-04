@@ -14,7 +14,7 @@ The one that you will see on every page
             <div class="navigation-button-wrap">
                 <nav>
                     <NuxtLink to="/">🏠</NuxtLink>
-                    <NuxtLink to="/portfolio">Works</NuxtLink>
+                    <NuxtLink to="/portfolio" id="portfolio">Works</NuxtLink>
                     <NuxtLink to="/about">About</NuxtLink>
                     <NuxtLink to="/lab">Lab room</NuxtLink>
                     <NuxtLink to="/test">Contact</NuxtLink>
@@ -42,7 +42,15 @@ The one that you will see on every page
     </div>
 </template>
 
+<script setup>
+import { useRouter, useRoute } from 'vue-router'
+const route = useRoute()
+let route_group = route.path.substring(1).split('/')[0]
+
+</script>
+
 <script>
+
 export default {
     name: 'nav-main',
 
@@ -52,7 +60,9 @@ export default {
             width: 0,
             indexOfActive: 0,
 
-            length: 4
+            length: 4,
+            
+            from: '',
         }
     },
 
@@ -60,6 +70,11 @@ export default {
         changeActiveCursor() {
             let cursor = this.$refs.cursor
             let active = document.querySelector('.router-link-active')
+
+            // this means it is in the group but nuxt for some reason doesn't know:
+            if (this.route_group != "") {
+                active = document.querySelector('#'+ this.route_group)
+            }
 
             this.offset = active.offsetLeft;
             this.width = active.clientWidth;
@@ -70,20 +85,32 @@ export default {
             console.log("BRUHBRUH OFFSET:", this.offset, cursor, this.indexOfActive)
             cursor.style.left = this.offset + "px"
             cursor.style.width = this.width + "px"
+
         }
     },
 
     watch: {
         $route(to, from) {
+            console.log("to:", to)
+            let url_split = to.path.substring(1).split('/')
+            if (url_split.length > 1) {
+                this.route_group = url_split[0]
+            } else {
+                this.route_group = ""
+            }
+            
+            this.from = from.path.substring(1).split('/')[0]
+
             this.$nextTick(() => {
                 //console.log(this.show, this.$refs.content);
-                //this.changeActiveCursor();
+                this.changeActiveCursor();
             });
+
         }
     },
 
     mounted() {
-        //this.changeActiveCursor();
+        this.changeActiveCursor();
     }
 }
 </script>
