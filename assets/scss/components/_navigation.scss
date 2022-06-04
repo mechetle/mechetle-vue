@@ -37,7 +37,7 @@ Navigations
   background: #0060A8;
   transition-delay: 0.3s;
 
-  &.trailing {
+  &.trailing, &.leaving-not-trailing {
     transition-delay: 0s;
   }
 }

@@ -14,7 +14,7 @@ The one that you will see on every page
             <div class="navigation-button-wrap">
                 <nav>
                     <NuxtLink to="/">🏠</NuxtLink>
-                    <NuxtLink to="/works">Works</NuxtLink>
+                    <NuxtLink to="/portfolio">Works</NuxtLink>
                     <NuxtLink to="/about">About</NuxtLink>
                     <NuxtLink to="/lab">Lab room</NuxtLink>
                     <NuxtLink to="/test">Contact</NuxtLink>
@@ -59,7 +59,7 @@ export default {
     methods: {
         changeActiveCursor() {
             let cursor = this.$refs.cursor
-            let active = document.querySelector('.router-link-exact-active')
+            let active = document.querySelector('.router-link-active')
 
             this.offset = active.offsetLeft;
             this.width = active.clientWidth;
@@ -77,13 +77,13 @@ export default {
         $route(to, from) {
             this.$nextTick(() => {
                 //console.log(this.show, this.$refs.content);
-                this.changeActiveCursor();
+                //this.changeActiveCursor();
             });
         }
     },
 
     mounted() {
-        this.changeActiveCursor();
+        //this.changeActiveCursor();
     }
 }
 </script>

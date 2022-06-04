@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "fibers": "^5.0.1",
-    "nuxt": "npm:nuxt3@latest",
+    "nuxt": "^3.0.0-rc.3",
     "sass": "^1.49.0",
     "sass-loader": "^12.4.0"
   },

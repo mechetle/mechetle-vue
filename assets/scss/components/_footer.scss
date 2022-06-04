@@ -2,11 +2,15 @@
 Footer:
 */
 footer {
-  background: linear-gradient(-45deg, #D81B60, #A33B81, #01579B, #039BE5) #01579B;
+  background: #001C38;
+  //background: linear-gradient(-45deg, #D81B60, #A33B81, #01579B, #039BE5) #01579B;
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   padding: 3em 0;
+  color: #fff;
 }
+
+
 
 /* Footer widget
 */
@@ -17,7 +21,7 @@ footer {
     padding-left: 0;
 
     &:hover {
-      color: rgba(0, 0, 0, 0.7) !important;
+      color: rgba(209, 228, 255, 0.75) !important;
       transform: translateX(1.2);
       padding-left: 10px;
     }
@@ -34,13 +38,18 @@ footer {
     margin: 0;
 
     &:hover a {
-      color: rgba(0, 0, 0, 0.3);
+      color: rgba(209, 228, 255, 0.5);
+    }
+
+    li {
+      text-indent: 0;
     }
 
   }
 
   a {
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(209, 228, 255, 1);
+    text-decoration: none;
   }
 
   p {
