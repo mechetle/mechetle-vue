@@ -11,7 +11,6 @@
 
 <script>
 export default {
-    layout: "error",
 
     // this used to cause error 505, but may cause other issues
     beforeMount() {

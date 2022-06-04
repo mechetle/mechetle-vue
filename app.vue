@@ -18,6 +18,10 @@ export default {
             {
                 rel: 'stylesheet',
                 href: 'https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Sen:wght@700;800&family=Roboto+Mono:ital@0;1&display=swap'
+            },
+            {
+                rel: 'stylesheet',
+                href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200'
             }
         ],
         script: [

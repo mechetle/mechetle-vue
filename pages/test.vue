@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Test route</h1>
+        <span class="material-icons md-24">&#xE87C;</span>
     </div>
 </template>
 

@@ -43,3 +43,13 @@ body {
 .cell img {
     max-width: 100%;
 }
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 700,
+  'GRAD' 200,
+  'opsz' 40;
+
+  line-height: revert;
+}

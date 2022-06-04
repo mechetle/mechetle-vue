@@ -140,7 +140,6 @@
 
 <script>
 export default {
-    scrollToTop: true,
 
     mounted() {
         var rellax = new Rellax('.rellax', {
