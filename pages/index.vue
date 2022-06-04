@@ -199,7 +199,7 @@ import GridX from "../components/layout/grid/grid-x.vue";
 import GridX1 from "../components/layout/grid/grid-x.vue";
 import VideoM from "../components/cards-widgets/video-m.vue";
 
-const {data: posts} = await useFetch("/api/data?limit=4")
+const {data: posts} = await useFetch("/data?limit=4")
 
 
 </script>
