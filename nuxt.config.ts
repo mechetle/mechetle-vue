@@ -5,7 +5,19 @@ export default defineNuxtConfig({
     // Mechetle's global styling shit:
     '~/assets/scss/main.scss'
   ],
+  /* script: [
+    // <script src="https://myawesome-lib.js"></script>
+    { src: '~/assets/' }
+  ],
+ */
+  generate: { fallback: '404.html' },
 
-  generate: { fallback: '404.html' }
+  build: {
+    transpile: ['lottie-web-vue']
+  },
+
+  components: {
+    global: true,
+  },
 
 })

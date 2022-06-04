@@ -30,7 +30,10 @@ Its a fucking footer lol
                 <div class="footer-widget">
                     <h5>Social Media</h5>
                     <ul>
-                        <li><a href="#discordtag" class="discordmodaltoggle" onclick="ToggleDiscordModal()"><i
+                        <li><a  href="#discordtag" 
+                                class="discordmodaltoggle"
+                                @click="discord_modal = !discord_modal"
+                                ><i
                                     class="fab fa-discord"></i>Discord</a></li>
                         <li><a href="https://www.instagram.com/mechetle/"><i
                                     class="fab fa-instagram"></i>Instagram</a></li>
@@ -58,8 +61,9 @@ Its a fucking footer lol
 
     </Container>
 
-
-    <DiscordModal/>
+    <template v-if="discord_modal">
+        <DiscordModal/>
+    </template>
 </footer>
 
 <div class="nortification-pullup">
@@ -81,10 +85,18 @@ export default {
     name: 'footer-m',
 
     components: {
-    DiscordModal,
-    GridX,
-    Container
-},
+        DiscordModal,
+        GridX,
+        Container
+    },
+
+    data() {
+        return {
+            // todo: transform this data to a prop in the discord modal 
+            //       & and have the modal emit what is.
+            discord_modal: false,
+        }
+    },
 
     mounted() {
 		loadScript("/js/mechetle-core.js")

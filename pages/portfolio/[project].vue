@@ -1,168 +1,146 @@
-<template>
-    <header>
-        <div class="border-top-naturalize"></div>
-        <Container id="header-wrapper" class="fluid">
-            <GridX>
-                <div class="cell large-7 post-details">
-                    <div class="text-wrapper">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item active"><a href="/portfolio/">Portfolio</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{$route.params.project}}</li>
-                            </ol>
-                        </nav>
-
-                        <h1 class="post">{{postShown.title}}</h1>
+<template> 
+    <div>
+        <header>
+            <div class="border-top-naturalize"></div>
+            <Container id="header-wrapper" class="fluid">
+                <GridX>
+                    <div class="cell large-7 post-details">
+                        <div class="text-wrapper">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><NuxtLink to="/">Home</NuxtLink></li>
+                                    <li class="breadcrumb-item active"><NuxtLink to="/portfolio">Portfolio</NuxtLink></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{$route.params.project}}</li>
+                                </ol>
+                            </nav>
+                            <h1 class="post">{{postShown.title}}</h1>
+                        </div>
+                        <main v-if="postShown.oneByOne === true" class="work-details">
+                            <q>{{postShown.callout}}</q>
+                            <p>{{postShown.desc}}</p>
+                            <div class="little-bits">
+                                <div class="little-bits-cols">
+                                    <p>
+                                        <b>Context of work:</b><br>
+                                        {{postShown.design_context}}
+                                    </p>
+                                </div>
+                                <div class="little-bits-cols">
+                                    <p>
+                                        <b>Client:</b><br>
+                                        {{postShown.client}}
+                                    </p>
+                                    <p>
+                                        <b>Client field:</b><br>
+                                        {{postShown.client_field}}
+                                    </p>
+                                </div>
+                            </div>
+                        </main>
                     </div>
-
-                    <main v-if="postShown.oneByOne === true" class="work-details">
+                    <div v-if="postShown.oneByOne === true" class="cell large-5 rellax" data-rellax-speed="2">
+                        <div class="video-wrapper">
+                            <div class="video-overflow">
+                                <div class="video">
+                                    <p><i>Project logo animation gif here
+                                    </i>
+                                    </p>
+                                </div>
+        
+                            </div>
+                            <!--
+                            <button class="small-button">Play / Pause</button>
+                            <button class="small-button">Mute</button>
+                            <button class="small-button">Watch on YouTube</button>-->
+                        </div>
+                        <NerdyDetails
+                            :dimensions="dimensions"
+                            :exported="postShown.exported"
+                            :supplied="postShown.supplied"
+                            :datefinished="date_finished"
+                            >
+                        </NerdyDetails>
+                    </div>
+                    <div v-else class="cell large-10 rellax wide-vid" data-rellax-speed="3">
+                        <!-- THIS VIDEO BREAKS EVERYTHING FIX IT LOL -->
+                        <!-- <VideoM></VideoM> -->
+                    </div>
+                </GridX>
+            </Container>
+            <div id="header-bg" class="header-post-image rellax" data-rellax-speed="-4">
+                <div class="image-header">
+                    <img :src="postShown.img" class="image-header-temp">
+                </div>
+                <div class="transition"></div>
+            </div>
+            <div class="border-bottom-naturalize"></div>
+        </header>
+        <main v-if="postShown.oneByOne === false" class="work-details wide-vid">
+            <Container class="fluid extended">
+                <GridX class="grid-margin-x">
+                    <Cell class="large-7 work-details">
                         <q>{{postShown.callout}}</q>
-
                         <p>{{postShown.desc}}</p>
-
                         <div class="little-bits">
                             <div class="little-bits-cols">
                                 <p>
                                     <b>Context of work:</b><br>
                                     {{postShown.design_context}}
                                 </p>
-
                             </div>
                             <div class="little-bits-cols">
                                 <p>
                                     <b>Client:</b><br>
                                     {{postShown.client}}
                                 </p>
-
                                 <p>
                                     <b>Client field:</b><br>
                                     {{postShown.client_field}}
                                 </p>
-
                             </div>
                         </div>
-                    </main>
-                </div>
-                <div v-if="postShown.oneByOne === true" class="cell large-5 rellax" data-rellax-speed="2">
-                    <div class="video-wrapper">
-                        <div class="video-overflow">
-                            <div class="video">
-                                <p><i>Project logo animation gif here
-                                </i>
-                                </p>
-                            </div>
-                            
-                        </div>
-
-                        <!--
-                        <button class="small-button">Play / Pause</button>
-                        <button class="small-button">Mute</button>
-                        <button class="small-button">Watch on YouTube</button>-->
-                    </div>
-
-                    <NerdyDetails 
-                        :dimensions="dimensions"
-                        :exported="postShown.exported"
-                        :supplied="postShown.supplied"
-                        :datefinished="date_finished"
-                        >
-                    </NerdyDetails>
-
-                </div>
-                <div v-else class="cell large-10 rellax wide-vid" data-rellax-speed="3">
-                    <VideoM></VideoM>
-                </div>
-            </GridX>
-
-        </Container>
-
-        <div id="header-bg" class="header-post-image rellax" data-rellax-speed="-4">
-            <div class="image-header">
-                <img :src="postShown.img" class="image-header-temp">
-            </div>
-            <div class="transition"></div>
-        </div>
-
-        <div class="border-bottom-naturalize"></div>
-    </header>
-
-    <main v-if="postShown.oneByOne === false" class="work-details wide-vid">
-        <Container class="fluid extended">
+                    </Cell>
+                    <Cell class="large-5">
+                        <NerdyDetails
+                            :dimensions="dimensions"
+                            :exported="postShown.exported"
+                            :supplied="postShown.supplied"
+                            :datefinished="date_finished"
+                            >
+                        </NerdyDetails>
+                    </Cell>
+                </GridX>
+            </Container>
+        </main>
+        
+        <!-- <section id="similar-work" class="grid-container fluid extended">
+            <template v-if="posts.length >= 1">
+                <h2>Other {{tags}}s</h2>
+                <GridX class="grid-margin-x">
+                    <WorkThumb v-for="post in posts" :key="post.title" :title="post.title" :slug="post.slug" :img-src="post.img + '?' + post.id" :desc="post.alt" :size="3"/>
+                </GridX>
+            </template>
+        </section>
+        <section id="next-prev-work" class="grid-container fluid extended">
             <GridX class="grid-margin-x">
-                <Cell class="large-7 work-details">
-                    <q>{{postShown.callout}}</q>
-
-                    <p>{{postShown.desc}}</p>
-
-                    <div class="little-bits">
-                        <div class="little-bits-cols">
-                            <p>
-                                <b>Context of work:</b><br>
-                                {{postShown.design_context}}
-                            </p>
-
-                        </div>
-                        <div class="little-bits-cols">
-                            <p>
-                                <b>Client:</b><br>
-                                {{postShown.client}}
-                            </p>
-
-                            <p>
-                                <b>Client field:</b><br>
-                                {{postShown.client_field}}
-                            </p>
-
-                        </div>
-                    </div>
-                </Cell>
-                <Cell class="large-5">
-                    <NerdyDetails 
-                        :dimensions="dimensions"
-                        :exported="postShown.exported"
-                        :supplied="postShown.supplied"
-                        :datefinished="date_finished"
-                        >
-                    </NerdyDetails>
-                </Cell>
+                <div class="cell large-6">
+                    <h2><span>Previous project</span><span class="hoz-arrow-extended"></span></h2>
+                    <NuxtLink to="/portfolio" class="go-explore rellax" data-rellax-speed="2" data-rellax-percentage="0.5">
+                        <h2 class="rellax" data-rellax-speed="1" data-rellax-percentage="0.5">Explore other projects
+                            <div class="m-icon arrow-left">⬅️</div>
+                        </h2>
+                    </NuxtLink>
+                </div>
+                <WorkThumb :key="nPost.title" :title="nPost.title" :slug="nPost.slug" :img-src="nPost.img + '?' + nPost.id" :desc="nPost.alt" :size="6" :cat="nPost.category"/>
             </GridX>
-        </Container>
-    </main>
-    
-    <section id="similar-work" class="grid-container fluid extended">
-        <template v-if="posts.length >= 1">
-            <h2>Other {{tags}}s</h2>
-            <GridX class="grid-margin-x">
-                <WorkThumb v-for="post in posts" :key="post.title" :title="post.title" :slug="post.slug" :img-src="post.img + '?' + post.id" :desc="post.alt" :size="3"/>
-
-                <!-- <p>{{posts}}</p> -->
-            </GridX>
-        </template>
-    </section>
-
-    <section id="next-prev-work" class="grid-container fluid extended">
-        <GridX class="grid-margin-x">
-            <div class="cell large-6">
-                <h2><span>Previous project</span><span class="hoz-arrow-extended"></span></h2>
-
-                <a href="/portfolio" class="go-explore rellax" data-rellax-speed="2" data-rellax-percentage="0.5">
-                    <h2 class="rellax" data-rellax-speed="1" data-rellax-percentage="0.5">Explore other projects
-                        <div class="m-icon arrow-left">⬅️</div> <!-- temporary -->
-                    </h2>
-                </a>
-            </div>
-
-            <WorkThumb :key="nPost.title" :title="nPost.title" :slug="nPost.slug" :img-src="nPost.img + '?' + nPost.id" :desc="nPost.alt" :size="6" :cat="nPost.category"/>
-
-            <!-- <p>{{nPost}}</p> -->
-        </GridX>
-    </section>
+        </section> -->
+    </div>
 
 </template>
 
 <script>
 export default {
+
     mounted() {
         var rellax = new Rellax('.rellax', {
             //center: true, causes issues
@@ -190,10 +168,10 @@ const router = useRouter()
 const route = useRoute()
 
 console.log("routed to...", route.params.project)
-console.log(`/api/data?slug=${route.params.project}`)
+console.log(`/api/data/${route.params.project}`)
 
 /* Fetching data of page */
-const {data: postShown} = await useFetch(`/api/data/${route.params.project}`, {
+const {data: postShown} = await useFetch(`/api/data?post=${route.params.project}`, {
     pick: [
         "title",
         "finishDate",
@@ -216,12 +194,12 @@ const {data: postShown} = await useFetch(`/api/data/${route.params.project}`, {
         "supplied",
         "html",
         "css"
-    ]
+    ]    
 })
 
 let dimensions = reactive({x:1080, y:1080})
 
-console.log(postShown.value)
+/* console.log(postShown.value) */
 let tags = postShown.value.tags[0]
 let id = postShown.value._id
 
@@ -253,10 +231,10 @@ onMounted(() => {
 })
 
 /* After shown post: */
-const {data: posts} = await useFetch(`/api/data?tags=${tags}&limit=4`)
-const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
+//const {data: posts} = await useFetch(`/api/data?tags=${tags}&limit=4`)
+//const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
 
-console.log(this)
+//console.log(this)
 </script>
 
 <style lang="scss" scoped>

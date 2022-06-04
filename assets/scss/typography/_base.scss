@@ -4,11 +4,10 @@
 html {font-size: 125%;} /*20px*/
 
 body {
-  background: #ffffff;
   font-family: 'Sen', sans-serif;
   font-weight: 400;
   line-height: 1.75;
-  color: #000000;
+  color: #191C1D;
 }
 
 p {margin-bottom: 1rem;}
@@ -45,8 +44,12 @@ ul {
     text-indent: 0.7em;
 }
 
+
+
+
+
 a {
-  color: #388E3C; // lol i should've used variables oopsies
+  color: #BC004F; // lol i should've used variables oopsies
 }
 
 p {
@@ -63,7 +66,7 @@ p {
       width: 100%;
       top: 0;
       left: 0;
-      background: #388e3c;
+      background: #BC004F;
       z-index: -1;
       transform-origin: bottom;
       transform: scaleY(0.2) translateY(1.5em);
@@ -86,10 +89,10 @@ blockquote {
   display: block;
 }
 
-.caption {
+/* .caption {
   border-left: 0.6em solid #8C9EFF;
   padding-left: 0.7em;
-}
+} */
 
 input {
   font-family: 'Sen', sans-serif;

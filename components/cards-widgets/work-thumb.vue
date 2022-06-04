@@ -9,32 +9,29 @@ TODO:
 -->
 <template>
     <div :class="['cell', 'medium-6', columns, 'work-thumb']">
-        <a
-          :href="`/portfolio/${slug}`"
+        <NuxtLink
+          :to="`/portfolio/${slug}`"
         ><div class="work-thumb-wrapper">
                 <div class="work-thumb-wrapper-cont">
                     <img :src="imgSrc" :alt="alt">
-                    <h3>{{ title }}</h3>
-                    <p>{{ desc }}</p>
+
+                    <div class="title">
+                        <h3>{{ title }}</h3>
+                        <!-- <p>{{ desc }}</p> -->
+                    </div>
 
                     <div class="cat-wrapper">
-                        <div class="categories">
-                            <span>&#9866; &nbsp</span>
-
-                            <span v-for="categories in cat">
-                                {{ categories }}
-                            </span>
-                            
-                            <!-- <span>{{ cat }}</span> -->
-                        </div>
+                        <span v-for="categories in cat">
+                            {{ categories }}
+                        </span>
                     </div>
 
                 </div>
-                <div class="read-more-wrapper">
+                <!-- <div class="read-more-wrapper">
                     <div class="btn-read-more">See</div>
-                </div>
+                </div> -->
             </div>
-        </a>
+        </NuxtLink>
     </div>
 </template>
 
@@ -87,5 +84,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.work-thumb {
+    margin-top: 1.5em;
+}
+.work-thumb, img {
+    border-radius: 0.75em;
+}
+.work-thumb-wrapper-cont {
+    position: relative;
+    display: flex;
+}
+.title {
+    position: absolute;
+    bottom: 0;
+    margin-left: 1.75em;
+    width: min-content;
+}
+.cat-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 </style>

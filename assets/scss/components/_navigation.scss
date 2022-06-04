@@ -28,6 +28,77 @@ Navigations
   }
 }
 
+#navigation-cursor {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0.5em;
+  width: 0;
+  background: #0060A8;
+  transition-delay: 0.3s;
+
+  &.trailing, &.leaving-not-trailing {
+    transition-delay: 0s;
+  }
+}
+.cursor-endings {
+  bottom: 0;
+  height: 40px;
+  position: absolute;
+  width: 40px;
+  //display: none;
+
+  overflow: hidden;
+  
+  &::after {
+    content: " ";
+    position: absolute;
+    border-bottom: .5em solid #0060A8;
+    height: calc(40px - 0.5em);
+    width: calc(40px - 0.5em);
+    transition: all 0.3s;
+    
+  }
+
+  &.left {
+    left: 0;
+
+    &::after {
+      border-bottom-left-radius:100%;
+      border-left: 0.5em solid #0060A8;
+      transform-origin: top right;
+      transform: rotate(-90deg);
+      transition-delay: 0s;
+    }
+  }
+  
+  &.right {
+    right: 0;
+
+    &::after { 
+      border-bottom-right-radius: 100%;
+      border-right: 0.5em solid #0060A8;
+      transform-origin: top left;
+      transform: rotate(90deg);
+    }
+  }
+
+  &.active {
+    display: block;
+    
+    &::after {
+      transition-delay: .6s;
+      transform: rotate(0deg);
+    }
+  }
+}
+.fluid .cursor-endings.active.left:after {
+  transform: rotate(-90deg);
+}
+.fluid .cursor-endings.active.right:after {
+  transform: rotate(90deg);
+}
+
 .nav-primary {
   position: fixed;
   top: 0;
@@ -444,6 +515,7 @@ a.nav-button {
   transform: translateY(2.7rem);
 }
 
+// this is probably useless
 .nav-header-main .grid-container.fluid {
   //padding-right: 6.8rem !important;
   //padding-left: 6.8rem !important;
@@ -483,6 +555,12 @@ nav {
   align-items: center;
   gap: 1.4em;
   padding: 0 1.9em;
+
+  a {
+    font-weight: 700;
+    text-decoration: none;
+    color: #43474E;
+  }
 }
 .nav-hamburger {
   background: #A33B81;
