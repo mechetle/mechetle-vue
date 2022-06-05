@@ -7,7 +7,7 @@ Front page header:
         <div ref="scrollDown"></div>
     </div>
 
-    <header id="homepage-header">
+    <header id="homepage-header" class="not-loaded" ref="header">
         <!-- <lottie-animation
             ref="anim"
             :animationData="scrollDownURL"
@@ -16,7 +16,7 @@ Front page header:
         <div id="foreground-wrapper" class="rellax" data-rellax-speed="-4">
             <div class="video-wrapper">
                 <div id="fg-paused" ref="fg_paused" class="paused"></div>
-                <video src="/assets/video/header_foreground.webm" id="h_fg" ref="h_fg" muted></video>
+                <video src="/assets/video/header_foreground.webm" id="h_fg" ref="h_fg" preload="metadata" muted></video>
             </div>
         </div>
 
@@ -41,7 +41,7 @@ Front page header:
             <div id="bg-circle-mask">
                 <div class="video-wrapper">
                     <div id="bg-paused" class="paused"></div>
-                    <video src="/assets/video/header_background.webm" id="h_bg" ref="h_bg" muted></video>
+                    <video src="/assets/video/header_background.webm" id="h_bg" ref="h_bg" muted preload="metadata"></video>
                 </div>
             </div>
         </div>
@@ -77,6 +77,7 @@ export default {
         let h_fg = this.$refs.h_fg;
         let fg_paused = this.$refs.fg_paused;
         let h_bg = this.$refs.h_bg;
+        let header = this.$refs.header
 
         fg_paused.style.transitionProperty = 'none'
         h_fg.style.transitionProperty = 'none'
@@ -88,6 +89,8 @@ export default {
         h_fg.play();
         h_bg.play();
 
+        // remove unloaded to initialise home page intro
+        //header.classList.remove("not-loaded") 
         
         h_fg.addEventListener('timeupdate', () => {
             fg_paused.style.transitionProperty = 'inherit'
@@ -130,6 +133,21 @@ watch(
 </script> -->
 
 <style lang="scss" scoped>
+#homepage-header {
+    height: 100vh;
+    z-index: -1;
+    position: relative;
+    perspective: 860px;
+    transform-style: preserve-3d;
+
+    /* &.not-loaded {
+        #foreground-wrapper {
+            transition: 1.25s all;
+            transform: translate3d(0,0,1000px);
+        }
+    } */
+}
+
 h1.display {
     text-align: center;
     line-height: 10rem;
@@ -166,14 +184,18 @@ h1.display {
     }
 }
 
-.video-wrapper > .paused {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition-duration: 0.2s;
-    transition-delay: 0.1s;
+.video-wrapper {
+    transition: 1.25s all;
+
+    > .paused {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition-duration: 0.2s;
+        transition-delay: 0.1s;
+    }
 }
 
 #background-wrapper {
@@ -212,6 +234,7 @@ h1.display {
     width: 14px;
     
     div {
+        opacity: 1;
         transition: transform 0.35s;
         transition-timing-function: cubic-bezier(0.75, 0.1, 0, 0.9);
     }
@@ -234,12 +257,6 @@ video {
 
 .text-wrapper {
     padding-bottom: 8em;
-}
-
-#homepage-header {
-    height: 100vh;
-    z-index: -1;
-    position: relative;
 }
 
 #header-wrapper {

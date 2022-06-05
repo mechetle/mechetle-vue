@@ -1,5 +1,7 @@
 <template>
     <div>
+        <Loading v-if="isLoading"></Loading>
+        
         <HeaderFp />
     
         <section id="who-am-i">
@@ -157,6 +159,7 @@
 export default {
     data () {
         return { 
+            isLoading: true,
             rellaxPattern: [-0.1, 0.1, -0.1, 0.1]
             //rellaxPattern: [-4, 2, -2, 4]
         }
@@ -170,6 +173,14 @@ export default {
         /* 
          * homepage animations:
          */
+        setTimeout(() => {
+            document.querySelector("#loading").classList.add("loaded")
+        }, 800);
+        setTimeout(() => {
+            //document.querySelector("#loading").classList.remove("loaded")
+            this.isLoading = false;
+        }, 3000);
+
         setTimeout(() => {
             var rellax = new Rellax('.rellax', {
                 //center: true, causes issues
@@ -198,6 +209,7 @@ import Container from "../components/layout/grid/container.vue";
 import GridX from "../components/layout/grid/grid-x.vue";
 import GridX1 from "../components/layout/grid/grid-x.vue";
 import VideoM from "../components/cards-widgets/video-m.vue";
+import Loading from '@/components/loading.vue'
 
 const {data: posts} = await useFetch("/api/data?limit=4")
 
