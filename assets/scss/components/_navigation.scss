@@ -297,7 +297,7 @@ ul li ul li {
     margin-right: 0.3em;
     height: 100%;
     width: auto;
-    transform: translate(0, -3px) scale(0.5);
+    transform: translateY(5px) scale(.5);
   }
 }
 
@@ -561,6 +561,16 @@ nav {
     text-decoration: none;
     color: #43474E;
   }
+
+  /* &:hover {
+    a {
+      color: #73777f9f;
+
+      &:hover {
+        color: #43474E;
+      }
+    }
+  } */
 }
 .nav-hamburger {
   background: #A33B81;

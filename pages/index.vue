@@ -5,7 +5,7 @@
         <HeaderFp />
     
         <section id="who-am-i">
-            <Container>
+            <Container class="slim">
                 <GridX>
                     <div class="cell medium-8 large-5" id="wai-wrapper">
                         <h2>Hey, I’m Steven B-M Nguyen</h2>
@@ -142,7 +142,7 @@
                     <p> {{data}}</p>
     
                     <div class="cell">
-                        <button class="button">See more!</button>
+                        <a class="button">See more!</a>
                     </div>
                 </GridX>
             </Container>
@@ -160,7 +160,7 @@ export default {
     data () {
         return { 
             isLoading: true,
-            rellaxPattern: [-0.1, 0.1, -0.1, 0.1]
+            rellaxPattern: [0, 0, 0, 0]
             //rellaxPattern: [-4, 2, -2, 4]
         }
     },
@@ -237,6 +237,8 @@ const {data: posts} = await useFetch("/api/data?limit=4")
             
             #wai-wrapper {
                 margin-top: 14em;
+                color: rgba(0, 28, 56, 1);
+
             }
 
             #video-overlay {
@@ -272,7 +274,7 @@ const {data: posts} = await useFetch("/api/data?limit=4")
         display: flex;
         align-items: center;
         justify-content: center;
-        right: 12em;
+        right: 7em;
         //bottom: 2em;
 
         > * {

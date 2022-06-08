@@ -12,7 +12,7 @@ The one that you will see on every page
                 </a>
             </div>
             <div class="navigation-button-wrap">
-                <nav>
+                <nav class="hover-fx dark">
                     <NuxtLink to="/"><span class="material-symbols-outlined">&#xe88a;</span></NuxtLink>
                     <NuxtLink to="/portfolio" id="portfolio">Works</NuxtLink>
                     <NuxtLink to="/about">About</NuxtLink>

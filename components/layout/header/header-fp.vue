@@ -37,6 +37,11 @@ Front page header:
                 </h1>
             </div>
         </div>
+
+        <div id="midground-wrapper">
+            <div id="actual-midground"></div>
+        </div>
+
         <div id="background-wrapper" class="rellax" data-rellax-speed="-9">
             <div id="bg-circle-mask">
                 <div class="video-wrapper">
@@ -113,6 +118,32 @@ export default {
             autoplay: true,
             path: '/assets/lottie/scroll-down.json' // the path to the animation json
         });
+
+        // todo: lol implement the mouseover shine thingo lol
+        /* // :
+        let yMap = 44,
+            xMap = 24;
+
+        const map = third.querySelector("#map-aus");
+        const mapPin = third.querySelector("#map-pin");
+
+        let windowH_w = window_w / 2;
+        let windowH_h = window_h / 2;
+
+        var mousePal = function(event) {
+            let mY = event.movementY;
+            let mX = event.movementX;
+
+            // console.log("Mouse 3d map - cursor position");
+            // console.log(mX, mY );
+
+            yMap += mY / (windowH_w / 16);
+            xMap -= mX / (windowH_h / 3);
+
+            map.style.transform = `rotateX( ${yMap}deg) rotateY(${xMap}deg) rotateZ(-15deg) scale(1.8)`;
+            mapPin.style.transform = `rotateX(-20deg) rotateZ(30deg) rotateY(-${180 - xMap}deg) scale(0.25)`;
+        }
+        document.addEventListener('mousemove', mousePal); */
     }
 }
 </script>
@@ -146,6 +177,23 @@ watch(
             transform: translate3d(0,0,1000px);
         }
     } */
+}
+
+#midground-wrapper {
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    position: absolute;
+    z-index: -1;
+    
+    > #actual-midground {
+        height: 100%;
+        margin: 7.5em auto 0;
+        //background: aqua;
+        max-width: 87.5rem;
+        border-radius: 40px;
+        background: linear-gradient(45deg, rgba(196, 196, 196, 0), rgba(223, 226, 235, 0.2));
+    }
 }
 
 h1.display {

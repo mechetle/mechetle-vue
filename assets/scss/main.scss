@@ -53,3 +53,8 @@ body {
 
   line-height: revert;
 }
+
+/* @import "../node_modules/foundation-sites/scss/util/util"; */
+.grid-container.slim {
+    max-width: rem-calc(1200);
+}

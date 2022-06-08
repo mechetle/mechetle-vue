@@ -13,20 +13,35 @@ TODO:
           :to="`/portfolio/${slug}`"
         ><div class="work-thumb-wrapper">
                 <div class="work-thumb-wrapper-cont">
-                    <img :src="imgSrc" :alt="alt">
-
-                    <div class="title">
-                        <h3>{{ title }}</h3>
-                        <!-- <p>{{ desc }}</p> -->
-                    </div>
+                    <img 
+                        class="rellax" 
+                        data-rellax-speed="-2" 
+                        data-rellax-percentage="0.5"
+                        :src="imgSrc" 
+                        :alt="alt" 
+                    >
 
                     <div class="cat-wrapper">
                         <span v-for="categories in cat">
-                            {{ categories }}
+                            <template v-if="categories == 'motion'">
+                                <span class="material-symbols-outlined">animation</span>
+                            </template>
+                            <template v-if="categories == 'brand'">
+                                <span class="material-symbols-outlined">architecture</span>
+                            </template>
+                            <template v-if="categories == 'code'">
+                                <span class="material-symbols-outlined">code</span>
+                            </template>
                         </span>
                     </div>
 
                 </div>
+
+                <div class="title">
+                    <h3>{{ title }}</h3>
+                    <p>{{ desc }}</p>
+                </div>
+
                 <!-- <div class="read-more-wrapper">
                     <div class="btn-read-more">See</div>
                 </div> -->
@@ -86,6 +101,24 @@ export default {
 <style lang="scss" scoped>
 .work-thumb {
     margin-top: 1.5em;
+
+    a {
+        color: #fff;
+
+        .title {
+            color: #191C1D;
+            
+            h3 {
+                margin-block-start: .5em;
+                margin-bottom: .25em;
+            }
+            p {
+                margin-block-start: .25em;
+                margin-bottom: .25em;
+                color: #43474E;
+            }
+        }
+    }
 }
 .work-thumb, img {
     border-radius: 0.75em;
@@ -93,16 +126,39 @@ export default {
 .work-thumb-wrapper-cont {
     position: relative;
     display: flex;
+    border-radius: 0.75em;
+    overflow: hidden;
+
+    // vertical centre:
+
+    img {
+        width: 110%;
+    }
 }
+
 .title {
-    position: absolute;
-    bottom: 0;
-    margin-left: 1.75em;
-    width: min-content;
+    //position: absolute;
+    //bottom: 0;
+    //margin-left: 1.75em;
+    //width: min-content;
 }
 .cat-wrapper {
+    border-radius: 1.5em;
+    box-shadow: 0 2.5px 20px 0px rgb(4 14 25 / 12%);
+    //color: #f7f7f7;
+    //color: #D1E4FF;
+    color: rgba(57, 0, 54, 1);
+    padding: 0 .75em;
     position: absolute;
-    top: 0;
-    right: 0;
+    right: 1.5em;
+    bottom: 1.5em;
+    //background: rgb(255 255 255 / 20%);
+    background: #FFD6F4;
+    backdrop-filter: blur(10px);
 }
+
+.material-symbols-outlined {
+  font-size: 30px;
+}
+
 </style>
