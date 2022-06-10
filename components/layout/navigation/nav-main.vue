@@ -17,7 +17,7 @@ The one that you will see on every page
                     <NuxtLink to="/portfolio" id="portfolio">Works</NuxtLink>
                     <NuxtLink to="/about">About</NuxtLink>
                     <NuxtLink to="/lab">Lab room</NuxtLink>
-                    <NuxtLink to="/test">Contact</NuxtLink>
+                    <NuxtLink to="/contact">Contact</NuxtLink>
                 </nav>
                 <div 
                     id="navigation-cursor" 
@@ -45,8 +45,11 @@ The one that you will see on every page
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
 const route = useRoute()
-let route_group = route.path.substring(1).split('/')[0]
-let link_length = 1;
+
+const route_arr = route.path.substring(1).split('/')
+let route_group
+route_group = route_arr[0]
+let link_length = (route_group != "") ? route_arr.length : 0
 </script>
 
 <script>
@@ -72,7 +75,7 @@ export default {
             let active = document.querySelector('.router-link-active')
 
             // this means it is in the group but nuxt for some reason doesn't know:
-            if (this.link_length > 1 && this.route_group != "") {
+            if ((this.link_length > 1 && this.route_group != "")) {
                 active = document.querySelector('#'+ this.route_group)
             }
 
