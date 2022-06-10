@@ -7,6 +7,11 @@ Front page header:
         <div ref="scrollDown"></div>
     </div>
 
+    <div id="header-overlay" 
+        ref="hoverZone"
+        @mousemove="updateShine"
+    ></div>
+
     <header id="homepage-header" class="not-loaded" ref="header">
         <!-- <lottie-animation
             ref="anim"
@@ -20,7 +25,7 @@ Front page header:
             </div>
         </div>
 
-        <div id="header-wrapper">
+        <div id="header-wrapper" ref="shine">
             <div class="text-wrapper">
                 <div id="this-is">THIS IS</div>
                 <h1 class="logo-text-header display">
@@ -39,7 +44,10 @@ Front page header:
         </div>
 
         <div id="midground-wrapper">
-            <div id="actual-midground"></div>
+            <div 
+                id="actual-midground"
+                ref="shine"
+            ></div>
         </div>
 
         <div id="background-wrapper" class="rellax" data-rellax-speed="-9">
@@ -62,11 +70,33 @@ export default {
 
     data () {
         return {
-        
+            shine: {
+                x: 0,
+                y: 0
+            }
         }
     },
 
     methods: {
+        updateShine(e) { 
+            let x = e.offsetX - this.shine.x;
+            let y = e.offsetY - this.shine.y;
+
+            if (x > 0 && y > 0) {
+                // let angle = Math.atan((y / 2) / (x))
+                // let angleDeg = angle * (180 / Math.PI) * 4;
+
+                console.log(x, y)
+
+                this.$refs.shine.parentNode.style.opacity = 1
+                this.$refs.shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(223, 226, 235, 0.2) 30%, rgba(196, 196, 196, 0) 80%)`
+
+            } else {
+                this.$refs.shine.parentNode.style.opacity = 0
+            }
+
+        },
+
         scrollNext() {
             window.scrollTo({
                 top: window.innerHeight * 1.15,
@@ -83,6 +113,7 @@ export default {
         let fg_paused = this.$refs.fg_paused;
         let h_bg = this.$refs.h_bg;
         let header = this.$refs.header
+        let shine = this.$refs.shine
 
         fg_paused.style.transitionProperty = 'none'
         h_fg.style.transitionProperty = 'none'
@@ -90,6 +121,11 @@ export default {
         intro_ran = false;
         fg_paused.style.opacity = 0
         h_fg.style.opacity = 1
+
+        this.shine = {
+            x: shine.offsetLeft,
+            y: shine.offsetTop
+        }
 
         h_fg.play();
         h_bg.play();
@@ -120,30 +156,10 @@ export default {
         });
 
         // todo: lol implement the mouseover shine thingo lol
-        /* // :
-        let yMap = 44,
-            xMap = 24;
-
-        const map = third.querySelector("#map-aus");
-        const mapPin = third.querySelector("#map-pin");
-
-        let windowH_w = window_w / 2;
-        let windowH_h = window_h / 2;
-
-        var mousePal = function(event) {
-            let mY = event.movementY;
-            let mX = event.movementX;
-
-            // console.log("Mouse 3d map - cursor position");
-            // console.log(mX, mY );
-
-            yMap += mY / (windowH_w / 16);
-            xMap -= mX / (windowH_h / 3);
-
-            map.style.transform = `rotateX( ${yMap}deg) rotateY(${xMap}deg) rotateZ(-15deg) scale(1.8)`;
-            mapPin.style.transform = `rotateX(-20deg) rotateZ(30deg) rotateY(-${180 - xMap}deg) scale(0.25)`;
-        }
-        document.addEventListener('mousemove', mousePal); */
+        /* headerHover.addEventListener("mousemove", function(event) {
+            console.log("moving", event);
+            //console.log(e.offsetX, e.offsetY);
+        }) */
     }
 }
 </script>
@@ -164,6 +180,13 @@ watch(
 </script> -->
 
 <style lang="scss" scoped>
+#header-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+}
+
 #homepage-header {
     height: 100vh;
     z-index: -1;
@@ -185,6 +208,11 @@ watch(
     top: 0;
     position: absolute;
     z-index: -1;
+    opacity: 1;
+
+    transition: 0.75s all;
+    //transition-delay: 0.25s;
+    transition-timing-function: ease;
     
     > #actual-midground {
         height: 100%;
@@ -192,7 +220,7 @@ watch(
         //background: aqua;
         max-width: 87.5rem;
         border-radius: 40px;
-        background: linear-gradient(45deg, rgba(196, 196, 196, 0), rgba(223, 226, 235, 0.2));
+        background: radial-gradient(circle at right bottom corner, rgba(223, 226, 235, 0.2) 20%, rgba(196, 196, 196, 0) 60%);
     }
 }
 
