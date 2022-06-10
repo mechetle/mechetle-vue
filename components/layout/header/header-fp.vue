@@ -82,10 +82,10 @@ export default {
             let x = e.offsetX - this.shine.x;
             let y = e.offsetY - this.shine.y;
 
-            if (x > 0 && y > 0) {
-                // let angle = Math.atan((y / 2) / (x))
-                // let angleDeg = angle * (180 / Math.PI) * 4;
+            //if (x < 0) {x = 0}
+            //if (y < 0) {y = 0}
 
+            if (x > 0 && y > 0) {
                 console.log(x, y)
 
                 this.$refs.shine.parentNode.style.opacity = 1
@@ -122,10 +122,8 @@ export default {
         fg_paused.style.opacity = 0
         h_fg.style.opacity = 1
 
-        this.shine = {
-            x: shine.offsetLeft,
-            y: shine.offsetTop
-        }
+        this.shine.x = shine.offsetLeft
+        this.shine.y = shine.offsetTop
 
         h_fg.play();
         h_bg.play();
@@ -160,7 +158,7 @@ export default {
             console.log("moving", event);
             //console.log(e.offsetX, e.offsetY);
         }) */
-    }
+    },
 }
 </script>
 
