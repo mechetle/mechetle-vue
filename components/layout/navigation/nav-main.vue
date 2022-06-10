@@ -4,7 +4,7 @@ Primary navigation:
 The one that you will see on every page
 -->
 <template>
-    <div class="nav-primary navigation nav-header-main">
+    <div class="nav-primary navigation loading nav-header-main" ref="nav">
         <div class="grid-container">
             <div class="logo-space logo-anim-nav"><a href="/" alt="Home">
                     <img src="/assets/img/mechetleweb-svglogo.svg" alt="Mechetle logo">
@@ -112,6 +112,7 @@ export default {
 
     mounted() {
         this.changeActiveCursor();
+        this.$refs.nav.classList.remove("loading");
     }
 }
 </script>

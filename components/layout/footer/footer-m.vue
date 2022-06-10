@@ -11,11 +11,11 @@ Its a fucking footer lol
                 <div class="footer-widget other-pages">
                     <h5>Other Pages</h5>
                     <ul>
-                        <li><a href="/faq">Frequently asked questions</a></li>
-                        <li><a href="https://web.archive.org/web/20181127191854/https://mechetle.ml/">Archived
-                                site</a></li>
+                        <li><a href="/faq">Frequently asked Questions</a></li>
+                        <li><a href="https://web.archive.org/web/20181127191854/https://mechetle.ml/">Time Travel</a></li>
                         <li><a href="/privacy-policy">Privacy Policy</a></li>
-                        <li><a href="/order-progress">Order progress</a></li>
+                        <li><a href="/order-progress">Order Progress</a></li>
+                        <li><a href="https://mache.mechetle.com">Mechetle Mache</a></li>
                     </ul>
                 </div>
                 <div class="show-for-medium">
