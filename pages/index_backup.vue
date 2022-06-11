@@ -30,7 +30,7 @@
                 <div class="cell medium-6 large-6 work-thumb">
                     <a href="/portfolio/nihdc4"><div class="work-thumb-wrapper">
                             <div class="work-thumb-wrapper-cont">
-                                <img src="/assets/img/thumbs/nihdc4.png" alt="NIHDC4 motion design entry">
+                                <img src="~/assets/img/thumbs/nihdc4.png" alt="NIHDC4 motion design entry">
                                 <h3>NIHDC4</h3>
                                 <p>Motion design entry</p>
 
@@ -51,7 +51,7 @@
                 <div class="cell medium-6 large-6 work-thumb">
                     <a href="https://www.youtube.com/watch?v=mFtwc6EQMFQ"><div class="work-thumb-wrapper">
                             <div class="work-thumb-wrapper-cont">
-                                <img src="/assets/img/thumbs/cdqc.png" alt="CDQC motion design entry">
+                                <img src="~/assets/img/thumbs/cdqc.png" alt="CDQC motion design entry">
                                 <h3>CDQC</h3>
                                 <p>Another motion design entry</p>
 
@@ -73,7 +73,7 @@
                 <div class="cell medium-6 large-4 work-thumb">
                     <a href="#null" class="disable-me"><div class="work-thumb-wrapper">
                             <div class="work-thumb-wrapper-cont">
-                                <img src="/assets/img/thumbs/maribsc-1.png" alt="s">
+                                <img src="~/assets/img/thumbs/maribsc-1.png" alt="s">
                                 <h3>Maribyrnong College</h3>
                                 <p>Stuff I did for my school that was never released.</p>
                             </div>
@@ -84,7 +84,7 @@
                 <div class="cell medium-6 large-8 work-thumb">
                     <a href="#null" class="disable-me"><div class="work-thumb-wrapper">
                         <div class="work-thumb-wrapper-cont">
-                            <img src="/assets/img/thumbs/homeroom-1.png" alt="s">
+                            <img src="~/assets/img/thumbs/homeroom-1.png" alt="s">
                             <h3>HomeRoom by Jikens & Jikano CO</h3>
                             <p>Online school enviroment redefined (School project)</p>
 
@@ -102,7 +102,7 @@
                     </a>
                 </div>
 
-                <WorkThumb v-for="mountain in mountains" :key="mountain.title" :title="mountain.title" img-src="/assets/img/thumbs/maribsc.png" desc="Wait that is suppose to be the description" cat="Joke" size="5"/>
+                <WorkThumb v-for="mountain in mountains" :key="mountain.title" :title="mountain.title" img-src="~/assets/img/thumbs/maribsc.png" desc="Wait that is suppose to be the description" cat="Joke" size="5"/>
 
                 <div class="cell">
                     <button class="button">See more!</button>

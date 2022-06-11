@@ -1,6 +1,6 @@
 <template>
     <div id="mehkettle-rev" class="rellax" data-rellax-speed="-6">
-        <img src="/assets/img/404/meh-kettle.png" alt="meh kettle">
+        <img src="~/assets/img/404/meh-kettle.png" alt="meh kettle">
         <figcaption>
             "Mechetle Meh Kettle"
             <br><small>Original idea / concept courtesy of Finn (thatguyfinny).</small>
@@ -8,16 +8,16 @@
     </div>
 
     <audio id="bs-1" loop>
-        <source src="/assets/audio/kettle1.ogg" type="audio/ogg">
-        <source src="/assets/audio/kettle1.mp3" type="audio/mpeg">
+        <source src="~/assets/audio/kettle1.ogg" type="audio/ogg">
+        <source src="~/assets/audio/kettle1.mp3" type="audio/mpeg">
     </audio>
     <audio id="bs-2" loop>
-        <source src="/assets/audio/kettle2.ogg" type="audio/ogg">
-        <source src="/assets/audio/kettle2.mp3" type="audio/mpeg">
+        <source src="~/assets/audio/kettle2.ogg" type="audio/ogg">
+        <source src="~/assets/audio/kettle2.mp3" type="audio/mpeg">
     </audio>
     <audio id="bs-3">
-        <source src="/assets/audio/kettleSwitch.ogg" type="audio/ogg">
-        <source src="/assets/audio/kettleSwitch.mp3" type="audio/mpeg">
+        <source src="~/assets/audio/kettleSwitch.ogg" type="audio/ogg">
+        <source src="~/assets/audio/kettleSwitch.mp3" type="audio/mpeg">
     </audio>
 </template>
 

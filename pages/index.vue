@@ -23,15 +23,15 @@
                 </GridX>
 
                 <div id="play-reel">
-                    <img class="reel-button" src="/assets/img/homepage/play-reel-button.svg">
-                    <img class="reel-button-text" src="/assets/img/homepage/play-reel-text.svg">
+                    <img class="reel-button" src="~/assets/img/homepage/play-reel-button.svg">
+                    <img class="reel-button-text" src="~/assets/img/homepage/play-reel-text.svg">
                 </div>
             </Container>
 
             <div id="video-overlay"></div>
             <div id="video-bg">
                 <video 
-                    src="/assets/video/reel-preview.webm" 
+                    src="~/assets/video/reel-preview.webm" 
                     id="wai-video" 
                     ref="wai-video" 
                     muted autoplay loop
@@ -56,7 +56,7 @@
                         <a href="/portfolio/case/nihdc4">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <img src="/assets/img/thumbs/nihdc4.png" alt="NIHDC4 motion design entry">
+                                    <img src="~/assets/img/thumbs/nihdc4.png" alt="NIHDC4 motion design entry">
                                     <h3>NIHDC4</h3>
                                     <p>Motion design entry</p>
     
@@ -78,7 +78,7 @@
                         <a href="https://www.youtube.com/watch?v=mFtwc6EQMFQ">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <img src="/assets/img/thumbs/cdqc.png" alt="CDQC motion design entry">
+                                    <img src="~/assets/img/thumbs/cdqc.png" alt="CDQC motion design entry">
                                     <h3>CDQC</h3>
                                     <p>Another motion design entry</p>
     
@@ -101,7 +101,7 @@
                         <a href="#null" class="disable-me">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <img src="/assets/img/thumbs/maribsc-1.png" alt="s">
+                                    <img src="~/assets/img/thumbs/maribsc-1.png" alt="s">
                                     <h3>Maribyrnong College</h3>
                                     <p>Stuff I did for my school that was never released.</p>
                                 </div>
@@ -113,7 +113,7 @@
                         <a href="#null" class="disable-me">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <img src="/assets/img/thumbs/homeroom-1.png" alt="s">
+                                    <img src="~/assets/img/thumbs/homeroom-1.png" alt="s">
                                     <h3>HomeRoom by Jikens & Jikano CO</h3>
                                     <p>Online school enviroment redefined (School project)</p>
     
