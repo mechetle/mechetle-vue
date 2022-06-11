@@ -931,13 +931,6 @@ autoprefixer@^10.4.7:
     picocolors "^1.0.0"
     postcss-value-parser "^4.2.0"
 
-axios@^0.19.0:
-  version "0.19.2"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
-  integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
-  dependencies:
-    follow-redirects "1.5.10"
-
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
@@ -1425,13 +1418,6 @@ debug@4, debug@^4.1.0, debug@^4.3.4:
   dependencies:
     ms "2.1.2"
 
-debug@=3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
-  integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
-  dependencies:
-    ms "2.0.0"
-
 debug@^3.2.6:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.7.tgz#72580b7e9145fb39b6676f9c5e5fb100b934179a"
@@ -1887,13 +1873,6 @@ flat@^5.0.0:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/flat/-/flat-5.0.2.tgz#8ca6fe332069ffa9d324c327198c598259ceb241"
   integrity sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==
-
-follow-redirects@1.5.10:
-  version "1.5.10"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
-  integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
-  dependencies:
-    debug "=3.1.0"
 
 follow-redirects@^1.0.0:
   version "1.15.1"
@@ -2579,23 +2558,7 @@ log-symbols@^4.1.0:
     chalk "^4.1.0"
     is-unicode-supported "^0.1.0"
 
-lottie-vuejs@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/lottie-vuejs/-/lottie-vuejs-0.4.0.tgz#9a28c2bd0ddc402a4354ce83a60cf19a8fb672ad"
-  integrity sha512-0gmUq/RGbu6EptrUEBKlr+o4YV1vuWs6wcjNcnPODz9Rrrgn664xY/QaGzJHCL6GU/Oab2oJ7MDxs4HqCY9ryA==
-  dependencies:
-    axios "^0.19.0"
-    lottie-web "^5.1.9"
-
-lottie-web-vue@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/lottie-web-vue/-/lottie-web-vue-2.0.6.tgz#c92c8f5658b372b04c63f3d4e85cec46e20cf63d"
-  integrity sha512-xtdzuYsLoyiTcGWprJXnVu+tRza5T0OJuPzI5o4x+A+QrlifBLaDzUBX4EPye+mGJ/Nzd83lWtOJpknuFHpPCw==
-  dependencies:
-    lottie-web "^5.8.1"
-    vue "^3.2.29"
-
-lottie-web@^5.1.9, lottie-web@^5.8.1, lottie-web@^5.9.4:
+lottie-web@^5.9.4:
   version "5.9.4"
   resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.9.4.tgz#c01478ee5dd47f916cb4bb79040c11d427872d57"
   integrity sha512-bSs1ZTPifnBVejO1MnQHdfrKfcn02YTCmgOh2wcAEICqRA0V7GzDh8FnwXY6+EzT+i8XOunaIloo/5xC5YNbsA==
@@ -4395,11 +4358,6 @@ vue-bundle-renderer@^0.3.8:
   dependencies:
     bundle-runner "^0.0.1"
 
-vue-parallax-js@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/vue-parallax-js/-/vue-parallax-js-0.2.3.tgz#83918c717794173ad243fcab39a2754b31c2a77c"
-  integrity sha512-SV2GJ6aJ0vrLfRkpSlbvvULsUeQQw5OyVReAEWxiZ/b9BSUWGO9o1a7GXn4Tu6oeUwj4TBJwzO21iKDl/MuLuw==
-
 vue-router@^4.0.15:
   version "4.0.15"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.15.tgz#b4a0661efe197f8c724e0f233308f8776e2c3667"
@@ -4407,7 +4365,7 @@ vue-router@^4.0.15:
   dependencies:
     "@vue/devtools-api" "^6.0.0"
 
-vue@^3.2.29, vue@^3.2.33:
+vue@^3.2.33:
   version "3.2.36"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.36.tgz#8daa996e2ced521708de97d066c7c998e8bc3378"
   integrity sha512-5yTXmrE6gW8IQgttzHW5bfBiFA6mx35ZXHjGLDmKYzW6MMmYvCwuKybANRepwkMYeXw2v1buGg3/lPICY5YlZw==

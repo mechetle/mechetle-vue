@@ -17,10 +17,7 @@
   },
   "dependencies": {
     "foundation-sites": "^6.7.4",
-    "lottie-vuejs": "^0.4.0",
     "lottie-web": "^5.9.4",
-    "lottie-web-vue": "^2.0.6",
-    "rellax": "^1.12.1",
-    "vue-parallax-js": "^0.2.3"
+    "rellax": "^1.12.1"
   }
 }

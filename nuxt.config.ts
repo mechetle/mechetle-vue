@@ -12,9 +12,9 @@ export default defineNuxtConfig({
  */
   generate: { fallback: '404.html' },
 
-  build: {
-    transpile: ['lottie-web-vue']
-  },
+  //build: {
+  //  transpile: ['lottie-web-vue']
+  //},
 
   components: {
     global: true,
