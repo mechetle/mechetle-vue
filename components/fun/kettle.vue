@@ -9,7 +9,7 @@
 
     <audio id="bs-1" loop>
         <source src="/assets/audio/kettle1.ogg" type="audio/ogg">
-        <source src="/audio/kettle1.mp3" type="audio/mpeg">
+        <source src="/assets/audio/kettle1.mp3" type="audio/mpeg">
     </audio>
     <audio id="bs-2" loop>
         <source src="/assets/audio/kettle2.ogg" type="audio/ogg">
