@@ -124,9 +124,12 @@ export default {
 
         this.shine.x = shine.offsetLeft
         this.shine.y = shine.offsetTop
-
-        h_fg.play();
-        h_bg.play();
+        
+        // when the header'a videos are loaded in
+        h_fg.addEventListener('canplay', () => {
+            h_fg.play();
+            h_bg.play();
+        })
 
         // remove unloaded to initialise home page intro
         //header.classList.remove("not-loaded") 
