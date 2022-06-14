@@ -19,7 +19,7 @@ Front page header:
         /> -->
         
         <div id="foreground-wrapper" class="rellax" data-rellax-speed="-4">
-            <div class="video-wrapper">
+            <div class="video-wrapper loading" ref="fgLoading">
                 <div id="fg-paused" ref="fg_paused" class="paused"></div>
                 <video src="~/assets/video/header_foreground.webm" id="h_fg" ref="h_fg" preload="metadata" muted></video>
             </div>
@@ -51,7 +51,7 @@ Front page header:
         </div>
 
         <div id="background-wrapper" class="rellax" data-rellax-speed="-9">
-            <div id="bg-circle-mask">
+            <div id="bg-circle-mask" class="loading" ref="bgLoading">
                 <div class="video-wrapper">
                     <div id="bg-paused" class="paused"></div>
                     <video src="~/assets/video/header_background.webm" id="h_bg" ref="h_bg" muted preload="metadata"></video>
@@ -127,8 +127,14 @@ export default {
         
         // when the header'a videos are loaded in
         h_fg.addEventListener('canplay', () => {
-            h_fg.play();
-            h_bg.play();
+            // play them at +0.75s
+            setTimeout(() => {
+                h_fg.play();
+                h_bg.play();
+                
+                this.$refs.fgLoading.classList.remove("loading")
+                this.$refs.bgLoading.classList.remove("loading")
+            }, 900);
         })
 
         // remove unloaded to initialise home page intro
@@ -246,6 +252,10 @@ h1.display {
 
     > * {
         transform: translateY(7em);
+
+        &.loading {
+            transform: translateY(0.5em);
+        }
     }
 
     video {
@@ -287,6 +297,8 @@ h1.display {
 
     #bg-circle-mask {
         overflow: hidden;
+        transform: translateY(0em);
+        transition-duration: 0.75s;
         //width: 100%; // this causes the whoe page to move
         //border-radius: 100%;
 
@@ -296,6 +308,10 @@ h1.display {
             opacity: 0.45;
             top: 36vh;
             position: relative;
+        }
+
+        &.loading {
+            transform: translateY(10em);
         }
     }
 }
