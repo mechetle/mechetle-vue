@@ -56,7 +56,7 @@
                         <a href="/portfolio/case/nihdc4">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <nuxt-img format="webp" src="/img/thumbs/nihdc4.png" alt="NIHDC4 motion design entry" />
+                                    <img src="/img/thumbs/nihdc4.webp" alt="NIHDC4 motion design entry" />
                                     <h3>NIHDC4</h3>
                                     <p>Motion design entry</p>
     
@@ -78,7 +78,7 @@
                         <a href="https://www.youtube.com/watch?v=mFtwc6EQMFQ">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <nuxt-img format="webp" src="/img/thumbs/cdqc.png" alt="CDQC motion design entry" />
+                                    <img src="/img/thumbs/cdqc.webp" alt="CDQC motion design entry" />
                                     <h3>CDQC</h3>
                                     <p>Another motion design entry</p>
     
@@ -101,7 +101,7 @@
                         <a href="#null" class="disable-me">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <nuxt-img format="webp" src="/img/thumbs/maribsc-1.png" alt="s" />
+                                    <img src="/img/thumbs/maribsc-1.webp" alt="s" />
                                     <h3>Maribyrnong College</h3>
                                     <p>Stuff I did for my school that was never released.</p>
                                 </div>
@@ -113,7 +113,7 @@
                         <a href="#null" class="disable-me">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <nuxt-img format="webp" src="/img/thumbs/homeroom-1.png" alt="s" />
+                                    <img src="/img/thumbs/homeroom.webp" alt="s" />
                                     <h3>HomeRoom by Jikens & Jikano CO</h3>
                                     <p>Online school enviroment redefined (School project)</p>
     
