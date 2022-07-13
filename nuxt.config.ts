@@ -1,8 +1,8 @@
 import { defineNuxtConfig } from 'nuxt'
 
 export default defineNuxtConfig({
-  publicRuntimeConfig: {
-    secretSauce: process.env.SECRET_SAUCE,
+  runtimeConfig: {
+    secretSauce: 'SECRET SAUCE NOT ADDED, CHECK FOR NUXT_SECRET_SAUCE IN ENV',
   },
 
   css: [
