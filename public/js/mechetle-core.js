@@ -541,15 +541,15 @@ function sourceConsole() {
    // }
 }
 
-var form = document.getElementById("consoleCommand");
+/* var form = document.getElementById("consoleCommand");
 function handleForm(event) { event.preventDefault(); } 
 form.addEventListener('submit', handleForm);
 
 document.getElementById('consoleSend').onclick = function() {
     document.theConsole.value += '\n' + document.forms.consoleCom.command.value;
- };
+ }; */
 
-// For each item with a `window` class…
+/* // For each item with a `window` class…
 var windows = document.querySelectorAll(".window");
 [].forEach.call(windows,function(win){
 
@@ -581,7 +581,7 @@ var windows = document.querySelectorAll(".window");
       win.style.top  = winY + evt.clientY-mY + 'px';
     };
   },false);
-});
+}); */
 
 // Checks for webp usable:
 //
