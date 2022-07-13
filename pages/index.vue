@@ -221,6 +221,25 @@ import VideoM1 from "../components/cards-widgets/video-m.vue";
 
 const {data: posts} = await useFetch("/api/data?limit=4")
 
+const title = ref('My App')
+const description = ref('My App Description')
+
+useHead({
+    title,
+    meta: [
+        {
+            name: 'description',
+            content: description
+        }
+    ],
+
+    link: [
+        {
+            rel:"preload", as:"video",
+            href: "/video/header_foreground_compr.webm",
+        },
+    ]
+})
 
 </script>
 

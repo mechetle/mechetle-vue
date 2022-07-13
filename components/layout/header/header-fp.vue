@@ -21,7 +21,13 @@ Front page header:
         <div id="foreground-wrapper" class="rellax" data-rellax-speed="-4">
             <div class="video-wrapper loading" ref="fgLoading">
                 <div id="fg-paused" ref="fg_paused" class="paused"></div>
-                <video src="~/assets/video/header_foreground.webm" id="h_fg" ref="h_fg" preload="metadata" muted></video>
+                <video 
+                    src="/video/header_foreground_compr.webm" 
+                    id="h_fg" 
+                    ref="h_fg" 
+                    preload="metadata" 
+                    muted>
+                </video>
             </div>
         </div>
 
@@ -54,7 +60,7 @@ Front page header:
             <div id="bg-circle-mask" class="loading" ref="bgLoading">
                 <div class="video-wrapper">
                     <div id="bg-paused" class="paused"></div>
-                    <video src="~/assets/video/header_background.webm" id="h_bg" ref="h_bg" muted preload="metadata"></video>
+                    <video src="~/assets/video/header_background.webm" id="h_bg" ref="h_bg" muted></video>
                 </div>
             </div>
         </div>
