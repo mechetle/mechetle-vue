@@ -45,4 +45,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
         env:
-          SECRET_SAUCE: ${{ secrets.MACHE_SECRET_SAUCE }}
+          SECRET_SAUCE: ${{ secrets.MACHE_SECRET_SAUCE }},
+          NUXT_SECRET_SAUCE: ${{ secrets.MACHE_SECRET_SAUCE }}
