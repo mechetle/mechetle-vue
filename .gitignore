@@ -4,3 +4,4 @@ node_modules
 nuxt.d.ts
 .output
 .env
+assets/video/header_background_old.webm
