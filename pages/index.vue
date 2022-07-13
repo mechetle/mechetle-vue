@@ -221,8 +221,8 @@ import VideoM1 from "../components/cards-widgets/video-m.vue";
 
 const {data: posts} = await useFetch("/api/data?limit=4")
 
-const title = ref('My App')
-const description = ref('My App Description')
+const title = ref('Mechetle | Steven B-M Nguyen')
+const description = ref("Hello, I'm Steven B-m Nguyen, an enthusiastic self-taught motion, brand, web designer and web developer.")
 
 useHead({
     title,
