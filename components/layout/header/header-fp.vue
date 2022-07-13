@@ -298,7 +298,7 @@ h1.display {
 
     .paused {
         opacity: 0;
-        background: url(assets/video/bgArtboard_foreground_ff.png);
+        background: url(assets/video/bgArtboard_foreground_ff.webp);
         background-size: contain;
         background-position: top;
     }

@@ -24,8 +24,8 @@
     width: 100vw;
     //top: 0;
     outline-color: #001c38;
-    outline-offset: -50vh;
-    outline-width: 50vh;
+    outline-offset: -51vh;
+    outline-width: 52vh;
     outline-style: solid;
     z-index: 990;
     transition-timing-function: cubic-bezier(0.86,0.05,0.15,0.93);

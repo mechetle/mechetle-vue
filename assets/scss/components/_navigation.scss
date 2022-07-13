@@ -282,13 +282,11 @@ ul li ul li {
 }
 
 .logo-space {
-  /*height: 55px;
-    transform: translate(0,0);*/
-  height: 108px;
-  transform: translate(-24px, -22px);
-  overflow: visible;
-  width: auto;
   float: left;
+  /* width: 65px; */
+  overflow: visible;
+  transform: translate(0,15px);
+  width: auto;
 
   /* width: -webkit-fill-available; */
   /* margin-right: 1em; */
@@ -302,9 +300,9 @@ ul li ul li {
   img,
   svg {
     margin-right: 0.3em;
-    height: 100%;
-    width: auto;
+    height: auto;
     transform: translateY(5px) scale(.5);
+    width: 80px;
   }
 }
 

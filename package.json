@@ -10,6 +10,7 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
+    "@nuxt/image-edge": "^1.0.0-27628609.7db6c80",
     "fibers": "^5.0.1",
     "nuxt": "^3.0.0-rc.3",
     "sass": "^1.49.0",
