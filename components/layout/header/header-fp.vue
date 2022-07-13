@@ -24,8 +24,7 @@ Front page header:
                 <video 
                     src="/video/header_foreground_compr.webm" 
                     id="h_fg" 
-                    ref="h_fg" 
-                    preload="metadata" 
+                    ref="h_fg"
                     muted>
                 </video>
             </div>
