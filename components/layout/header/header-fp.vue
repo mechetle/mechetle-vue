@@ -22,9 +22,10 @@ Front page header:
             <div class="video-wrapper loading" ref="fgLoading">
                 <div id="fg-paused" ref="fg_paused" class="paused"></div>
                 <video 
-                    src="/video/header_foreground_compr.webm" 
+                    src="@/assets/video/header_foreground_compr.webm" 
                     id="h_fg" 
-                    ref="h_fg"
+                    ref="h_fg" 
+                    preload="metadata" 
                     muted>
                 </video>
             </div>
@@ -91,7 +92,7 @@ export default {
             //if (y < 0) {y = 0}
 
             if (x > 0 && y > 0) {
-                console.log(x, y)
+                //console.log(x, y)
 
                 this.$refs.shine.parentNode.style.opacity = 1
                 this.$refs.shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(223, 226, 235, 0.2) 30%, rgba(196, 196, 196, 0) 80%)`
@@ -164,7 +165,7 @@ export default {
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: '/assets/lottie/scroll-down.json' // the path to the animation json
+            path: 'lottie/scroll-down.json' // the path to the animation json
         });
 
         // todo: lol implement the mouseover shine thingo lol

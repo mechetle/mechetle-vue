@@ -232,13 +232,6 @@ useHead({
             content: description
         }
     ],
-
-    link: [
-        {
-            rel:"preload", as:"video",
-            href: "/video/header_foreground_compr.webm",
-        },
-    ]
 })
 
 </script>
