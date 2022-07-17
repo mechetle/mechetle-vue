@@ -35,7 +35,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   }
 
   console.log("URL path:", path); // https://nodejs.org/api/url.html
-  console.log("API KEY:", useRuntimeConfig().secretSauce)
+  console.log("API key - starting with:", useRuntimeConfig().secretSauce.substring(0, 5))
   
   const headers = {
     'secret-sauce': useRuntimeConfig().secretSauce
@@ -43,7 +43,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
   data = await $fetch(`${url_mod}${path}`, { method: 'GET', headers: headers});
 
-  console.log("headers:", res.getHeaders());
+  //console.log("headers:", res.getHeaders());
   console.log("Length of data:", Object.keys(data).length)
 
   res.writeHead(200, { "Content-Type": "application/json" });
