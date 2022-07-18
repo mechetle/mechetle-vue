@@ -50,7 +50,6 @@
     
         <section id="featured-work">
             <Container class="extended">
-                <h2>Some work</h2>
                 <GridX class="grid-margin-x">
                     <!-- <div class="cell medium-6 large-6 work-thumb rellax" data-rellax-speed="-1" data-rellax-percentage="0.5">
                         <a href="/portfolio/case/nihdc4">
@@ -134,7 +133,24 @@
                             </div>
                         </a>
                     </div> -->
-    
+                    
+                    <Cell class="large-5" id="fw-text-wrap">
+                        <div id="fw-text">
+                            <h2>Some work</h2>
+                            <p>Here are some of my favourites. ️😅</p>
+                            <a class="button">View all</a>
+                        </div>
+                    </Cell>
+
+                    <WorkThumb 
+                        title="Pinned page" 
+                        slug="blah-blah" 
+                        img-src="/img/thumbs/nihdc4.webp" 
+                        desc="this page doesn't lead to anywhere lol"  
+                        cat="brand" 
+                        size="7"
+                    />
+
                     <WorkThumb 
                         v-for="post in posts" 
                         :key="post.title" 
@@ -150,11 +166,7 @@
                     />
     
     
-                    <p> {{data}}</p>
-    
-                    <div class="cell">
-                        <a class="button">See more!</a>
-                    </div>
+                    <!-- <p> {{data}}</p> -->
                 </GridX>
             </Container>
     
@@ -223,6 +235,7 @@ import Container from "../components/layout/grid/container.vue";
 import VideoM from "../components/cards-widgets/video-m.vue";
 import GridX from "../components/layout/grid/grid-x.vue";
 import Loading from '@/components/loading.vue'
+import Cell from "~~/components/layout/grid/cell.vue";
 
 const {data: posts} = await useFetch("/api/data?limit=4")
 
@@ -340,5 +353,10 @@ useHead({
     @keyframes rotating {
         from {transform: rotate(0deg)}
         to {transform: rotate(360deg)}
+    }
+
+    #fw-text-wrap {
+        display: flex;
+        flex-direction: column;
     }
 </style>
