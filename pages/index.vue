@@ -1,8 +1,8 @@
 <template>
     <div>
-        <Loading v-if="isLoading"></Loading>
+        <Loading v-if="loaderOn"></Loading>
         
-        <HeaderFp />
+        <HeaderFp v-model:headerReady="headerReady"/>
     
         <section id="who-am-i">
             <Container class="slim">
@@ -31,7 +31,7 @@
             <div id="video-overlay"></div>
             <div id="video-bg">
                 <video 
-                    src="~/assets/video/reel-preview.webm" 
+                    src="/video/reel-preview.webm" 
                     id="wai-video" 
                     ref="wai-video" 
                     muted autoplay loop
@@ -50,13 +50,17 @@
     
         <section id="featured-work">
             <Container class="extended">
-                <h2 class="rellax" data-rellax-speed="-0.8" data-rellax-percentage="1">Some of my work</h2>
+                <h2>Some work</h2>
                 <GridX class="grid-margin-x">
-                    <div class="cell medium-6 large-6 work-thumb rellax" data-rellax-speed="-1" data-rellax-percentage="0.5">
+                    <!-- <div class="cell medium-6 large-6 work-thumb rellax" data-rellax-speed="-1" data-rellax-percentage="0.5">
                         <a href="/portfolio/case/nihdc4">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <img src="/img/thumbs/nihdc4.webp" alt="NIHDC4 motion design entry" />
+                                    <img 
+                                        src="/img/thumbs/nihdc4.webp" 
+                                        alt="NIHDC4 motion design entry" 
+                                        loading="lazy"
+                                        />
                                     <h3>NIHDC4</h3>
                                     <p>Motion design entry</p>
     
@@ -78,7 +82,7 @@
                         <a href="https://www.youtube.com/watch?v=mFtwc6EQMFQ">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <img src="/img/thumbs/cdqc.webp" alt="CDQC motion design entry" />
+                                    <img src="/img/thumbs/cdqc.webp" loading="lazy" alt="CDQC motion design entry" />
                                     <h3>CDQC</h3>
                                     <p>Another motion design entry</p>
     
@@ -101,7 +105,7 @@
                         <a href="#null" class="disable-me">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <img src="/img/thumbs/maribsc-1.webp" alt="s" />
+                                    <img src="/img/thumbs/maribsc-1.webp" loading="lazy" alt="s" />
                                     <h3>Maribyrnong College</h3>
                                     <p>Stuff I did for my school that was never released.</p>
                                 </div>
@@ -113,7 +117,7 @@
                         <a href="#null" class="disable-me">
                             <div class="work-thumb-wrapper">
                                 <div class="work-thumb-wrapper-cont">
-                                    <img src="/img/thumbs/homeroom.webp" alt="s" />
+                                    <img src="/img/thumbs/homeroom.webp" loading="lazy" alt="s" />
                                     <h3>HomeRoom by Jikens & Jikano CO</h3>
                                     <p>Online school enviroment redefined (School project)</p>
     
@@ -129,7 +133,7 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div> -->
     
                     <WorkThumb 
                         v-for="post in posts" 
@@ -166,7 +170,9 @@
 export default {
     data () {
         return { 
-            isLoading: true,
+            loaderOn: true,
+            headerReady: false,
+
             rellaxPattern: [0, 0, 0, 0]
             //rellaxPattern: [-4, 2, -2, 4]
         }
@@ -177,17 +183,6 @@ export default {
     },
 
     mounted() {
-        /* 
-         * homepage animations:
-         */
-        setTimeout(() => {
-            document.querySelector("#loading").classList.add("loaded")
-        }, 800);
-        setTimeout(() => {
-            //document.querySelector("#loading").classList.remove("loaded")
-            this.isLoading = false;
-        }, 3000);
-
         setTimeout(() => {
             var rellax = new Rellax('.rellax', {
                 //center: true, causes issues
@@ -202,8 +197,20 @@ export default {
         textWrapper.forEach(element => {
             element.innerHTML = element.textContent.replace(/\S/g, "<span class='header-letter'>$&</span>");
         });
-        
+    },
 
+    watch: {
+        headerReady(to, from) {
+            if (from == false && to == true) {
+                setTimeout(() => {
+                    document.querySelector("#loading").classList.add("loaded")
+                }, 800);
+                setTimeout(() => {
+                    //document.querySelector("#loading").classList.remove("loaded")
+                    this.loaderOn = false;
+                }, 3000); 
+            }
+        }
     }
 }
 </script>
@@ -215,9 +222,7 @@ import WorkThumb from "../components/cards-widgets/work-thumb.vue";
 import Container from "../components/layout/grid/container.vue";
 import VideoM from "../components/cards-widgets/video-m.vue";
 import GridX from "../components/layout/grid/grid-x.vue";
-import GridX1 from "../components/layout/grid/grid-x.vue";
 import Loading from '@/components/loading.vue'
-import VideoM1 from "../components/cards-widgets/video-m.vue";
 
 const {data: posts} = await useFetch("/api/data?limit=4")
 

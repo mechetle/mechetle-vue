@@ -103,24 +103,35 @@ export default {
         }
     },
 
+    props: {
+        headerReady: Boolean
+    },
+
+    emits: [
+        "update:headerReady"
+    ],
+
     methods: {
         updateShine(e) { 
-            let x = e.offsetX - this.shine.x;
-            let y = e.offsetY - this.shine.y;
-
-            //if (x < 0) {x = 0}
-            //if (y < 0) {y = 0}
-
-            if (x > 0 && y > 0) {
-                //console.log(x, y)
-
-                this.$refs.shine.parentNode.style.opacity = 1
-                this.$refs.shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(223, 226, 235, 0.2) 30%, rgba(196, 196, 196, 0) 80%)`
-
-            } else {
-                this.$refs.shine.parentNode.style.opacity = 0
+            try {
+                let x = e.offsetX - this.shine.x;
+                let y = e.offsetY - this.shine.y;
+    
+                //if (x < 0) {x = 0}
+                //if (y < 0) {y = 0}
+    
+                if (x > 0 && y > 0) {
+                    //console.log(x, y)
+    
+                    this.$refs.shine.parentNode.style.opacity = 1
+                    this.$refs.shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(223, 226, 235, 0.2) 30%, rgba(196, 196, 196, 0) 80%)`
+    
+                } else {
+                    this.$refs.shine.parentNode.style.opacity = 0
+                }
+            } catch (error) {
+                console.log("route changed, detatching header-fp")
             }
-
         },
 
         scrollNext() {
@@ -153,7 +164,9 @@ export default {
         
         // when the header'a videos are loaded in
         h_fg.addEventListener('canplay', () => {
-            // play them at +0.75s
+            // send back to parent that videos are loaded
+            this.$emit("update:headerReady", true)
+            
             setTimeout(() => {
                 h_fg.play();
                 //h_bg.play();

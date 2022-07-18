@@ -14,11 +14,17 @@ TODO:
         ><div class="work-thumb-wrapper">
                 <div class="work-thumb-wrapper-cont">
                     <img 
-                        class="rellax" 
+                        class="rellax"
+                        :class="{'loaded': loaded}"
                         data-rellax-speed="-2" 
                         data-rellax-percentage="0.5"
                         :src="imgSrc" 
                         :alt="alt" 
+                        loading="lazy"
+                        height=506
+                        width=900
+
+                        @appear="loadedIMG()"
                     >
 
                     <div class="cat-wrapper">
@@ -53,6 +59,12 @@ TODO:
 <script>
 export default {
     name: 'work-thumb',
+
+    data () {
+        return {
+            loaded: false
+        }
+    },
     props: {
         key: String,
         title: {
@@ -93,6 +105,19 @@ export default {
                 return this.alt
             }
         }
+
+/*         lazyStatus {
+            if (this.imgSrc)
+        } */
+    },
+
+    methods: {
+        loadedIMG() {
+            console.log("img loaded")
+            setTimeout(() => {
+                this.loaded = true
+            }, 1000)
+        }
     }
 
 }
@@ -101,6 +126,7 @@ export default {
 <style lang="scss" scoped>
 .work-thumb {
     margin-top: 1.5em;
+    margin-bottom: 2em;
 
     a {
         color: #fff;
@@ -133,7 +159,15 @@ export default {
 
     img {
         width: 110%;
+        min-height: 100%;
+        object-fit: cover;
+        aspect-ratio: 16 / 9;
+
+        /* &.loaded {
+            height: auto;
+        } */
     }
+
 }
 
 .title {
