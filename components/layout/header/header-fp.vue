@@ -54,7 +54,7 @@ Front page header:
         <div id="header-wrapper" ref="shine">
             <div class="text-wrapper">
                 <div id="this-is">THIS IS</div>
-                <h1 class="logo-text-header display">
+                <!-- <h1 class="logo-text-header display">
                     <span id="me-mechetle">
                         <span>M</span>
                         <span>E</span>
@@ -65,7 +65,8 @@ Front page header:
                         <span>L</span>
                         <span>E</span>
                     </span>
-                </h1>
+                </h1> -->
+                <div class="logo-text-header animated" ref="logoTextHeader"></div>
             </div>
         </div>
 
@@ -161,6 +162,14 @@ export default {
 
         this.shine.x = shine.offsetLeft
         this.shine.y = shine.offsetTop
+
+        const logoText = lottie.loadAnimation({
+            container: this.$refs.logoTextHeader,
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'lottie/mechetle-text.json'
+        });
         
         // when the header'a videos are loaded in
         h_fg.addEventListener('canplay', () => {
@@ -168,7 +177,8 @@ export default {
             this.$emit("update:headerReady", true)
             
             setTimeout(() => {
-                h_fg.play();
+                logoText.play()
+                h_fg.play()
                 //h_bg.play();
                 
                 this.$refs.fgLoading.classList.remove("loading")
@@ -200,6 +210,7 @@ export default {
             autoplay: true,
             path: 'lottie/scroll-down.json' // the path to the animation json
         });
+        
 
         // todo: lol implement the mouseover shine thingo lol
         /* headerHover.addEventListener("mousemove", function(event) {
@@ -248,12 +259,20 @@ watch(
     } */
 }
 
+.logo-text-header.animated {
+    height: 9.8em;
+    /* z-index: -1; */
+    margin-bottom: 2.2em;
+    position: relative;
+    z-index: -1;
+}
+
 #midground-wrapper {
     height: 100vh;
     width: 100%;
     top: 0;
     position: absolute;
-    z-index: -1;
+    z-index: -2;
     opacity: 1;
 
     transition: 0.75s all;

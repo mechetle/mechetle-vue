@@ -160,9 +160,6 @@
                         :desc="post.alt"  
                         :cat="post.category" 
                         :size="post.columns"
-                        class="rellax"
-                        :data-rellax-speed="rellaxPattern[posts.indexOf(post)]"
-                        data-rellax-percentage="0.5"
                     />
     
     
@@ -358,5 +355,6 @@ useHead({
     #fw-text-wrap {
         display: flex;
         flex-direction: column;
+        padding-top: 7.75em;
     }
 </style>
