@@ -43,7 +43,8 @@ The one that you will see on every page
 </template>
 
 <script setup>
-import { useRouter, useRoute } from 'vue-router'
+// ! Note to self: Don't input vue router shit, nuxt already does it lol.
+//import { useRouter, useRoute } from 'vue-router'
 const route = useRoute()
 
 const route_arr = route.path.substring(1).split('/')

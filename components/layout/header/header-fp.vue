@@ -307,6 +307,7 @@ h1.display {
     height: 100%;
     display: flex;
     align-items: flex-end;
+    will-change: transform;
 
     .cm {
         // clipping mask:
