@@ -209,7 +209,7 @@ export default {
     },
 
     watch: {
-        headerReady(to, from) {
+        'headerReady'(to, from) {
             console.log("headerReady(to, from)")
 
             if (from == false && to == true) {

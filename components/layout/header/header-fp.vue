@@ -100,7 +100,9 @@ export default {
             shine: {
                 x: 0,
                 y: 0
-            }
+            },
+
+            'hr': false,
         }
     },
 
@@ -144,6 +146,14 @@ export default {
         }
     },
 
+    watch: {
+        'hr'(to, from) {
+            if (from == false && to == true) {
+                this.$emit("update:headerReady", true)
+            }
+        }
+    },
+
     mounted() {
         let intro_ran = false;
 
@@ -174,9 +184,9 @@ export default {
         // when the header'a videos are loaded in
         h_fg.addEventListener('canplay', () => {
             // send back to parent that videos are loaded
-            console.log("update:headerReady")
-            this.$emit("update:headerReady", true)
-            
+            console.log("update:headerReady - canplay")
+            this.hr = true;
+
             setTimeout(() => {
                 logoText.play()
                 h_fg.play()
