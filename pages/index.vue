@@ -180,7 +180,7 @@ export default {
     data () {
         return { 
             loaderOn: true,
-            headerReady: false,
+            'headerReady': false,
 
             rellaxPattern: [0, 0, 0, 0]
             //rellaxPattern: [-4, 2, -2, 4]
