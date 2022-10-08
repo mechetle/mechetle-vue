@@ -210,12 +210,17 @@ export default {
 
     watch: {
         headerReady(to, from) {
+            console.log("headerReady(to, from)")
+
             if (from == false && to == true) {
+                console.log("inside of emitted headerReady function")
+
                 setTimeout(() => {
                     document.querySelector("#loading").classList.add("loaded")
                 }, 800);
                 setTimeout(() => {
                     //document.querySelector("#loading").classList.remove("loaded")
+                    
                     this.loaderOn = false;
                 }, 3000); 
             }
