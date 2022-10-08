@@ -159,7 +159,7 @@
                         :img-src="post.img + '?' + post.id" 
                         :desc="post.alt"  
                         :cat="post.category" 
-                        :size="post.columns"
+                        :size=post.columns
                     />
     
     

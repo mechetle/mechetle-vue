@@ -1,8 +1,11 @@
 <template>
+  <div>
     <NavMain/>
     <slot />
     <!-- <Beta /> -->
     <FooterM />
+
+  </div>
 </template>
 
 <script>
