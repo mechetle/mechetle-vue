@@ -21,8 +21,13 @@ export default defineNuxtConfig({
   //  transpile: ['lottie-web-vue']
   //},
 
-  components: {
-    global: true,
-  },
+  components: [
+    //global: true,
+    '~/components',
+    { path: '~/components/layout', extensions: ['vue'] },
+    { path: '~/components/layout/grid', extensions: ['vue'] },
+    { path: '~/components/cards-widgets', extensions: ['vue'] },
+    { path: '~/components/sections', extensions: ['vue'] }
+  ],
 
 })

@@ -170,12 +170,12 @@ export default {
 
 }
 
-.title {
+/* .title {
     //position: absolute;
     //bottom: 0;
     //margin-left: 1.75em;
     //width: min-content;
-}
+} */
 .cat-wrapper {
     border-radius: 1.5em;
     box-shadow: 0 2.5px 20px 0px rgb(4 14 25 / 12%);

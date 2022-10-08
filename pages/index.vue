@@ -230,6 +230,14 @@ export default {
 </script>
 
 <script setup>   
+//import HeaderFp from "../components/layout/header/fp.vue";
+//import Cta from "../components/sections/cta.vue";
+//import WorkThumb from "../components/cards-widgets/work-thumb.vue";
+//import Container from "../components/layout/grid/container.vue";
+//import VideoM from "../components/cards-widgets/video-m.vue";
+//import GridX from "../components/layout/grid/grid-x.vue";
+//import Loading from '@/components/loading.vue'
+//import Cell from "~~/components/layout/grid/cell.vue";
 
 const {data: posts} = await useFetch("/api/data?limit=4")
 
