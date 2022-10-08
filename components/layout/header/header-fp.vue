@@ -174,7 +174,9 @@ export default {
         // when the header'a videos are loaded in
         h_fg.addEventListener('canplay', () => {
             // send back to parent that videos are loaded
+            console.log("update:headerReady")
             this.$emit("update:headerReady", true)
+            console.log("After update:headerReady")
             
             setTimeout(() => {
                 logoText.play()
