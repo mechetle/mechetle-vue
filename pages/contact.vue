@@ -20,7 +20,6 @@ export default {
 </script>
 
 <script setup>   
-import HeaderFp from "../components/layout/header/header-fp.vue";
 import Cta from "../components/sections/cta.vue";
 import WorkThumb from "../components/cards-widgets/work-thumb.vue";
 import Container from "../components/layout/grid/container.vue";

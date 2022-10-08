@@ -149,6 +149,7 @@ export default {
     watch: {
         'hr'(to, from) {
             if (from == false && to == true) {
+                console.log('this:', this)
                 this.$emit("update:headerReady", true)
             }
         }
