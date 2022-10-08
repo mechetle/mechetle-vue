@@ -206,6 +206,15 @@ export default {
         textWrapper.forEach(element => {
             element.innerHTML = element.textContent.replace(/\S/g, "<span class='header-letter'>$&</span>");
         });
+
+        setTimeout(() => {
+                    document.querySelector("#loading").classList.add("loaded")
+                }, 800);
+                setTimeout(() => {
+                    //document.querySelector("#loading").classList.remove("loaded")
+                    
+                    this.loaderOn = false;
+                }, 3000);
     },
 
     watch: {
