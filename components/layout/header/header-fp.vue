@@ -183,7 +183,7 @@ export default {
         });
         
         // when the header'a videos are loaded in
-        h_fg.addEventListener('canplay', () => {
+        this.$refs.h_fg.addEventListener('canplay', () => {
             // send back to parent that videos are loaded
             console.log("update:headerReady - canplay")
             this.hr = true;
