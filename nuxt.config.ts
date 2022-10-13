@@ -29,5 +29,7 @@ export default defineNuxtConfig({
     { path: '~/components/cards-widgets', extensions: ['vue'] },
     { path: '~/components/sections', extensions: ['vue'] }
   ],
+  
+  experimental.payloadExtraction: false
 
 })
