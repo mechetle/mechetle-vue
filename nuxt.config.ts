@@ -30,6 +30,8 @@ export default defineNuxtConfig({
     { path: '~/components/sections', extensions: ['vue'] }
   ],
   
-  experimental.payloadExtraction: false
+  experimental: {
+    payloadExtraction: false
+  }
 
 })
