@@ -12,7 +12,7 @@
   "devDependencies": {
     "@nuxt/image-edge": "^1.0.0-27628609.7db6c80",
     "fibers": "^5.0.1",
-    "nuxt": "^3.0.0-rc.11",
+    "nuxt": "^3.0.0-rc.12",
     "sass": "^1.49.0",
     "sass-loader": "^12.4.0"
   },
