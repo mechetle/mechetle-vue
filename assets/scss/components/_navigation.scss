@@ -567,6 +567,32 @@ nav {
     color: #43474E;
   }
 
+  #hamborger {
+    display: none;
+
+    span {
+      font-size: 36px;
+      display: flex;
+    }
+  }
+
+  @media screen and (max-width: 39.9375em) {
+    gap: 0; 
+    padding: 0 1.2em;
+    #hamborger {
+      display: inline; 
+    }
+  }
+
+  a:not(#hamborger) {
+    @media screen and (max-width: 39.9375em) {
+      span, & {
+        font-size: 0px;
+      }
+      //display: none;
+    }
+  }
+
   /* &:hover {
     a {
       color: #73777f9f;

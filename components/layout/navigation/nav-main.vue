@@ -18,6 +18,9 @@ The one that you will see on every page
                     <NuxtLink to="/about">About</NuxtLink>
                     <NuxtLink to="/lab">Lab room</NuxtLink>
                     <NuxtLink to="/contact">Contact</NuxtLink>
+
+                    <!-- If in mobile mode -->
+                    <a id="hamborger"><span class="material-symbols-outlined">menu</span></a>
                 </nav>
                 <div 
                     id="navigation-cursor" 
