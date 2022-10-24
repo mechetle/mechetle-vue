@@ -279,13 +279,14 @@ useHead({
         &#who-am-i {
             //background: linear-gradient(103.68deg, #D1E4FF 35.29%, rgba(209, 228, 255, 0.22) 98.9%) rgb(0 28 56 / 0%);
             background: rgb(0 28 56);
-            height: min(132vh);
+            height: min(132vh) 100%;
             //margin-top: 2em;
             //margin-bottom: 2em;
             clip-path: polygon(53% 7%, 100% 0, 100% 93%, 53% 98%, 28% 95%, 0 100%, 0 12%, 25% 3%);
             
             #wai-wrapper {
                 margin-top: 14em;
+                margin-bottom: 14em;
                 color: rgba(0, 28, 56, 1);
 
             }
@@ -324,7 +325,7 @@ useHead({
         align-items: center;
         justify-content: center;
         right: 7em;
-        //bottom: 2em;
+        bottom: 12em;
 
         > * {
             user-drag: none;
