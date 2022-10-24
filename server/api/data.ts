@@ -12,7 +12,10 @@ import type { IncomingMessage, ServerResponse } from "http";
 
 const api_url = `https://mache.mechetle.com`
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
+export default defineEventHandler (async (event) => {
+  let req = event.req
+  let res = event.res
+
   let url_mod = api_url
   let data = { data: [{ data: "" }] };
 
@@ -35,7 +38,12 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   }
 
   console.log("URL path:", path); // https://nodejs.org/api/url.html
-  console.log("API key - starting with:", useRuntimeConfig().secretSauce.substring(0, 5))
+
+  try {
+    console.log("API key - starting with:", useRuntimeConfig().secretSauce.substring(0, 5))
+  } catch (error) {
+    console.log("API KEY IS NOT ADDED")
+  }
   
   const headers = {
     'secret-sauce': useRuntimeConfig().secretSauce
@@ -50,4 +58,4 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
   res.write(JSON.stringify(data));
   res.end();
-};
+});
