@@ -286,7 +286,7 @@ useHead({
             
             #wai-wrapper {
                 margin-top: 14em;
-                margin-bottom: 14em;
+                margin-bottom: 18em;
                 color: rgba(0, 28, 56, 1);
 
             }

@@ -428,6 +428,8 @@ video {
 
 .text-wrapper {
     padding-bottom: 8em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 #header-wrapper {
