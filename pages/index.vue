@@ -284,6 +284,10 @@ useHead({
             //margin-bottom: 2em;
             clip-path: polygon(53% 7%, 100% 0, 100% 93%, 53% 98%, 28% 95%, 0 100%, 0 12%, 25% 3%);
             
+            @media screen and (max-width: 39.9375em) {
+                overflow: hidden;
+            }
+            
             #wai-wrapper {
                 margin-top: 14em;
                 margin-bottom: 18em;
@@ -307,6 +311,8 @@ useHead({
                 z-index: -2;
                 //opacity: 0.75;
                 mix-blend-mode: overlay;
+                width: 100vw;
+                overflow-x: hidden;
             }
         }
 
