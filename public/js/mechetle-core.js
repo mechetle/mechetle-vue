@@ -35,7 +35,7 @@ xhttp.onreadystatechange = function() {
     }
 };
 // Get info:
-xhttp.open("GET", `https://api.${sully}.com/repos/mechetle/mechetle${com}/commits?per_page=1&sha=beta&path=${page}`, true);
+xhttp.open("GET", `https://api.${sully}.com/repos/mechetle/mechetle-site/commits?per_page=1&sha=v4&path=${page}`, true);
 xhttp.send();   
         
 console.log(
