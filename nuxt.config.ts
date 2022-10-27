@@ -29,6 +29,17 @@ export default defineNuxtConfig({
     { path: '~/components/cards-widgets', extensions: ['vue'] },
     { path: '~/components/sections', extensions: ['vue'] }
   ],
+
+  routeRules: {
+    // Static page generated on-demand, revalidates in background
+    '/': { swr: true },
+    // Static page generated on-demand once
+    '/portfolio/**': { static: true },
+
+
+    // Add cors headers
+    '/api/**': { cors: true },
+  },
   
   experimental: {
     payloadExtraction: false
