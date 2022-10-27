@@ -31,12 +31,7 @@ Front page header:
         @mousemove="updateShine"
     ></div>
 
-    <header id="homepage-header" class="not-loaded" ref="header">
-        <!-- <lottie-animation
-            ref="anim"
-            :animationData="scrollDownURL"
-        /> -->
-        
+    <header id="homepage-header" class="not-loaded" ref="header">        
         <div id="foreground-wrapper" class="rellax" data-rellax-speed="-4">
             <div class="video-wrapper loading" ref="fgLoading">
                 <div id="fg-paused" ref="fg_paused" class="paused"></div>
@@ -54,18 +49,6 @@ Front page header:
         <div id="header-wrapper" ref="shine">
             <div class="text-wrapper">
                 <div id="this-is">THIS IS</div>
-                <!-- <h1 class="logo-text-header display">
-                    <span id="me-mechetle">
-                        <span>M</span>
-                        <span>E</span>
-                        <span>C</span>
-                        <span>H</span>
-                        <span>E</span>
-                        <span>T</span>
-                        <span>L</span>
-                        <span>E</span>
-                    </span>
-                </h1> -->
                 <div class="logo-text-header animated" ref="logoTextHeader"></div>
             </div>
         </div>
@@ -273,6 +256,11 @@ watch(
 
 .logo-text-header.animated {
     height: 9.8em;
+    
+    @media screen and (max-width: 39.9375em) {
+        height: 5.8em;
+    }
+
     /* z-index: -1; */
     margin-bottom: 2.2em;
     position: relative;
@@ -351,6 +339,10 @@ h1.display {
 
 .video-wrapper {
     transition: 1.25s all;
+
+    @media screen and (max-width: 39.9375em) {
+        display: none;
+    }
 
     > .paused {
         position: absolute;

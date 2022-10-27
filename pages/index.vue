@@ -7,7 +7,7 @@
         <section id="who-am-i">
             <Container class="slim">
                 <GridX>
-                    <div class="cell medium-8 large-5" id="wai-wrapper">
+                    <div class="cell small-10 medium-8 large-5" id="wai-wrapper">
                         <h2>Hey, I’m Steven B-M Nguyen</h2>
                         <q>I am an enthusiastic, motion, brand, web designer and web developer from Melbourne, Victoria, Australia.</q>
                         
@@ -290,6 +290,12 @@ useHead({
             
             #wai-wrapper {
                 margin-top: 14em;
+
+                @media screen and (max-width: 39.9375em) {
+                    margin-top: 10em;
+                    margin-bottom: 20em;
+                }
+
                 margin-bottom: 18em;
                 color: rgba(0, 28, 56, 1);
 
