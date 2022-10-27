@@ -101,7 +101,7 @@ export default {
     mounted() {
 		loadScript("/js/mechetle-core.js")
 		//loadScript("https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
-		loadScript("/js/mechetle-core-animations.js")
+		//loadScript("/js/mechetle-core-animations.js")
     }
 }
 </script>

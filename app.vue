@@ -26,9 +26,6 @@ export default {
         ],
         script: [
             {
-                src: "https://code.jquery.com/jquery-3.5.1.min.js",
-            },
-            {
                 src: "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.4/lottie.min.js",
                 integrity:"sha512-ilxj730331yM7NbrJAICVJcRmPFErDqQhXJcn+PLbkXdE031JJbcK87Wt4VbAK+YY6/67L+N8p7KdzGoaRjsTg==", 
                 crossorigin: "anonymous",

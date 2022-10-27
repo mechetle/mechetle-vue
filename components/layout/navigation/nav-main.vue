@@ -70,6 +70,7 @@ export default {
             length: 4,
             
             from: '',
+            refreshHeaderRegions: false
         }
     },
 
@@ -112,6 +113,7 @@ export default {
             this.$nextTick(() => {
                 //console.log(this.show, this.$refs.content);
                 this.changeActiveCursor();
+                this.refreshHeaderRegions = false;
             });
 
         }
@@ -119,8 +121,37 @@ export default {
 
     mounted() {
         this.changeActiveCursor();
-        this.$refs.nav.classList.remove("loading");
-        this.$refs.navContainer.style.opacity = 1;
+        let nav = this.$refs.nav
+        let navContainer = this.$refs.navContainer
+
+        nav.classList.remove("loading")
+        navContainer.style.opacity = 1
+
+        let headerRegions = document.querySelector("#who-am-i")
+        let navToggled = false;
+
+        window.onscroll = () => {
+            if(headerRegions.getBoundingClientRect().bottom <= -80){
+                if (!navToggled) {
+                    console.log("Nav: expanded");
+                    
+                    nav.classList.remove("nav-header-main");
+                    navContainer.classList.add("fluid");
+                    navToggled = true;
+                }
+            } else {
+                if (navToggled) {
+                    console.log("Nav: folded")
+                    nav.classList.add("nav-header-main");
+                    navContainer.classList.remove("fluid");
+                    navToggled = false;
+                }
+                if (!this.refreshHeaderRegions) {
+                    headerRegions = document.querySelector("#who-am-i")
+                    this.refreshHeaderRegions = true;
+                }
+            }
+        }
     }
 }
 </script>
