@@ -339,6 +339,10 @@ useHead({
         right: 7em;
         bottom: 12em;
 
+        @media screen and (max-width: 39.9375em) {
+            transform: scale(0.75);
+        }
+
         > * {
             user-drag: none;
             -webkit-user-drag: none;
