@@ -4,6 +4,9 @@ Navigations
 
 @use "../base/variables" as *;
 
+$nav-height: 80px;
+$nav-height-mobile: 60px;
+
 .navigation {
   transition-delay: 0.0s;
   transition-duration: 0.6s;
@@ -35,83 +38,13 @@ Navigations
   }
 }
 
-#navigation-cursor {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 0.5em;
-  width: 0;
-  background: #0060A8;
-  transition-delay: 0.3s;
-
-  &.trailing, &.leaving-not-trailing {
-    transition-delay: 0s;
-  }
-}
-.cursor-endings {
-  bottom: 0;
-  height: 40px;
-  position: absolute;
-  width: 40px;
-  //display: none;
-
-  overflow: hidden;
-  
-  &::after {
-    content: " ";
-    position: absolute;
-    border-bottom: .5em solid #0060A8;
-    height: calc(40px - 0.5em);
-    width: calc(40px - 0.5em);
-    transition: all 0.3s;
-    
-  }
-
-  &.left {
-    left: 0;
-
-    &::after {
-      border-bottom-left-radius:100%;
-      border-left: 0.5em solid #0060A8;
-      transform-origin: top right;
-      transform: rotate(-90deg);
-      transition-delay: 0s;
-    }
-  }
-  
-  &.right {
-    right: 0;
-
-    &::after { 
-      border-bottom-right-radius: 100%;
-      border-right: 0.5em solid #0060A8;
-      transform-origin: top left;
-      transform: rotate(90deg);
-    }
-  }
-
-  &.active {
-    display: block;
-    
-    &::after {
-      transition-delay: .6s;
-      transform: rotate(0deg);
-    }
-  }
-}
-.fluid .cursor-endings.active.left:after {
-  transform: rotate(-90deg);
-}
-.fluid .cursor-endings.active.right:after {
-  transform: rotate(90deg);
-}
-
+@mixin nav($base-height) {
 .nav-primary {
   position: fixed;
   top: 0;
 
   /* required */
-  height: 80px;
+  height: $base-height;
   width: 100%;
   background: #fff;
 
@@ -229,19 +162,6 @@ Navigations
   outline-offset: 0;
 }
 
-.nav-drop-hover-wrapper {
-  .dropdown-image {
-    transform: translateZ(0) translateY(0);
-    outline: rgba(11, 35, 61, 0.05) 40px solid;
-    outline-offset: 40px;
-    opacity: 1;
-  }
-
-  a.nav-button:before {
-    transform: scaleX(0.5);
-  }
-}
-
 .navbar-dropdown-wrap {
   padding-left: 6em;
   margin-top: 35px;
@@ -283,13 +203,10 @@ ul li ul li {
 
 .logo-space {
   float: left;
-  /* width: 65px; */
   overflow: visible;
-  transform: translate(0,15px);
+  // this part is to center the logo vertically
+  transform: translate(0, calc($base-height / 2 - (25px * $base-height / 80px)));
   width: auto;
-
-  /* width: -webkit-fill-available; */
-  /* margin-right: 1em; */
 
   a {
     color: #000;
@@ -302,7 +219,7 @@ ul li ul li {
     margin-right: 0.3em;
     height: auto;
     transform: translateY(0) scale(.5);
-    width: 80px;
+    width: $base-height;
   }
 }
 
@@ -396,30 +313,6 @@ a.nav-button {
   }
 
 }
-
-// .nav-v2 {
-//   .links-2 {
-//     /* float: right; */
-//     text-align: left;
-//     transform: translateX(185px);
-// 
-//     /* left: 180px; */
-//   }
-// 
-//   .links-1 {
-//     float: left;
-//     text-align: right;
-//     transform: translateX(15px);
-//   }
-// 
-//   .logo-space {
-//     left: 50%;
-//     transform: translateX(-50%);
-//     position: absolute;
-//     height: 135px;
-//     margin: 0;
-//   }
-// }
 
 .fix-blink-temp {
   position: fixed;
@@ -526,7 +419,7 @@ a.nav-button {
   //padding-left: 6.8rem !important;
   max-width: 100%;
   margin: 0 auto;
-  height: 80px;
+  height: $base-height;
 }
 
 .navigation-button-wrap {
@@ -540,12 +433,94 @@ a.nav-button {
   /* width: 100%; */
   /* align-content: flex-end; */
   /* float: right; */
-  height: 80px;
-  border-radius: 
-  40px;
+  height: $base-height;
+  border-radius: calc($nav-height / 2);
   margin-left: auto;
   order: 2;
   background: #ffffff;
+}
+
+}
+
+// small screens
+@media screen and (max-width: 39.9375em) {
+  @include nav($base-height: $nav-height-mobile)
+}
+// beyond mobile
+@media screen and (min-width: 40em) {
+  @include nav($base-height: $nav-height);
+
+  // Navigation cursors:
+  #navigation-cursor {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0.5em;
+    width: 0;
+    background: #0060A8;
+    transition-delay: 0.3s;
+  
+    &.trailing, &.leaving-not-trailing {
+      transition-delay: 0s;
+    }
+  }
+  .cursor-endings {
+    bottom: 0;
+    height: calc($nav-height / 2);
+    position: absolute;
+    width: calc($nav-height / 2);
+    //display: none;
+  
+    overflow: hidden;
+    
+    &::after {
+      content: " ";
+      position: absolute;
+      border-bottom: .5em solid #0060A8;
+      height: calc($nav-height / 2 - 0.5em);
+      width: calc($nav-height / 2 - 0.5em);
+      transition: all 0.3s;
+      
+    }
+  
+    &.left {
+      left: 0;
+  
+      &::after {
+        border-bottom-left-radius:100%;
+        border-left: 0.5em solid #0060A8;
+        transform-origin: top right;
+        transform: rotate(-90deg);
+        transition-delay: 0s;
+      }
+    }
+    
+    &.right {
+      right: 0;
+  
+      &::after { 
+        border-bottom-right-radius: 100%;
+        border-right: 0.5em solid #0060A8;
+        transform-origin: top left;
+        transform: rotate(90deg);
+      }
+    }
+  
+    &.active {
+      display: block;
+      
+      &::after {
+        transition-delay: .6s;
+        transform: rotate(0deg);
+      }
+    }
+  }
+  .fluid .cursor-endings.active.left:after {
+    transform: rotate(-90deg);
+  }
+  .fluid .cursor-endings.active.right:after {
+    transform: rotate(90deg);
+  }
 }
 
 .nav-header-main .navigation-button-wrap {
@@ -613,25 +588,9 @@ nav {
   z-index: 1;
 }
 
-.navigation ul {
-  text-transform: uppercase;
-  font-family: "jost", sans-serif !important;
-  font-weight: 700;
-  display: flex;
-}
 
-.nav-megaDropdown-bg ul {
-  text-transform: none !important;
-  font-size: 90%;
-}
 
 /* Breadcrumbs */
-// <nav aria-label="breadcrumb">
-//   <ol class="breadcrumb">
-//     <li class="breadcrumb-item"><a href="#">Home</a></li>
-//     <li class="breadcrumb-item active" aria-current="page">Library</li>
-//   </ol>
-// </nav>
 
 .breadcrumb {
   margin: 0;
