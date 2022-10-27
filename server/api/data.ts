@@ -7,9 +7,6 @@ allowing it to read
 the data.
 */
 
-
-import type { IncomingMessage, ServerResponse } from "http";
-
 const api_url = `https://mache.mechetle.com`
 
 export default defineEventHandler (async (event) => {

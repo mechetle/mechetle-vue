@@ -254,7 +254,7 @@ const title = ref('Mechetle | Steven B-M Nguyen')
 const description = ref("Hello, I'm Steven B-m Nguyen, an enthusiastic self-taught motion, brand, web designer and web developer.")
 
 useHead({
-    title,
+    title: title,
     meta: [
         {
             name: 'description',

@@ -1,4 +1,3 @@
-import { defineNuxtConfig } from 'nuxt'
 
 export default defineNuxtConfig({
   runtimeConfig: {
@@ -10,16 +9,12 @@ export default defineNuxtConfig({
     // Mechetle's global styling shit:
     '~/assets/scss/main.scss'
   ],
-  /* script: [
-    // <script src="https://myawesome-lib.js"></script>
-    { src: '~/assets/' }
-  ],
- */
-  generate: { fallback: '404.html' },
 
-  //build: {
-  //  transpile: ['lottie-web-vue']
-  //},
+  /* modules: [
+    '@nuxt/image-edge',
+  ], */
+
+  generate: { fallback: '404.html' },
 
   components: [
     //global: true,
@@ -31,11 +26,10 @@ export default defineNuxtConfig({
   ],
 
   routeRules: {
-    // Static page generated on-demand, revalidates in background
-    '/': { swr: true },
+    /* // Static page generated on-demand, revalidates in background
+    '/': { swr: true }, */
     // Static page generated on-demand once
     '/portfolio/**': { static: true },
-
 
     // Add cors headers
     '/api/**': { cors: true },
