@@ -22,7 +22,7 @@
     position: fixed;
     height: 100vh;
     width: 100vw;
-    //top: 0;
+    top: 0;
     outline-color: #001c38;
     outline-offset: -51vh;
     outline-width: 52vh;

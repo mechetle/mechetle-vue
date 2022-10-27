@@ -38,5 +38,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+body {
+    background: #fbfdfd;
+    margin: 0;
+    padding: 0;
+}
 </style>
