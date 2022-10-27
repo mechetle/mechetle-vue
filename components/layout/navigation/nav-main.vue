@@ -5,7 +5,7 @@ The one that you will see on every page
 -->
 <template>
     <div class="nav-primary navigation loading nav-header-main" ref="nav">
-        <div class="grid-container">
+        <div class="grid-container" ref="navContainer">
             <div class="logo-space logo-anim-nav"><a href="/" alt="Home">
                     <img src="~/assets/img/logo-colour-2022-crop.svg" alt="Mechetle logo" width="80" height="47">
                     <!-- <h1 class="logo-text">MECHETLE</h1> -->
@@ -120,6 +120,7 @@ export default {
     mounted() {
         this.changeActiveCursor();
         this.$refs.nav.classList.remove("loading");
+        this.$refs.navContainer.style.opacity = 1;
     }
 }
 </script>
