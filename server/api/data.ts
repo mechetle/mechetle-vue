@@ -7,6 +7,8 @@ allowing it to read
 the data.
 */
 
+// older versions of node below v18 don't have fetch.
+import fetch from "node-fetch";
 const api_url = `https://mache.mechetle.com`
 
 export default defineEventHandler (async (event) => {
@@ -46,7 +48,13 @@ export default defineEventHandler (async (event) => {
     'secret-sauce': useRuntimeConfig().secretSauce
   }
 
-  data = await $fetch(`${url_mod}${path}`, { method: 'GET', headers: headers});
+  //data = await $fetch(`${url_mod}${path}`, { method: 'GET', headers: headers});
+
+  fetch(`${url_mod}${path}`, { method: 'GET', headers: headers}).then((response) => response.json())
+  .then((data_res: { data: string; }[]) => {
+    console.log(data_res)
+    data = {data_res}
+  });
 
   //console.log("headers:", res.getHeaders());
   console.log("Length of data:", Object.keys(data).length)
