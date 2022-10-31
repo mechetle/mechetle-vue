@@ -308,6 +308,7 @@ h1.display {
     display: flex;
     align-items: flex-end;
     will-change: transform;
+    mix-blend-mode: plus-lighter;
 
     .cm {
         // clipping mask:
@@ -327,6 +328,7 @@ h1.display {
     video {
         transition-duration: 0.4s;
         transition-delay: 0.4s;
+        width: 100vw;
     }
 
     .paused {
