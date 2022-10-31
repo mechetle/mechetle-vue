@@ -16,7 +16,31 @@ export default defineEventHandler (async (event) => {
   let res = event.res
 
   let url_mod = api_url
-  let data = { data: [{ data: "" }] };
+
+  interface Project {
+    name: string,
+    title: string,
+    finishDate: string,
+    category: string,
+    slug: string,
+    case: string,
+    body: string,
+    client: string,
+    client_field: string,
+    desc: string,
+    design_context: string,
+    alt: string,
+    columns: string,
+    img: string,
+    oneByOne: string,
+    video: string,
+    tags: string,
+    exported: string,
+    supplied: string,
+    callout: string,
+  }
+
+  let data : Project[] = [];
 
   //! IN THIS CURRENT EDGE RELEASE YOUT CAN DO /api/data/blah
   
@@ -49,18 +73,20 @@ export default defineEventHandler (async (event) => {
   }
 
   //data = await $fetch(`${url_mod}${path}`, { method: 'GET', headers: headers});
-
+  res.writeHead(200, { "Content-Type": "application/json" });
+  
   fetch(`${url_mod}${path}`, { method: 'GET', headers: headers}).then((response) => response.json())
-  .then((data_res: { data: string; }[]) => {
-    console.log(data_res)
-    data = {data_res}
+  .then((data_res: Project[]) => {
+    data = data_res
+    console.log(data)
+    console.log("Length of data:", data.length)
+    
+    res.write(JSON.stringify(data));
+    
+    res.end();
   });
 
   //console.log("headers:", res.getHeaders());
-  console.log("Length of data:", Object.keys(data).length)
 
-  res.writeHead(200, { "Content-Type": "application/json" });
 
-  res.write(JSON.stringify(data));
-  res.end();
 });
