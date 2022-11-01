@@ -20,8 +20,5 @@
     "foundation-sites": "^6.7.4",
     "lottie-web": "^5.9.4",
     "rellax": "^1.12.1"
-  },
-  "resolutions": {
-    "node-fetch": "npm:node-fetch-native@latest"
   }
 }
