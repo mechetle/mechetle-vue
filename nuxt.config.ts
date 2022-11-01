@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     '@nuxt/image-edge',
   ], */
 
-  //generate: { fallback: '404.html' },
+  generate: { fallback: '404.html' },
 
   components: [
     //global: true,
