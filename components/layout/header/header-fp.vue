@@ -28,11 +28,11 @@ Front page header:
 
     <div id="header-overlay" 
         ref="hoverZone"
-        @mousemove="updateShine"
+        
     ></div>
 
     <header id="homepage-header" class="not-loaded" ref="header">        
-        <div id="foreground-wrapper" class="rellax" data-rellax-speed="-4">
+        <div id="foreground-wrapper" class="rellax" data-rellax-speed="-4" ref="fgw">
             <div class="video-wrapper loading" ref="fgLoading">
                 <div id="fg-paused" ref="fg_paused" class="paused"></div>
                 <video 
@@ -143,6 +143,7 @@ export default {
 
         let h_fg = this.$refs.h_fg;
         let fg_paused = this.$refs.fg_paused;
+        let fgw = this.$refs.fgw;
         //let h_bg = this.$refs.h_bg;
         let header = this.$refs.header
         let shine = this.$refs.shine
@@ -151,7 +152,6 @@ export default {
         h_fg.style.transitionProperty = 'none'
         h_fg.currentTime = 0;
         intro_ran = false;
-        fg_paused.style.opacity = 0
         h_fg.style.opacity = 1
 
         this.shine.x = shine.offsetLeft
@@ -192,7 +192,7 @@ export default {
 
             if (h_fg.currentTime > 2.03333333333 && !intro_ran) {
                 h_fg.pause()
-                fg_paused.style.opacity = 1
+                fgw.classList.add("end-state")
                 h_fg.style.opacity = 0
                 console.log("pausing")
             }
@@ -310,6 +310,7 @@ h1.display {
     will-change: transform;
     mix-blend-mode: plus-lighter;
 
+
     .cm {
         // clipping mask:
         -webkit-clip-path: url(#header-fg-cp);
@@ -331,11 +332,21 @@ h1.display {
         width: 100vw;
     }
 
+    
+
+    &.end-state {
+        #fg-paused {
+            opacity: 1;
+        }
+    }
+
     .paused {
         opacity: 0;
         background: url(assets/video/bgArtboard_foreground_ff.webp);
         background-size: contain;
         background-position: top;
+        -webkit-clip-path: url(#header-fg-cp);
+        clip-path: url(#header-fg-cp);
     }
 }
 
@@ -376,7 +387,7 @@ h1.display {
 
         video {
             width: 120vw;
-            mix-blend-mode: hard-light;
+            //mix-blend-mode: hard-light;
             opacity: 0.45;
             top: 36vh;
             position: relative;
