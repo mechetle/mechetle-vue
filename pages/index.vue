@@ -289,14 +289,13 @@ useHead({
             }
             
             #wai-wrapper {
-                margin-top: 14em;
-
                 @media screen and (max-width: 39.9375em) {
                     margin-top: 10em;
                     margin-bottom: 20em;
                 }
-
-                margin-bottom: 18em;
+                
+                margin-top: 14em;
+                margin-bottom: 40vh;
                 color: rgba(0, 28, 56, 1);
 
             }
@@ -337,9 +336,10 @@ useHead({
         align-items: center;
         justify-content: center;
         right: 7em;
-        bottom: 12em;
-
+        bottom: 25vh;
+        
         @media screen and (max-width: 39.9375em) {
+            bottom: 12em;
             transform: scale(0.75);
         }
 
