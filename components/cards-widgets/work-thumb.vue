@@ -198,7 +198,7 @@ export default {
 }
 
 .material-symbols-outlined {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 </style>
