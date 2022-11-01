@@ -22,5 +22,8 @@
     "node-fetch": "^3.2.10",
     "node-fetch-native": "^0.1.8",
     "rellax": "^1.12.1"
+  },
+  "resolutions": {
+    "node-fetch": "npm:node-fetch-native@latest"
   }
 }
