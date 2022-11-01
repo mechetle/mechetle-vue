@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     '/portfolio/**': { static: true },
 
     // Add cors headers
-    '/api/**': { cors: true, static: true },
+    '/api/**': { cors: true},
   },
   
   experimental: {
