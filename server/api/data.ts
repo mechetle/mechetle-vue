@@ -73,20 +73,21 @@ export default defineEventHandler (async (event) => {
     'secret-sauce': useRuntimeConfig().secretSauce
   }
 
-  //data = await $fetch(`${url_mod}${path}`, { method: 'GET', headers: headers});
   res.writeHead(200, { "Content-Type": "application/json" });
   
-  fetch(`${url_mod}${path}`, { method: 'GET', headers: headers}).then((response) => response.json())
+  data = await $fetch(`${url_mod}${path}`, { method: 'GET', headers: headers});
+  
+  /* fetch(`${url_mod}${path}`, { method: 'GET', headers: headers}).then((response) => response.json())
   .then((data_res: Project[]) => {
     data = data_res
     console.log(data)
-    console.log("Length of data:", data.length)
-    
-    res.write(JSON.stringify(data));
-    
-    res.end();
-  });
-
+  }); */
+  
+  console.log("Length of data:", data.length)
+  
+  res.write(JSON.stringify(data));
+  
+  res.end();
   //console.log("headers:", res.getHeaders());
 
 
