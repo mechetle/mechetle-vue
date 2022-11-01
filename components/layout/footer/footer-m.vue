@@ -44,7 +44,7 @@ Its a fucking footer lol
 
                     </ul>
 
-                    <button class="button small-button" id="leaveBeta" onclick="leaveBeta()">Leave Beta</button>
+                    <!-- <button class="button small-button" id="leaveBeta" onclick="leaveBeta()">Leave Beta</button> -->
 
                 </div>
             </div>
@@ -52,7 +52,7 @@ Its a fucking footer lol
             <div class="small-12 show-for-small-only">
                 <p class="footer-note">
                     Website by Mechetle.<br>
-                    Stevenn B-M Nguyen<br>
+                    Steven B-M Nguyen<br>
                     &copy; <span class="year"></span> Mechetle
                 </p>
                     <div id="last-modified"></div>  
