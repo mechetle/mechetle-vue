@@ -19,8 +19,6 @@
   "dependencies": {
     "foundation-sites": "^6.7.4",
     "lottie-web": "^5.9.4",
-    "node-fetch": "^3.2.10",
-    "node-fetch-native": "^0.1.8",
     "rellax": "^1.12.1"
   },
   "resolutions": {

@@ -35,8 +35,8 @@ export default defineNuxtConfig({
     '/api/**': { cors: true},
   },
   
-  experimental: {
+  /* experimental: {
     payloadExtraction: false
-  }
+  } */
 
 })
