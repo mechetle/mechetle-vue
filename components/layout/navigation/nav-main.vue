@@ -70,7 +70,8 @@ export default {
             length: 4,
             
             from: '',
-            refreshHeaderRegions: false
+            refreshHeaderRegions: false,
+            headerRegions: null
         }
     },
 
@@ -114,6 +115,10 @@ export default {
                 //console.log(this.show, this.$refs.content);
                 this.changeActiveCursor();
                 this.refreshHeaderRegions = false;
+
+                if (to == "/") {
+                    this.headerRegions = document.querySelector("#who-am-i")
+                }
             });
 
         }
@@ -127,11 +132,11 @@ export default {
         nav.classList.remove("loading")
         navContainer.style.opacity = 1
 
-        let headerRegions = document.querySelector("#who-am-i")
+        this.headerRegions = document.querySelector("#who-am-i")
         let navToggled = false;
 
         window.onscroll = () => {
-            if(headerRegions.getBoundingClientRect().bottom <= -80){
+            if(this.headerRegions.getBoundingClientRect().bottom <= -80){
                 if (!navToggled) {
                     console.log("Nav: expanded");
                     
@@ -147,7 +152,7 @@ export default {
                     navToggled = false;
                 }
                 if (!this.refreshHeaderRegions) {
-                    headerRegions = document.querySelector("#who-am-i")
+                    this.headerRegions = document.querySelector("#who-am-i")
                     this.refreshHeaderRegions = true;
                 }
             }
