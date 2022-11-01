@@ -24,7 +24,7 @@ TODO:
                         height=506
                         width=900
 
-                        @appear="loadedIMG()"
+                        @load="loadedIMG()"
                     >
 
                     <div class="cat-wrapper">
@@ -145,6 +145,10 @@ export default {
             }
         }
     }
+
+    .loaded {
+        filter: blur(0px);
+    }
 }
 .work-thumb, img {
     border-radius: 0.75em;
@@ -162,6 +166,8 @@ export default {
         min-height: 100%;
         object-fit: cover;
         aspect-ratio: 16 / 9;
+        transition: filter 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
+        filter: blur(220px);
 
         /* &.loaded {
             height: auto;
