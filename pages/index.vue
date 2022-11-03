@@ -3,8 +3,24 @@
         <Loading v-if="loaderOn"></Loading>
         
         <HeaderFp v-model:headerReady="headerReady"/>
+
+        <Teleport to="body">
+            <Transition name="reel-model">
+                <div v-if="showingReel" class="video-modal">
+                    <video 
+                        src=""
+                    ></video>
+                    
+                    <div class="hover-fx">
+                        <a @click="showingReel = false" id="close-video-modal">
+                            <span class="material-symbols-outlined">close</span>
+                        </a>
+                    </div>
+                </div>
+            </Transition>
+        </Teleport>
     
-        <section id="who-am-i">
+        <section id="who-am-i" :class="[showingReel ? 'show' : '']">
             <Container class="slim">
                 <GridX>
                     <div class="cell small-10 medium-8 large-5" id="wai-wrapper">
@@ -23,8 +39,12 @@
                 </GridX>
 
                 <div id="play-reel">
-                    <img class="reel-button" src="~/assets/img/homepage/play-reel-button.svg">
+                    <img 
+                        class="reel-button" 
+                        src="~/assets/img/homepage/play-reel-button.svg"
+                        @click="showingReel = true">
                     <img class="reel-button-text" src="~/assets/img/homepage/play-reel-text.svg">
+                    <div :class="['ripple-button', showingReel ? 'show' : '']"></div>
                 </div>
             </Container>
 
@@ -40,99 +60,11 @@
                 ></video>
             </div>
 
-            <!-- <div id="reel-modal" class="video-pseudo-fs">
-                <video 
-                    src=""
-                ></video>
-            </div> -->
-
         </section>
     
         <section id="featured-work">
             <Container class="extended">
                 <GridX class="grid-margin-x">
-                    <!-- <div class="cell medium-6 large-6 work-thumb rellax" data-rellax-speed="-1" data-rellax-percentage="0.5">
-                        <a href="/portfolio/case/nihdc4">
-                            <div class="work-thumb-wrapper">
-                                <div class="work-thumb-wrapper-cont">
-                                    <img 
-                                        src="/img/thumbs/nihdc4.webp" 
-                                        alt="NIHDC4 motion design entry" 
-                                        loading="lazy"
-                                        />
-                                    <h3>NIHDC4</h3>
-                                    <p>Motion design entry</p>
-    
-                                    <div class="cat-wrapper">
-                                        <div class="categories">
-                                            <span>&#9866; &nbsp</span>
-                                            <span>Motion design</span>
-                                        </div>
-                                    </div>
-    
-                                </div>
-                                <div class="read-more-wrapper">
-                                    <div class="btn-read-more">See</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cell medium-6 large-6 work-thumb rellax" data-rellax-speed="1" data-rellax-percentage="0.5">
-                        <a href="https://www.youtube.com/watch?v=mFtwc6EQMFQ">
-                            <div class="work-thumb-wrapper">
-                                <div class="work-thumb-wrapper-cont">
-                                    <img src="/img/thumbs/cdqc.webp" loading="lazy" alt="CDQC motion design entry" />
-                                    <h3>CDQC</h3>
-                                    <p>Another motion design entry</p>
-    
-                                    <div class="cat-wrapper">
-                                        <div class="categories">
-                                            <span>&#9866; &nbsp</span>
-                                            <span>Motion design</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="read-more-wrapper">
-                                    <div class="btn-read-more">See</div>
-                                </div>
-                            </div>
-                        </a>
-    
-                    </div>
-    
-                    <div class="cell medium-6 large-4 work-thumb rellax" data-rellax-speed="-1" data-rellax-percentage="0.5">
-                        <a href="#null" class="disable-me">
-                            <div class="work-thumb-wrapper">
-                                <div class="work-thumb-wrapper-cont">
-                                    <img src="/img/thumbs/maribsc-1.webp" loading="lazy" alt="s" />
-                                    <h3>Maribyrnong College</h3>
-                                    <p>Stuff I did for my school that was never released.</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-    
-                    <div class="cell medium-6 large-8 work-thumb rellax" data-rellax-speed="1" data-rellax-percentage="0.5">
-                        <a href="#null" class="disable-me">
-                            <div class="work-thumb-wrapper">
-                                <div class="work-thumb-wrapper-cont">
-                                    <img src="/img/thumbs/homeroom.webp" loading="lazy" alt="s" />
-                                    <h3>HomeRoom by Jikens & Jikano CO</h3>
-                                    <p>Online school enviroment redefined (School project)</p>
-    
-                                    <div class="cat-wrapper">
-                                        <div class="categories">
-                                            <span>&#9866; &nbsp</span>
-                                            <span>Graphic design, UI & UX, Industrial Design</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="read-more-wrapper">
-                                    <div class="btn-read-more">Read More</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div> -->
                     
                     <Cell class="large-5" id="fw-text-wrap">
                         <div id="fw-text">
@@ -182,8 +114,10 @@ export default {
             loaderOn: true,
             'headerReady': false,
 
-            rellaxPattern: [0, 0, 0, 0]
+            rellaxPattern: [0, 0, 0, 0],
             //rellaxPattern: [-4, 2, -2, 4]
+
+            showingReel: false,
         }
     },
 
@@ -234,7 +168,15 @@ export default {
                 }, 3000); 
             }
         }
+    },
+
+    methods: {
+        showReel() {
+            console.log("reel")
+        }
     }
+
+    
 }
 </script>
 
@@ -283,6 +225,15 @@ useHead({
             //margin-top: 2em;
             //margin-bottom: 2em;
             clip-path: polygon(53% 7%, 100% 0, 100% 93%, 53% 98%, 28% 95%, 0 100%, 0 12%, 25% 3%);
+            transform: scale(1);
+            transition-property: transform;
+            transition: 1.15s cubic-bezier(0.85, 0.14, 0.25, 0.94);
+            transition-delay: 0.3s;
+            z-index: 100;
+
+            &.show {
+                transform: scale(2.00);
+            }
             
             @media screen and (max-width: 39.9375em) {
                 overflow: hidden;
@@ -365,16 +316,55 @@ useHead({
             position: absolute;
             cursor: pointer;
             border-radius: 100%;
+            z-index: 3;
+
+            transition-property: transform;
+            transition: 0.75s cubic-bezier(0.95, 0.21, 0.05, 0.83);
+
+            .show & {
+                scale: 0;
+            }
 
             &:hover {
+                scale: 1.1;
+                transition-delay: 0s;
+                transition: 0.35s cubic-bezier(0.85, 0.14, 0.25, 0.94);
+
                 + .reel-button-text {
                     animation-play-state: paused;
                     opacity: 1;
                     //animation-duration: 20s;
                 }
             }
+
+            &:active {
+                transition-duration: 0.15s;
+                transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+                scale: 0.8;
+
+                + .reel-button-text {
+                    animation-play-state: paused;
+                    opacity: 1;
+                    scale: 0.6;
+                    //animation-duration: 20s;
+                }
+            }
         }
 
+        .ripple-button {
+            position: absolute;
+            border-radius: 100%;
+            height: 10em;
+            width: 10em;
+            background: #001c38;
+            transform: scale(0);
+            transition: 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+            z-index: 2;
+
+            &.show {
+                transform: scale(22.5);
+            }
+        }
 
     }
 
@@ -387,5 +377,34 @@ useHead({
         display: flex;
         flex-direction: column;
         padding-top: 7.75em;
+    }
+
+    // this needs to be moved
+    .video-modal {
+        z-index: 990;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #001c38;
+
+        .hover-fx {
+            font-size: 48px;
+            position: absolute;
+            top: 2em;
+            left: 2em;
+        }
+    }
+    #close-video-modal {
+        border-radius: 100%;
+        cursor: pointer;
+        width: fit-content;
+        display: flex;
+        color: #FBFDFD;
+
+        .material-symbols-outlined {
+            font-size: 1em;    
+        }
     }
 </style>
