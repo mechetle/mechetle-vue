@@ -1,7 +1,7 @@
 <!--
 Primary navigation:
 ==================
-The one that you will see on every page
+This one is now unused
 -->
 <template>
     <div class="nav-primary navigation nav-header-main">

@@ -129,8 +129,10 @@ export default {
         let nav = this.$refs.nav
         let navContainer = this.$refs.navContainer
 
-        nav.classList.remove("loading")
-        navContainer.style.opacity = 1
+        setTimeout(()=> {
+            nav.classList.remove("loading")
+            navContainer.style.opacity = 1
+        }, 400)
 
         this.headerRegions = document.querySelector("#who-am-i")
         let navToggled = false;
