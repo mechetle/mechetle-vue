@@ -381,7 +381,7 @@ useHead({
 
     // this needs to be moved
     .video-modal {
-        z-index: 990;
+        z-index: 9999;
         width: 100%;
         height: 100%;
         position: fixed;
@@ -406,5 +406,21 @@ useHead({
         .material-symbols-outlined {
             font-size: 1em;    
         }
+    }
+
+    // reel modal transition
+    .reel-model-enter-active {
+        transition: all 0.45s cubic-bezier(0.86,0.05,0.15,0.93);
+        transition-delay: 0.45s;
+    }
+
+    .reel-model-leave-active {
+        transition: all 0.75s cubic-bezier(1, 0.5, 0.8, 1);
+    }
+
+    .reel-model-enter-from,
+    .reel-model-leave-to {
+        transform: scaleY(0.1) scaleX(0.35);
+        opacity: 0;
     }
 </style>
