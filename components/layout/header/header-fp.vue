@@ -314,6 +314,9 @@ h1.display {
     will-change: transform;
     mix-blend-mode: plus-lighter;
 
+    #fg-paused {
+        overflow: hidden;
+    }
 
     .cm {
         // clipping mask:
