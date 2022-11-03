@@ -233,6 +233,10 @@ useHead({
 
             &.show {
                 transform: scale(2.00);
+                
+                #wai-wrapper {
+                    filter: blur(5em);
+                }
             }
             
             @media screen and (max-width: 39.9375em) {
@@ -249,6 +253,9 @@ useHead({
                 margin-bottom: 40vh;
                 color: rgba(0, 28, 56, 1);
 
+                filter: blur(0);
+                transition: 1.15s cubic-bezier(0.85, 0.14, 0.25, 0.94);
+                transition-delay: 0.1s;
             }
 
             #video-overlay {
