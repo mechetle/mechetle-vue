@@ -114,12 +114,14 @@ export default {
             this.$nextTick(() => {
                 //console.log(this.show, this.$refs.content);
                 this.changeActiveCursor();
-                this.refreshHeaderRegions = false;
-
-                if (to == "/") {
-                    this.headerRegions = document.querySelector("#who-am-i")
-                }
             });
+            
+            if (to == "/") {
+                this.$nextTick(() => {
+                    this.refreshHeaderRegions = false;
+                    this.headerRegions = document.querySelector("#who-am-i")
+                })
+            }
 
         }
     },

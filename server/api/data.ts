@@ -83,6 +83,7 @@ export default defineEventHandler (async (event) => {
     console.log(data)
   }); */
   
+  console.log("Data:", data)
   console.log("Length of data:", data.length)
   
   res.write(JSON.stringify(data));

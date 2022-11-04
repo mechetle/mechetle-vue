@@ -28,7 +28,9 @@ export default defineNuxtConfig({
   routeRules: {
     /* // Static page generated on-demand, revalidates in background
     '/': { swr: true }, */
-    // Static page generated on-demand once
+    
+    
+    // Static page generated on-demand once for portfolio pages
     '/portfolio/**': { static: true },
 
     // Add cors headers

@@ -156,46 +156,20 @@ export default {
 </script>
 
 <script setup>
-import WorkThumb from "~/components/cards-widgets/work-thumb.vue";
-import { useRouter, useRoute } from 'vue-router'
+/* import WorkThumb from "~/components/cards-widgets/work-thumb.vue";
 import Container from "../../components/layout/grid/container.vue";
 import GridX from "../../components/layout/grid/grid-x.vue";
 import Cell from "../../components/layout/grid/cell.vue";
 import VideoM from "../../components/cards-widgets/video-m.vue";
-import NerdyDetails from "~/components/cards-widgets/nerdy-details.vue";
+import NerdyDetails from "~/components/cards-widgets/nerdy-details.vue"; */
 
-const router = useRouter()
 const route = useRoute()
 
 console.log("routed to...", route.params.project)
 console.log(`/api/data/${route.params.project}`)
 
 /* Fetching data of page */
-const {data: postShown} = await useFetch(`/api/data?post=${route.params.project}`, {
-    pick: [
-        "title",
-        "finishDate",
-        "category",
-        //"slug",
-        //"case",
-        "client",
-        "client_field",
-        "callout",
-        "desc",
-        "design_context",
-        //"alt",
-        //"columns",
-        "img",
-        "oneByOne",
-        "video",
-        "tags",
-        "_id",
-        "exported",
-        "supplied",
-        "html",
-        "css"
-    ]    
-})
+const {data: postShown} = await useFetch(`/api/data?post=${route.params.project}`, { initialCache: false })
 
 let dimensions = reactive({x:1080, y:1080})
 
