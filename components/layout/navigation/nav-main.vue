@@ -6,10 +6,10 @@ The one that you will see on every page
 <template>
     <div class="nav-primary navigation loading nav-header-main" ref="nav">
         <div class="grid-container" ref="navContainer">
-            <div class="logo-space logo-anim-nav"><a href="/" alt="Home">
+            <div class="logo-space logo-anim-nav"><NuxtLink to="/">
                     <img src="~/assets/img/logo-colour-2022-crop.svg" alt="Mechetle logo" width="80" height="47">
                     <!-- <h1 class="logo-text">MECHETLE</h1> -->
-                </a>
+                </NuxtLink>
             </div>
             <div class="navigation-button-wrap">
                 <nav class="hover-fx dark">
@@ -54,7 +54,6 @@ The one that you will see on every page
 <script setup>
 import MobileMenu from '~/components/layout/navigation/nav-mobile.vue'
 
-
 const route = useRoute()
 
 const route_arr = route.path.substring(1).split('/')
@@ -64,7 +63,6 @@ let link_length = (route_group != "") ? route_arr.length : 0
 </script>
 
 <script>
-
 export default {
     name: 'nav-main',
 
@@ -86,7 +84,7 @@ export default {
     methods: {
         changeActiveCursor() {
             let cursor = this.$refs.cursor
-            let active = document.querySelector('.router-link-active')
+            let active = document.querySelector('.navigation-button-wrap .router-link-active')
 
             // this means it is in the group but nuxt for some reason doesn't know:
             if ((this.link_length > 1 && this.route_group != "")) {
@@ -109,6 +107,10 @@ export default {
     watch: {
         $route(to, from) {
             console.log("to:", to)
+            setTimeout(() => {
+                this.mobileMenuShow = false
+            }, 400);
+
             let url_split = to.path.substring(1).split('/')
             this.link_length = url_split.length
             if (this.link_length > 1) {
@@ -174,5 +176,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+#navigation-cursor {
+    color: inherit;
+}
 </style>
