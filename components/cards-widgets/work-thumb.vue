@@ -13,11 +13,12 @@ TODO:
           :to="`/portfolio/${slug}`"
         ><div class="work-thumb-wrapper">
                 <div class="work-thumb-wrapper-cont">
-                    <img 
+                    <nuxt-img 
                         class="rellax"
                         :class="{'loaded': loaded}"
                         data-rellax-speed="-2" 
                         data-rellax-percentage="0.5"
+                        format="webp"
                         :src="imgSrc" 
                         :alt="alt" 
                         loading="lazy"
@@ -25,7 +26,7 @@ TODO:
                         width=900
 
                         @load="loadedIMG()"
-                    >
+                    ></nuxt-img>
 
                     <div class="cat-wrapper">
                         <span v-for="categories in cat">

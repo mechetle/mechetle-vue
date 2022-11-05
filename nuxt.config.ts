@@ -10,9 +10,9 @@ export default defineNuxtConfig({
     '~/assets/scss/main.scss'
   ],
 
-  /* modules: [
+  modules: [
     '@nuxt/image-edge',
-  ], */
+  ],
 
   generate: { fallback: '404.html' },
 
