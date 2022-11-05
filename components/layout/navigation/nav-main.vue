@@ -171,6 +171,10 @@ export default {
                 }
             }
         }
+
+        addEventListener('resize', (event) => {
+            this.mobileMenuShow = false
+        });
     }
 }
 </script>
