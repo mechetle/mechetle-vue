@@ -20,7 +20,7 @@ The one that you will see on every page
                     <NuxtLink to="/contact">Contact</NuxtLink>
 
                     <!-- If in mobile mode -->
-                    <a id="hamborger"><span class="material-symbols-outlined">menu</span></a>
+                    <a id="hamborger" @click="mobileMenuShow = !mobileMenuShow"><span class="material-symbols-outlined">menu</span></a>
                 </nav>
                 <div 
                     id="navigation-cursor" 
@@ -43,11 +43,18 @@ The one that you will see on every page
         -->
 
     </div>
+
+    <transition name="mobile-menu">
+        <MobileMenu v-if="mobileMenuShow">
+        </MobileMenu>    
+    </transition>
+
 </template>
 
 <script setup>
-// ! Note to self: Don't input vue router shit, nuxt already does it lol.
-//import { useRouter, useRoute } from 'vue-router'
+import MobileMenu from '~/components/layout/navigation/nav-mobile.vue'
+
+
 const route = useRoute()
 
 const route_arr = route.path.substring(1).split('/')
@@ -71,7 +78,8 @@ export default {
             
             from: '',
             refreshHeaderRegions: false,
-            headerRegions: null
+            headerRegions: null,
+            mobileMenuShow: false
         }
     },
 
