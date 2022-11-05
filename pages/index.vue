@@ -7,9 +7,15 @@
         <Teleport to="body">
             <Transition name="reel-model">
                 <div v-if="showingReel" class="video-modal">
-                    <video 
-                        src=""
-                    ></video>
+                    <!-- <div class="yt-wrapper">
+                        <iframe
+                            id="ytplayer"
+                            type="text/html"
+                            width="1920" height="1080"
+                            src="https://www.youtube.com/embed/r3DKQGDHm3g?autoplay=1&controls=0&enablejsapi=1&modestbranding=1&playsinline=1&color=white&iv_load_policy=3&quality=high"
+                            frameborder="0" allowfullscreen>
+                        </iframe>
+                    </div> -->
                     
                     <div class="hover-fx">
                         <a @click="showingReel = false" id="close-video-modal">
@@ -93,7 +99,7 @@
                         :cat="post.category" 
                         :size=post.columns
                     />
-    
+                    
     
                     <!-- <p> {{data}}</p> -->
                 </GridX>
@@ -429,5 +435,16 @@ useHead({
     .reel-model-leave-to {
         transform: scaleY(0.1) scaleX(0.35);
         opacity: 0;
+    }
+
+    .yt-wrapper {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+
+        iframe {
+            width: 100%;
+            height: 120%;
+        }
     }
 </style>

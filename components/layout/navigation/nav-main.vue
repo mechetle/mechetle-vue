@@ -142,6 +142,8 @@ export default {
         let navContainer = this.$refs.navContainer
 
         setTimeout(()=> {
+            nav = this.$refs.nav
+            navContainer = this.$refs.navContainer
             nav.classList.remove("loading")
             navContainer.style.opacity = 1
         }, 400)
