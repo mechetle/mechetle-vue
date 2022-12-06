@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     
     
     // Static page generated on-demand once for portfolio pages
-    //'/portfolio/**': { static: true },
+    '/portfolio/**': { static: true },
 
     // Add cors headers
     '/api/**': { cors: true},
