@@ -12,8 +12,8 @@
         <header>
             <div class="border-top-naturalize"></div>
             <Container id="header-wrapper" class="fluid">
-                <GridX>
-                    <div class="cell large-7 post-details">
+                <GridX id="header-text">
+                    <Cell class="large-9 post-details">
                         <div class="text-wrapper">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -22,70 +22,34 @@
                                     <li class="breadcrumb-item active" aria-current="page">{{$route.params.project}}</li>
                                 </ol>
                             </nav>
-                            <h1 class="post">{{postShown.title}}</h1>
+                            <h1>{{postShown.title}}</h1>
                         </div>
-                        <main v-if="postShown.oneByOne === true" class="work-details">
-                            <q>{{postShown.callout}}</q>
-                            <p>{{postShown.desc}}</p>
-                            <div class="little-bits">
-                                <div class="little-bits-cols">
-                                    <p>
-                                        <b>Context of work:</b><br>
-                                        {{postShown.design_context}}
-                                    </p>
-                                </div>
-                                <div class="little-bits-cols">
-                                    <p>
-                                        <b>Client:</b><br>
-                                        {{postShown.client}}
-                                    </p>
-                                    <p>
-                                        <b>Client field:</b><br>
-                                        {{postShown.client_field}}
-                                    </p>
-                                </div>
-                            </div>
-                        </main>
-                    </div>
-                    <div v-if="postShown.oneByOne === true" class="cell large-5 rellax" data-rellax-speed="2">
-                        <div class="video-wrapper">
-                            <div class="video-overflow">
-                                <div class="video">
-                                    <p><i>Project logo animation gif here
-                                    </i>
-                                    </p>
-                                </div>
-        
-                            </div>
-                            <!--
-                            <button class="small-button">Play / Pause</button>
-                            <button class="small-button">Mute</button>
-                            <button class="small-button">Watch on YouTube</button>-->
-                        </div>
-                        <NerdyDetails
-                            :dimensions="dimensions"
-                            :exported="postShown.exported"
-                            :supplied="postShown.supplied"
-                            :datefinished="date_finished"
-                            >
-                        </NerdyDetails>
-                    </div>
-                    <div v-else class="cell large-10 rellax wide-vid" data-rellax-speed="3">
-                        <!-- THIS VIDEO BREAKS EVERYTHING FIX IT LOL -->
-                        <!-- <VideoM></VideoM> -->
-                    </div>
+                    </Cell>
+                </GridX>
+                <GridX id="display-item-wrapper">
+                    <Cell class="large-2"></Cell>
+                    <Cell id="display-item" class="large-10">
+                        
+                    </Cell>
                 </GridX>
             </Container>
-            <div id="header-bg" class="header-post-image rellax" data-rellax-speed="-4">
+            <div id="header-background">
+                <GridX>
+                    <div id="post-details-bg" class="cell large-9">
+                    </div>
+                </GridX>
+            </div>
+            
+            <!-- <div id="header-bg" class="header-post-image rellax" data-rellax-speed="-4">
                 <div class="image-header">
                     <img :src="postShown.img" class="image-header-temp">
                 </div>
                 <div class="transition"></div>
-            </div>
-            <div class="border-bottom-naturalize"></div>
+            </div> -->
         </header>
+        
         <main v-if="(postShown.oneByOne === false) || (postShown.oneByOne == null)" class="work-details wide-vid">
-            <Container class="fluid extended">
+            <Container class="slim">
                 <GridX class="grid-margin-x">
                     <Cell class="large-7 work-details">
                         <q>{{postShown.callout}}</q>
@@ -110,20 +74,21 @@
                         </div>
                     </Cell>
                     <Cell class="large-5">
-                        <NerdyDetails
-                            :dimensions="dimensions"
-                            :exported="postShown.exported"
-                            :supplied="postShown.supplied"
-                            :datefinished="date_finished"
-                            >
-                        </NerdyDetails>
                     </Cell>
                 </GridX>
             </Container>
 
-            <dropgroup v-model:block="postShown.body.children" :path="-1">
-            </dropgroup>
+            <MacheGroup v-model:block="postShown.body.children" :path="-1">
+            </MacheGroup>
         </main>
+
+        <NerdyDetails
+            :dimensions="dimensions"
+            :exported="postShown.exported"
+            :supplied="postShown.supplied"
+            :datefinished="date_finished"
+            >
+        </NerdyDetails>
         
         <!-- <section id="similar-work" class="grid-container fluid extended">
             <template v-if="posts.length >= 1">
@@ -175,7 +140,7 @@ import Cell from "../../components/layout/grid/cell.vue";
 import VideoM from "../../components/cards-widgets/video-m.vue";
 import NerdyDetails from "~/components/cards-widgets/nerdy-details.vue"; */
 
-import Dropgroup from '~/components/mache/dropgroup.vue';
+/* import Dropgroup from '~/components/mache/dropgroup.vue'; */
 
 const route = useRoute()
 
@@ -255,36 +220,75 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 
+    q {
+        font-size: 1.4em;
+        margin: 2em 0;
+        position: relative;
+
+        &::after {
+            top: 0;
+            left: -2em;
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 0.5em;
+            background: linear-gradient(0deg, #D1E4FF 3.27%, rgb(255, 214, 244) 74.01%);
+        }
+    }
+
     header {
-        outline-color: #ffffff;
         background: none;
+        height: 120vh;
+        position: relative;
+
+        .grid-x {
+            height: 100%;
+        }
+
+        #header-background {
+            padding-top: 1.5em;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            margin-top: 7em;
+            
+            #post-details-bg {
+                background: #FFD6F4;
+                height: 65%;
+                border-radius: 0px 0.75em 0.75em 0px;
+            }
+        }
+
+        #display-item-wrapper {
+            flex-grow: 1;
+            margin-top: -2em;
+        }
+        
+        #display-item {
+            height: 100%;
+            background: #001C38;
+            border-radius: 0.75em;
+        }
+
+        #header-text {
+            height: unset;
+        }
+
+        nav {
+            padding: 0 0 2em;
+        }
 
         #header-wrapper {
-            height: unset;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
 
             h1 {padding-right: 6.8rem;}
         }
 
-        .grid-x {
-            height: 100%;
-            > * {
-                // min-height: 100%;
-
-                &:last-child {
-                    // height: calc(100vh - 66px);
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-end;
-                    margin-top: 66px * 2 + 16.5;
-
-                    &.wide-vid {
-                        margin: auto;
-                        margin-top: 0;
-                    }
-                }
-            }
-        }
-
+        
         
         .fluid {
             padding-right: 6.8rem !important;
@@ -293,29 +297,19 @@ onMounted(() => {
 
         .breadcrumb {
             a, li {
-                color: #cfd8dc;
+                color: #390036;
             }
             .breadcrumb-item + .breadcrumb-item:hover::before {
-                color: #b0bec5;
+                color: #191C1D;
             }
         }
 
         .text-wrapper {
             padding-left: 0;
             position: relative;
-            color: white;
-            margin-top: 10em;
+            color: #191C1D;
+            margin-top: 12em;
             margin-bottom: 3em;
-        }
-
-        .work-details {
-            padding: 3em 3em 3em 6.8rem;
-            margin-left: -6.8rem;
-            background: #fff;
-
-            > * {
-                max-width: 840px;
-            }
         }
 
         .border-top-naturalize {
@@ -370,6 +364,10 @@ onMounted(() => {
                 padding-left: 3em;
             }
         }
+    }
+
+    .work-details {
+        margin: 2em 0;
     }
 
     .work-details.wide-vid {
