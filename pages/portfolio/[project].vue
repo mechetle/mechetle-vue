@@ -54,6 +54,8 @@
                     <Cell class="large-7 work-details">
                         <q>{{postShown.callout}}</q>
                         <p>{{postShown.desc}}</p>
+                    </Cell>
+                    <Cell class="large-5">
                         <div class="little-bits">
                             <div class="little-bits-cols">
                                 <p>
@@ -68,12 +70,10 @@
                                 </p>
                                 <p>
                                     <b>Client field:</b><br>
-                                    {{postShown.client_field}}
+                                    {{postShown.client_field  == null ? "Not available" : postShown.client_field }}
                                 </p>
                             </div>
                         </div>
-                    </Cell>
-                    <Cell class="large-5">
                     </Cell>
                 </GridX>
             </Container>
@@ -240,13 +240,14 @@ onMounted(() => {
         background: none;
         height: 120vh;
         position: relative;
+        padding-top: 2em;
 
         .grid-x {
             height: 100%;
         }
 
         #header-background {
-            padding-top: 1.5em;
+            padding-top: 2.5em;
             position: absolute;
             top: 0;
             height: 100%;
@@ -353,9 +354,12 @@ onMounted(() => {
 
     .little-bits {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         margin-top: 4em;
+        margin-left: 5em;
+        flex-direction: column;
+        align-items: flex-end;
+        color: #73777F;
 
         .little-bits-cols {
             width: 50%;
@@ -367,7 +371,7 @@ onMounted(() => {
     }
 
     .work-details {
-        margin: 2em 0;
+        margin: 4em 0 15em;
     }
 
     .work-details.wide-vid {
