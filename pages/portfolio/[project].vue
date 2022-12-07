@@ -6,21 +6,7 @@
             Mechetle Mache
             */
 
-            <template v-for="(val, el) in postShown.style">
-                #{{ el }} {
-                <template v-for="(value, name) in val">
-                {{ name.replace(/[A-Z]+(?![a-z])|[A-Z]/g, ($, ofs) => (ofs ? "-" : "") + $.toLowerCase()) }}: {{
-                
-                    typeof value == 'string' ?
-                        value
-                        : value.length > 0 ?
-                        value.join(' ')
-                        : "initial"
-                
-                }};
-                </template>
-                }
-            </template>
+            {{styles}}
         </component>
 
         <header>
@@ -220,6 +206,31 @@ let date_finished = date.toLocaleDateString(
         day: 'numeric' 
     }
 )
+
+const styles = computed(() => {
+    let generatedStyles = "";
+
+    for (let key in postShown.value.style) {
+        let props = "";
+
+        let selectorStyle = postShown.value.style[key]
+        for (let prop in selectorStyle) {
+            props = props + `${prop.replace(/[A-Z]+(?![a-z])|[A-Z]/g, ($, ofs) => (ofs ? "-" : "") + $.toLowerCase())} : ${
+                typeof selectorStyle[prop] == 'string' ?
+                    selectorStyle[prop]
+                    : selectorStyle[prop].length > 0 ?
+                    selectorStyle[prop].join(' ')
+                    : "initial"}`
+            props = props + ";"
+        };
+
+        generatedStyles = generatedStyles + ` #${key} {${props}}`
+    };
+
+    console.log(generatedStyles)
+
+    return generatedStyles
+})
 
 // Video dimensions
 onMounted(() => {
