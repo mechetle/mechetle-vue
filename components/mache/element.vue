@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: 'DropZone',
+  name: 'MacheElement',
 
   props: {
     isGroup: Boolean,   // Is inside of a dropzone

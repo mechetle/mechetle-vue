@@ -15,7 +15,7 @@
             }, child.classlist]" 
             :key="child.type+ '_' + index" 
             :id="child.id">
-            <dropgroup 
+            <MacheGroup 
               :key="child.id"
 
               v-model:block="child.children"
@@ -25,18 +25,18 @@
               :grid="child.grid"
               
               :keysPressed="keysPressed">
-            </dropgroup>
+            </MacheGroup>
           </div>
         </template>
 
         <template v-else>
-          <dropzone
+          <MacheElement
             :key="child.id"
             :isGroup="isGroup"
             v-model:block="blockTemp[index]"
             :path="index"
             :grid="grid">
-          </dropzone>
+          </MacheElement>
 
           <!-- <p :key="child.id_tdz"> {{index + 1}} | {{block.length}}</p> -->
         </template>
@@ -47,12 +47,12 @@
 </template>
 
 <script setup>
-import Dropzone from '~/components/mache/dropzone.vue';
+/* import Dropzone from '~~/components/mache/element.vue'; */
 </script>
 
 <script>
 export default {
-  name: 'DropGroup',
+  name: 'MacheGroup',
 
   props: {
     isFirst: Boolean,   // First ever dropzone in builder
