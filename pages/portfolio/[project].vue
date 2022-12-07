@@ -209,14 +209,15 @@ let date_finished = date.toLocaleDateString(
 
 const styles = computed(() => {
     let generatedStyles = "";
+    console.log("Test:", postShown.value.style["group-2"].width)
 
     for (let key in postShown.value.style) {
         let props = "";
 
         let selectorStyle = postShown.value.style[key]
         for (let prop in selectorStyle) {
-            props = props + `${prop.replace(/[A-Z]+(?![a-z])|[A-Z]/g, ($, ofs) => (ofs ? "-" : "") + $.toLowerCase())} : ${
-                typeof selectorStyle[prop] == 'string' ?
+            props = props + `${prop.replace(/[A-Z]+(?![a-z])|[A-Z]/g, ($, ofs) => (ofs ? "-" : "") + $.toLowerCase())}: ${
+                typeof selectorStyle[prop] == 'string' && selectorStyle[prop].length > 0 ?
                     selectorStyle[prop]
                     : selectorStyle[prop].length > 0 ?
                     selectorStyle[prop].join(' ')
@@ -228,7 +229,6 @@ const styles = computed(() => {
     };
 
     console.log(generatedStyles)
-
     return generatedStyles
 })
 
