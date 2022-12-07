@@ -40,9 +40,9 @@ export default {
 
 <style lang="scss" scoped>
 .nerdy-details {
-    background: #0b233d;
-    color: #cfd8dc;
-    padding: 3em;
+    background: #D1E4FF;
+    color: #001C38;
+    padding: 5em 3em;
 
     .nd-wrap {
         margin-block-start: 1em;

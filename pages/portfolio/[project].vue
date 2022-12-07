@@ -27,9 +27,37 @@
                     </Cell>
                 </GridX>
                 <GridX id="display-item-wrapper">
-                    <Cell class="large-2"></Cell>
-                    <Cell id="display-item" class="large-10">
+                    <Cell class="large-2" id="post-info">
+                        <p id="date">{{date_finished}}</p>
                         
+                        <template v-for="el in postShown.category">
+                            <template v-if="el == 'uiux'">
+                                <NuxtLink to="/portfolio/UIUX">
+                                    <p>UI & UX</p>
+                                </NuxtLink>
+                            </template>
+
+                            <template v-else-if="el == 'motion'">
+                                <NuxtLink to="/portfolio/motion">
+                                    <p>Motion design</p> 
+                                </NuxtLink>
+                            </template>
+
+                            <template v-else-if="el == 'branding'">
+                                <NuxtLink to="/portfolio/branding">
+                                    <p>Misc.</p>
+                                </NuxtLink>
+                            </template>
+
+                            <template v-else>
+                                <NuxtLink to="/portfolio/motion">
+                                    <p>Misc.</p>                                  
+                                </NuxtLink>
+                            </template>
+                        </template>
+                    </Cell>
+                    <Cell id="display-item" class="large-10">
+                        <!-- Video / header image goes here-->
                     </Cell>
                 </GridX>
             </Container>
@@ -133,15 +161,6 @@ export default {
 </script>
 
 <script setup>
-/* import WorkThumb from "~/components/cards-widgets/work-thumb.vue";
-import Container from "../../components/layout/grid/container.vue";
-import GridX from "../../components/layout/grid/grid-x.vue";
-import Cell from "../../components/layout/grid/cell.vue";
-import VideoM from "../../components/cards-widgets/video-m.vue";
-import NerdyDetails from "~/components/cards-widgets/nerdy-details.vue"; */
-
-/* import Dropgroup from '~/components/mache/dropgroup.vue'; */
-
 const route = useRoute()
 
 console.log("routed to...", route.params.project)
@@ -156,14 +175,14 @@ let dimensions = reactive({
 })
 
 /* console.log(postShown.value) */
-let tags = postShown.value.tags[0]
-let id = postShown.value._id
+//let tags = postShown.value.tags[0]
+//let id = postShown.value._id
 
 /* Nerdy details */
 // Finished date:
 let date = new Date(postShown.value.finishDate)
 let date_finished = date.toLocaleDateString(
-    "en-US", 
+    "en-GB", 
     { 
         weekday: 'long', 
         year: 'numeric', 
@@ -219,6 +238,13 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+    #post-info {
+        margin-top: 37vh;
+        p {
+            margin: 0;
+            font-weight: 700;
+        }
+    }
 
     q {
         font-size: 1.4em;
