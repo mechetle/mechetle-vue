@@ -606,8 +606,7 @@ nav {
 
 .breadcrumb-item+.breadcrumb-item::before {
   display: inline-block;
-  padding-right: 1.25rem;
-  padding-left: .5rem;
+  padding: 0 0.7em;
   color: #6c757d;
   content: "/";
 }
