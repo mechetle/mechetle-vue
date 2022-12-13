@@ -60,6 +60,9 @@ export default defineEventHandler (async (event) => {
   if (searchParams.get("limit")) {
     path = `${path}?limit=${searchParams.get("limit")}`
   }
+  if (searchParams.get("prev")) {
+    path = `${path}?prev=${searchParams.get("prev")}`
+  }
 
   console.log("URL path:", path); // https://nodejs.org/api/url.html
 

@@ -118,27 +118,19 @@
             >
         </NerdyDetails>
         
-        <!-- <section id="similar-work" class="grid-container fluid extended">
-            <template v-if="posts.length >= 1">
-                <h2>Other {{tags}}s</h2>
+        <section id="up-next">
+            <Container class="fluid">
                 <GridX class="grid-margin-x">
-                    <WorkThumb v-for="post in posts" :key="post.title" :title="post.title" :slug="post.slug" :img-src="post.img + '?' + post.id" :desc="post.alt" :size="3"/>
+                    <template v-if="similarPosts != null">
+                        <WorkThumb :title="similarPosts.title" :slug="similarPosts.slug" :img-src="similarPosts.img + '?' + similarPosts.id" :desc="similarPosts.alt" :size="6"/>
+                    </template>
+                    
+                    <template v-if="newerPost != null">
+                        <WorkThumb :title="newerPost.title" :slug="newerPost.slug" :img-src="newerPost.img + '?' + newerPost.id" :desc="newerPost.alt" :size="6" :cat="newerPost.category"/>
+                    </template>
                 </GridX>
-            </template>
+            </Container>
         </section>
-        <section id="next-prev-work" class="grid-container fluid extended">
-            <GridX class="grid-margin-x">
-                <div class="cell large-6">
-                    <h2><span>Previous project</span><span class="hoz-arrow-extended"></span></h2>
-                    <NuxtLink to="/portfolio" class="go-explore rellax" data-rellax-speed="2" data-rellax-percentage="0.5">
-                        <h2 class="rellax" data-rellax-speed="1" data-rellax-percentage="0.5">Explore other projects
-                            <div class="m-icon arrow-left">⬅️</div>
-                        </h2>
-                    </NuxtLink>
-                </div>
-                <WorkThumb :key="nPost.title" :title="nPost.title" :slug="nPost.slug" :img-src="nPost.img + '?' + nPost.id" :desc="nPost.alt" :size="6" :cat="nPost.category"/>
-            </GridX>
-        </section> -->
     </div>
 
 </template>
@@ -231,8 +223,8 @@ onMounted(() => {
 })
 
 /* After shown post: */
-//const {data: posts} = await useFetch(`/api/data?tags=${tags}&limit=4`)
-//const {data: nPost} = await useFetch(`/api/data?prev=${id}`)
+const {data: similarPosts} = await useFetch(`/api/data?tags=${postShown.value.tags[0]}&limit=1`)
+const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}`)
 
 //console.log(this)
 </script>
