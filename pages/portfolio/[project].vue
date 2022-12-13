@@ -110,13 +110,16 @@
             </MacheGroup>
         </main>
 
-        <NerdyDetails
-            :dimensions="dimensions"
-            :exported="postShown.exported"
-            :supplied="postShown.supplied"
-            :datefinished="date_finished"
-            >
-        </NerdyDetails>
+        <Container>
+            <NerdyDetails
+                :dimensions="dimensions"
+                :exported="postShown.exported"
+                :supplied="postShown.supplied"
+                :datefinished="date_finished"
+                class="rounded"
+                >
+            </NerdyDetails>
+        </Container>
         
         <section id="up-next">
             <Container class="fluid">
@@ -127,10 +130,10 @@
                             :slug="similarPosts.slug" 
                             :img-src="similarPosts.img + '?' + similarPosts.id" 
                             :desc="similarPosts.alt" 
-                            :size="6">
+                            :size="4">
 
                             <h2>
-                                Somthing similar
+                                Similar
                             </h2>
                         </WorkThumb>
                     </template>
@@ -141,7 +144,7 @@
                             :slug="newerPost.slug" 
                             :img-src="newerPost.img + '?' + newerPost.id" 
                             :desc="newerPost.alt" 
-                            :size="6" 
+                            :size="8" 
                             :cat="newerPost.category">
                             
                             <h2>
@@ -255,6 +258,10 @@ const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}
 </script>
 
 <style lang="scss" scoped>
+    .rounded {
+        border-radius: 0.75em;
+    }
+
     p {
         a {
             position: relative;
@@ -475,6 +482,10 @@ const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}
         justify-content: center;
         background: #d81b60;
         color: #fff;
+    }
+
+    #up-next {
+        padding: 5vh 0;
     }
 
     
