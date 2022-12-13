@@ -32,27 +32,27 @@
                         
                         <template v-for="el in postShown.category">
                             <template v-if="el == 'uiux'">
-                                <NuxtLink to="/portfolio/UIUX">
-                                    <p>UI & UX</p>
-                                </NuxtLink>
+                                <p>
+                                    <NuxtLink to="/portfolio/UIUX">UI & UX</NuxtLink>
+                                </p>
                             </template>
 
                             <template v-else-if="el == 'motion'">
-                                <NuxtLink to="/portfolio/motion">
-                                    <p>Motion design</p> 
-                                </NuxtLink>
+                                <p>
+                                    <NuxtLink to="/portfolio/motion">Motion design</NuxtLink> 
+                                </p>
                             </template>
 
                             <template v-else-if="el == 'branding'">
-                                <NuxtLink to="/portfolio/branding">
-                                    <p>Misc.</p>
-                                </NuxtLink>
+                                <p>
+                                    <NuxtLink to="/portfolio/branding">Misc.</NuxtLink>
+                                </p>
                             </template>
 
                             <template v-else>
-                                <NuxtLink to="/portfolio/motion">
-                                    <p>Misc.</p>                                  
-                                </NuxtLink>
+                                <p>
+                                    <NuxtLink to="/portfolio">Misc.</NuxtLink>                                  
+                                </p>
                             </template>
                         </template>
                     </Cell>
@@ -255,6 +255,13 @@ const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}
 </script>
 
 <style lang="scss" scoped>
+    p {
+        a {
+            position: relative;
+            z-index: 2;
+        }
+    }
+
     #post-info {
         margin-top: 37vh;
         p {
