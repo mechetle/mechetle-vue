@@ -33,19 +33,19 @@
                         <template v-for="el in postShown.category">
                             <template v-if="el == 'uiux'">
                                 <p>
-                                    <NuxtLink to="/portfolio/UIUX">UI & UX</NuxtLink>
+                                    <NuxtLink class="with-icon" to="/portfolio/UIUX"><span class="material-symbols-outlined">code</span>UI & UX</NuxtLink>
                                 </p>
                             </template>
 
                             <template v-else-if="el == 'motion'">
                                 <p>
-                                    <NuxtLink to="/portfolio/motion">Motion design</NuxtLink> 
+                                    <NuxtLink class="with-icon" to="/portfolio/motion"><span class="material-symbols-outlined">animation</span>Motion design</NuxtLink> 
                                 </p>
                             </template>
 
                             <template v-else-if="el == 'branding'">
                                 <p>
-                                    <NuxtLink to="/portfolio/branding">Misc.</NuxtLink>
+                                    <NuxtLink class="with-icon" to="/portfolio/branding"><span class="material-symbols-outlined">architecture</span>Branding</NuxtLink>
                                 </p>
                             </template>
 
@@ -259,6 +259,13 @@ const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}
         a {
             position: relative;
             z-index: 2;
+
+            &.with-icon {
+                width: fit-content;
+                display: flex;
+                align-items: center;
+                gap: 0.45em;
+            }
         }
     }
 
