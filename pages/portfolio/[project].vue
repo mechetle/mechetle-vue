@@ -122,11 +122,32 @@
             <Container class="fluid">
                 <GridX class="grid-margin-x">
                     <template v-if="similarPosts != null">
-                        <WorkThumb :title="similarPosts.title" :slug="similarPosts.slug" :img-src="similarPosts.img + '?' + similarPosts.id" :desc="similarPosts.alt" :size="6"/>
+                        <WorkThumb 
+                            :title="similarPosts.title" 
+                            :slug="similarPosts.slug" 
+                            :img-src="similarPosts.img + '?' + similarPosts.id" 
+                            :desc="similarPosts.alt" 
+                            :size="6">
+
+                            <h2>
+                                Somthing similar
+                            </h2>
+                        </WorkThumb>
                     </template>
                     
                     <template v-if="newerPost != null">
-                        <WorkThumb :title="newerPost.title" :slug="newerPost.slug" :img-src="newerPost.img + '?' + newerPost.id" :desc="newerPost.alt" :size="6" :cat="newerPost.category"/>
+                        <WorkThumb 
+                            :title="newerPost.title" 
+                            :slug="newerPost.slug" 
+                            :img-src="newerPost.img + '?' + newerPost.id" 
+                            :desc="newerPost.alt" 
+                            :size="6" 
+                            :cat="newerPost.category">
+                            
+                            <h2>
+                                Previous work
+                            </h2>
+                        </WorkThumb>
                     </template>
                 </GridX>
             </Container>
@@ -223,8 +244,12 @@ onMounted(() => {
 })
 
 /* After shown post: */
-const {data: similarPosts} = await useFetch(`/api/data?tags=${postShown.value.tags[0]}&limit=1`)
-const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}`)
+const {data: similarPostsUnparsed} = await useFetch(`/api/data?tags=${postShown.value.tags[0]}`)
+const similarPosts = computed(() => {
+    let randomNum = Math.floor(Math.random() * similarPostsUnparsed.value.length)
+    return similarPostsUnparsed.value.filter(post => post.slug != postShown.slug)[randomNum]
+})
+const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}&limit=1`)
 
 //console.log(this)
 </script>

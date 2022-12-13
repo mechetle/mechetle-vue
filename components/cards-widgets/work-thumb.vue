@@ -9,6 +9,8 @@ TODO:
 -->
 <template>
     <div :class="['cell', 'medium-6', columns, 'work-thumb']">
+        <slot></slot>
+
         <NuxtLink
           :to="`/portfolio/${slug}`"
         ><div class="work-thumb-wrapper">
@@ -68,6 +70,7 @@ export default {
     },
     props: {
         key: String,
+
         title: {
             type: String,
             default: 'Untitled Project'
