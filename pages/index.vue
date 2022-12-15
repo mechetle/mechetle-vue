@@ -86,7 +86,7 @@
                         img-src="/img/thumbs/nihdc4.webp" 
                         desc="this page doesn't lead to anywhere lol"  
                         cat="brand" 
-                        size="7"
+                        :size="7"
                     />
 
                     <WorkThumb 

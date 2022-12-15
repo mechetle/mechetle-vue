@@ -107,6 +107,8 @@ export default {
     watch: {
         $route(to, from) {
             console.log("to:", to)
+            console.log("routes change")
+
             setTimeout(() => {
                 this.mobileMenuShow = false
             }, 400);
@@ -128,7 +130,7 @@ export default {
             
             if (to == "/") {
                 this.$nextTick(() => {
-                    this.refreshHeaderRegions = false;
+                    //this.refreshHeaderRegions = false;
                     this.headerRegions = document.querySelector("#who-am-i")
                 })
             }
@@ -147,6 +149,11 @@ export default {
         }, 400)
 
         this.headerRegions = document.querySelector("#who-am-i")
+        
+        if (this.headerRegions == null) {
+            this.headerRegions = document.querySelector("header")
+        }
+
         let navToggled = false;
 
         window.onscroll = () => {
@@ -167,6 +174,10 @@ export default {
                 }
                 if (!this.refreshHeaderRegions) {
                     this.headerRegions = document.querySelector("#who-am-i")
+                    if (this.headerRegions == null) {
+                        this.headerRegions = document.querySelector("header")
+                    }
+
                     this.refreshHeaderRegions = true;
                 }
             }

@@ -9,9 +9,6 @@
             :class="[{ 
               group: isGroup, 
               'first': isFirst, 
-              'over': draggingOverGroup && showTemps, 
-              'focussed': focussing == child.id, 
-              'isolatingGroups': keysPressed == 'ctrl-tilda'
             }, child.classlist]" 
             :key="child.type+ '_' + index" 
             :id="child.id">
@@ -23,8 +20,7 @@
               
               :isGroup="true"
               :grid="child.grid"
-              
-              :keysPressed="keysPressed">
+              >
             </MacheGroup>
           </div>
         </template>

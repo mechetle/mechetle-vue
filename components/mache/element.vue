@@ -1,7 +1,7 @@
 <template>
   <template v-if="block != null && block.type != 'none' && block.type != 'group'">
     <div class="dropzone" 
-      :class="[{ group: isGroup, 'focussed': focussing}, block.classlist]">
+      :class="[{ group: isGroup}, block.classlist]">
 
       <template v-if="block.type == 'p'">
         <component :is="block.typescale"
