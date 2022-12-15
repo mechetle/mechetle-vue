@@ -54,14 +54,12 @@ export default defineEventHandler (async (event) => {
 
   let path = "/api"
 
+  // implement this better
   if (searchParams.get("post")) {
     path = `${path}/${searchParams.get("post")}`
   }
-  if (searchParams.get("limit")) {
-    path = `${path}?limit=${searchParams.get("limit")}`
-  }
-  if (searchParams.get("prev")) {
-    path = `${path}?prev=${searchParams.get("prev")}`
+  if (searchParams.get("limit") || searchParams.get("prev")) {
+    path = `${path}?${searchParams.toString()}`
   }
 
   console.log("URL path:", path); // https://nodejs.org/api/url.html
