@@ -85,22 +85,25 @@ export default {
         changeActiveCursor() {
             let cursor = this.$refs.cursor
             let active = document.querySelector('.navigation-button-wrap .router-link-active')
-
-            // this means it is in the group but nuxt for some reason doesn't know:
-            if ((this.link_length > 1 && this.route_group != "")) {
-                active = document.querySelector('#'+ this.route_group)
+            
+            if (active !== null) {
+                // this means it is in the group but nuxt for some reason doesn't know:
+                if ((this.link_length > 1 && this.route_group != "")) {
+                    active = document.querySelector('#'+ this.route_group)
+                }
+    
+                this.offset = active.offsetLeft;
+                this.width = active.clientWidth;
+    
+                // these are for the tail and head of the cursor
+                this.indexOfActive = Array.from(active.parentNode.children).indexOf(active)
+    
+                console.log("BRUHBRUH OFFSET:", this.offset, cursor, this.indexOfActive)
+                cursor.style.left = this.offset + "px"
+                cursor.style.width = this.width + "px"
+            } else {
+                // this means that the page is either a sub page or it doesn't exist
             }
-
-            this.offset = active.offsetLeft;
-            this.width = active.clientWidth;
-
-            // these are for the tail and head of the cursor
-            this.indexOfActive = Array.from(active.parentNode.children).indexOf(active)
-
-            console.log("BRUHBRUH OFFSET:", this.offset, cursor, this.indexOfActive)
-            cursor.style.left = this.offset + "px"
-            cursor.style.width = this.width + "px"
-
         }
     },
 
