@@ -1,7 +1,15 @@
 <template>
     <div>
-        <h1>Temporay works page</h1>
-        <NuxtLink to="/portfolio/refc">REFC</NuxtLink>
+        <header>
+            <Container class="fluid">
+                <h1>Portfolio</h1>
+                <p>Here's a collection off all my work ranging from design to coding.</p>
+            </Container>
+        </header>
+
+        <main class="grid-work">
+            
+        </main>
     </div>
 </template>
 
