@@ -75,7 +75,6 @@ export default defineEventHandler (async (event) => {
   }
 
   res.writeHead(200, { "Content-Type": "application/json" });
-  
   data = await $fetch(`${url_mod}${path}`, { method: 'GET', headers: headers});
   
   /* fetch(`${url_mod}${path}`, { method: 'GET', headers: headers}).then((response) => response.json())
