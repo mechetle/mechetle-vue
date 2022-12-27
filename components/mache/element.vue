@@ -78,5 +78,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+img {
+    display: inline-block; 
+    vertical-align: middle; 
+    max-width: 100%; 
+    height: auto; 
+    -ms-interpolation-mode: bicubic; 
+  }
 </style>
