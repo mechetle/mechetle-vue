@@ -79,7 +79,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .isolatingGroups {
     background: rgba(96, 125, 139, 0.153);
     box-shadow: -1px -3px 5.5px rgb(0 0 0 / 3%), 0 8.6px 14.1px rgb(0 0 0 / 4%), 0 22.9px 32.4px rgb(0 0 0 / 6%), 0 100px 98px rgb(0 0 0 / 7%);

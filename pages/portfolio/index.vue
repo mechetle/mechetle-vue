@@ -1,8 +1,8 @@
 <template>
     <div>
         <header>
-            <Container class="fluid">
-                <h1>Portfolio</h1>
+            <Container>
+                <h1>Works</h1>
                 <p>Here's a collection off all my work ranging from design to coding.</p>
             </Container>
         </header>
