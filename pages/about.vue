@@ -7,7 +7,12 @@
 </template>
 
 <script setup>
-
+definePageMeta({
+  pageTransition: {
+    name: 'page',
+    mode: 'out-in'
+  }
+})
 </script>
 
 <style lang="scss" scoped>

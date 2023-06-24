@@ -13,8 +13,9 @@ TODO:
 
         <NuxtLink
           :to="`/portfolio/${slug}`"
+          @click.native="active = true"
         ><div class="work-thumb-wrapper">
-                <div class="work-thumb-wrapper-cont">
+                <div class="work-thumb-wrapper-cont" :class="{ active: active }">
                     <nuxt-img 
                         class="rellax"
                         :class="{'loaded': loaded}"
@@ -58,6 +59,11 @@ TODO:
         </NuxtLink>
     </div>
 </template>
+
+<script setup>
+const active = ref(false);
+
+</script>
 
 <script>
 export default {
@@ -178,6 +184,10 @@ export default {
         } */
     }
 
+}
+
+.work-thumb-wrapper-cont.active { 
+    view-transition-name: selected-project;
 }
 
 /* .title {

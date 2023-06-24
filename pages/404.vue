@@ -9,14 +9,13 @@
 
 </template>
 
-<script>
-export default {
-
-    // this used to cause error 505, but may cause other issues
-    beforeMount() {
-        document.querySelector("#__nuxt > div").id = "fourOfour"
-    },
-}
+<script setup lang="ts">
+definePageMeta({
+  pageTransition: {
+    name: 'page',
+    mode: 'out-in'
+  }
+})
 </script>
 
 <style lang="scss" scoped>

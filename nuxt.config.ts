@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     // Mechetle's global styling shit:
     '~/assets/scss/main.scss'
   ],
-
+  
   modules: [
     '@nuxt/image-edge',
   ],
@@ -37,8 +37,8 @@ export default defineNuxtConfig({
     '/api/**': { cors: true},
   },
   
-  /* experimental: {
-    payloadExtraction: false
-  } */
+  experimental: {
+    viewTransition: true,
+  }
 
 })

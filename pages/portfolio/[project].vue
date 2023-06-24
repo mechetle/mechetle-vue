@@ -58,6 +58,18 @@
                     </Cell>
                     <Cell id="display-item" class="large-10">
                         <!-- Video / header image goes here-->
+                        <nuxt-img 
+                            class="rellax"
+                            :class="{'loaded': loaded}"
+                            data-rellax-speed="-2" 
+                            data-rellax-percentage="0.5"
+                            format="webp"
+                            :src="postShown.img" 
+                            :alt="alt" 
+                            height=950
+                            width=1690
+                            @load="loadedIMG()"
+                        ></nuxt-img>
                     </Cell>
                 </GridX>
             </Container>
@@ -177,6 +189,12 @@ export default {
 </script>
 
 <script setup>
+definePageMeta({
+    pageTransition: {
+        name: 'project',
+        mode: 'out-in',
+    }
+})
 const route = useRoute()
 
 console.log("routed to...", route.params.project)
@@ -209,7 +227,7 @@ let date_finished = date.toLocaleDateString(
 
 const styles = computed(() => {
     let generatedStyles = "";
-    console.log("Test:", postShown.value.style["group-2"].width)
+    //console.log("Test:", postShown.value.style["group-2"].width)
 
     for (let key in postShown.value.style) {
         let props = "";
@@ -255,9 +273,53 @@ const similarPosts = computed(() => {
 const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}&limit=1`)
 
 //console.log(this)
+const loaded = ref(false)
+
+function loadedIMG() {
+    console.log("img loaded")
+    setTimeout(() => {
+        loaded.value = true
+    }, 0)
+}
 </script>
 
 <style lang="scss" scoped>
+    @keyframes posDetailsBG {
+        0% {
+            transform: translateY(350px);
+            opacity: 0;
+        }
+
+        30% {
+            opacity: 0;
+        }
+        35% {
+            opacity: 1;
+        }
+        
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    @keyframes comeInLeft {
+        0% {
+            transform: translateX(-150px);
+            opacity: 0;
+        }
+
+        30% {
+            opacity: 0;
+        }
+        35% {
+            opacity: 1;
+        }
+        
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
     .rounded {
         border-radius: 0.75em;
     }
@@ -278,6 +340,9 @@ const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}
 
     #post-info {
         margin-top: 37vh;
+        opacity: 0;
+        animation: 1.15s comeInLeft cubic-bezier(0.68, 0.16, 0.01, 0.96) 0.2s forwards;
+
         p {
             margin: 0;
             font-weight: 700;
@@ -323,6 +388,8 @@ const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}
                 background: #FFD6F4;
                 height: 65%;
                 border-radius: 0px 0.75em 0.75em 0px;
+                opacity: 0;
+                animation: 1.15s posDetailsBG cubic-bezier(0.68, 0.16, 0.01, 0.96) forwards;
             }
         }
 
@@ -335,6 +402,22 @@ const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}
             height: 100%;
             background: #001C38;
             border-radius: 0.75em;
+            view-transition-name: selected-project;
+            overflow: hidden;
+
+            img {
+                width: 110%;
+                object-fit: cover;
+                transition: filter 0.75s cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s,
+                            scale 0.9s cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s;
+                filter: blur(320px);
+                scale: 1.75;
+                
+                &.loaded {
+                    filter: blur(0px);
+                    scale: 1;
+                }
+            }
         }
 
         #header-text {
@@ -343,6 +426,10 @@ const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}
 
         nav {
             padding: 0 0 2em;
+
+            a {
+                display: contents;
+            }
         }
 
         #header-wrapper {
@@ -350,7 +437,11 @@ const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}
             display: flex;
             flex-direction: column;
 
-            h1 {padding-right: 6.8rem;}
+            h1 {
+                padding-right: 6.8rem;
+                animation: 0.9s posDetailsBG cubic-bezier(0.68, 0.16, 0.01, 0.96) forwards;
+                opacity: 0;
+            }
         }
 
         
@@ -361,6 +452,8 @@ const {data: newerPost} = await useFetch(`/api/data?prev=${postShown.value.slug}
         }
 
         .breadcrumb {
+            animation: 0.8s posDetailsBG cubic-bezier(0.68, 0.16, 0.01, 0.96);
+
             a, li {
                 color: #390036;
             }

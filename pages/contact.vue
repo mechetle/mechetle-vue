@@ -20,16 +20,12 @@ export default {
 </script>
 
 <script setup>   
-import Cta from "../components/sections/cta.vue";
-import WorkThumb from "../components/cards-widgets/work-thumb.vue";
-import Container from "../components/layout/grid/container.vue";
-import GridX from "../components/layout/grid/grid-x.vue";
-import GridX1 from "../components/layout/grid/grid-x.vue";
-import VideoM from "../components/cards-widgets/video-m.vue";
-
-const {data: posts} = await useFetch("/data?limit=4")
-
-
+definePageMeta({
+  pageTransition: {
+    name: 'page',
+    mode: 'out-in'
+  }
+})
 </script>
 
 <style lang="scss" scoped>
