@@ -51,146 +51,138 @@ The one that you will see on every page
 
 </template>
 
-<script setup>
+<script setup lang="ts">
 import MobileMenu from '~/components/layout/navigation/nav-mobile.vue'
 
 const route = useRoute()
 
 const route_arr = route.path.substring(1).split('/')
-let route_group
-route_group = route_arr[0]
+let route_group = route_arr[0]
 let link_length = (route_group != "") ? route_arr.length : 0
-</script>
 
-<script>
-export default {
-    name: 'nav-main',
+const offset = ref(0)
+const width = ref(0)
+const indexOfActive = ref(0)
+const length = ref(4)     
+const from = ref('')
+const refreshHeaderRegions = ref(false)
+const mobileMenuShow = ref(false)
 
-    data() {
-        return { 
-            offset: 0,
-            width: 0,
-            indexOfActive: 0,
+// element references:
+const headerRegions = ref<InstanceType<typeof HTMLElement> | null>(null)
+const cursor = ref<InstanceType<typeof HTMLElement> | null>(null)
+const nav = ref<InstanceType<typeof HTMLElement> | null>(null)
+const navContainer = ref<InstanceType<typeof HTMLElement> | null>(null)
 
-            length: 4,
-            
-            from: '',
-            refreshHeaderRegions: false,
-            headerRegions: null,
-            mobileMenuShow: false
-        }
-    },
-
-    methods: {
-        changeActiveCursor() {
-            let cursor = this.$refs.cursor
-            let active = document.querySelector('.navigation-button-wrap .router-link-active')
-            
-            if (active !== null) {
-                // this means it is in the group but nuxt for some reason doesn't know:
-                if ((this.link_length > 1 && this.route_group != "")) {
-                    active = document.querySelector('#'+ this.route_group)
-                }
+function changeActiveCursor() {
+    let active = document.querySelector('.navigation-button-wrap .router-link-active') as HTMLElement
     
-                this.offset = active.offsetLeft;
-                this.width = active.clientWidth;
+    if (active !== null) {
+        // this means it is in the group but nuxt for some reason doesn't know:
+        if ((link_length > 1 && route_group != "")) {
+            active = document.querySelector('#'+ route_group) as HTMLElement
+        }
+
+        if (active && active.parentNode && cursor.value != null) {
+
+            offset.value = active.offsetLeft;
+            width.value = active.clientWidth;
     
-                // these are for the tail and head of the cursor
-                this.indexOfActive = Array.from(active.parentNode.children).indexOf(active)
+            // these are for the tail and head of the cursor
+            indexOfActive.value = Array.from(active.parentNode.children).indexOf(active)
     
-                console.log("BRUHBRUH OFFSET:", this.offset, cursor, this.indexOfActive)
-                cursor.style.left = this.offset + "px"
-                cursor.style.width = this.width + "px"
-            } else {
-                // this means that the page is either a sub page or it doesn't exist
-            }
+            console.log("BRUHBRUH OFFSET:", offset.value, cursor.value, indexOfActive.value)
+            cursor.value.style.left = offset.value + "px"
+            cursor.value.style.width = width.value + "px"
         }
-    },
+    } else {
+        // this means that the page is either a sub page or it doesn't exist
+    }
+}
 
-    watch: {
-        $route(to, from) {
-            console.log("to:", to)
-            console.log("routes change")
+onMounted(() => {
+    changeActiveCursor();
 
-            setTimeout(() => {
-                this.mobileMenuShow = false
-            }, 400);
-
-            let url_split = to.path.substring(1).split('/')
-            this.link_length = url_split.length
-            if (this.link_length > 1) {
-                this.route_group = url_split[0]
-            } else {
-                this.route_group = ""
-            }
-
-            this.from = from.path.substring(1).split('/')[0]
-
-            this.$nextTick(() => {
-                //console.log(this.show, this.$refs.content);
-                this.changeActiveCursor();
-            });
-            
-            if (to == "/") {
-                this.$nextTick(() => {
-                    //this.refreshHeaderRegions = false;
-                    this.headerRegions = document.querySelector("#who-am-i")
-                })
-            }
-
+    setTimeout(()=> {
+        if (nav.value !== null && navContainer.value !== null) { 
+            nav.value.classList.remove("loading")
+            navContainer.value.style.opacity = "1"
         }
-    },
+    }, 400)
 
-    mounted() {
-        this.changeActiveCursor();
-        let nav = this.$refs.nav
-        let navContainer = this.$refs.navContainer
+    headerRegions.value = document.querySelector("#who-am-i")
+    
+    if (headerRegions.value == null) {
+        headerRegions.value = document.querySelector("header")
+    }
 
-        setTimeout(()=> {
-            nav.classList.remove("loading")
-            navContainer.style.opacity = 1
-        }, 400)
+    let navToggled = false;
 
-        this.headerRegions = document.querySelector("#who-am-i")
-        
-        if (this.headerRegions == null) {
-            this.headerRegions = document.querySelector("header")
-        }
-
-        let navToggled = false;
-
-        window.onscroll = () => {
-            if(this.headerRegions.getBoundingClientRect().bottom <= -80){
+    window.onscroll = () => {
+        if (nav.value !== null && navContainer.value !== null) { 
+            if(headerRegions.value && headerRegions.value.getBoundingClientRect().bottom <= -80) {
                 if (!navToggled) {
                     console.log("Nav: expanded");
                     
-                    nav.classList.remove("nav-header-main");
-                    navContainer.classList.add("fluid");
+                    nav.value.classList.remove("nav-header-main");
+                    navContainer.value.classList.add("fluid");
                     navToggled = true;
                 }
-            } else {
-                if (navToggled) {
-                    console.log("Nav: folded")
-                    nav.classList.add("nav-header-main");
-                    navContainer.classList.remove("fluid");
-                    navToggled = false;
-                }
-                if (!this.refreshHeaderRegions) {
-                    this.headerRegions = document.querySelector("#who-am-i")
-                    if (this.headerRegions == null) {
-                        this.headerRegions = document.querySelector("header")
+                } else {
+                    if (navToggled) {
+                        console.log("Nav: folded")
+                        nav.value.classList.add("nav-header-main");
+                        navContainer.value.classList.remove("fluid");
+                        navToggled = false;
                     }
+                    if (!refreshHeaderRegions.value) {
+                        headerRegions.value = document.querySelector("#who-am-i")
+                        if (headerRegions.value == null) {
+                            headerRegions.value = document.querySelector("header")
+                        }
 
-                    this.refreshHeaderRegions = true;
+                        refreshHeaderRegions.value = true;
+                    }
                 }
-            }
         }
-
-        addEventListener('resize', (event) => {
-            this.mobileMenuShow = false
-        });
     }
-}
+
+    addEventListener('resize', (event) => {
+        mobileMenuShow.value = false
+    });
+}),
+
+
+watch(route, (to, fromRoute) => {
+    console.log("to:", to)
+    console.log("routes change")
+
+    setTimeout(() => {
+        mobileMenuShow.value = false
+    }, 400);
+
+    let url_split = to.path.substring(1).split('/')
+    
+    link_length = url_split.length
+    if (link_length > 1) {
+        route_group = url_split[0]
+    } else {
+        route_group = ""
+    }
+
+    from.value = fromRoute.path.substring(1).split('/')[0]
+
+    nextTick(() => {
+        //console.log(this.show, this.$refs.content);
+        changeActiveCursor();
+    });
+    
+    if (to.path == "/") {
+        nextTick(() => {
+           headerRegions.value = document.querySelector("#who-am-i")
+        })
+    }
+})
 </script>
 
 <style lang="scss" scoped>
