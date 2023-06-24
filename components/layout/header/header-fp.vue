@@ -39,7 +39,7 @@ Front page header:
                     <div class="fragment"></div>
                 </div>
                 <video 
-                    src="@/assets/video/bgArtboard_foreground_v3_heavily-compressed.webm" 
+                    src="@/assets/video/bgArtboard.webm" 
                     id="h_fg" 
                     ref="h_fg" 
                     class="cm"
