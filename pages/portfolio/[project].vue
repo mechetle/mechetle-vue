@@ -390,7 +390,7 @@ function loadedIMG() {
             
             #post-details-bg {
                 background: #FFD6F4;
-                height: 65%;
+                height: 70%;
                 border-radius: 0px 0.75em 0.75em 0px;
                 opacity: 0;
                 animation: 1.15s posDetailsBG cubic-bezier(0.68, 0.16, 0.01, 0.96) forwards;
