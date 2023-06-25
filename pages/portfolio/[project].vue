@@ -373,7 +373,7 @@ function loadedIMG() {
         height: 100%;
         position: relative;
         padding-top: 2em;
-        display: flex;
+        //display: flex;
 
         .grid-x {
             height: 100%;
