@@ -63,7 +63,7 @@
                                 class="rellax"
                                 :class="{'loaded': loaded}"
                                 data-rellax-speed="-1.75"
-                                data-rellax-percentage="0.5"
+                                data-rellax-percentage="0.85"
                                 format="webp"
                                 :src="postShown.img"
                                 :alt="alt"
