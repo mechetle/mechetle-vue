@@ -369,9 +369,11 @@ function loadedIMG() {
 
     header.project-header {
         background: none;
-        height: 120vh;
+        //height: 120vh;
+        height: 100%;
         position: relative;
         padding-top: 2em;
+        display: flex;
 
         .grid-x {
             height: 100%;
@@ -444,7 +446,7 @@ function loadedIMG() {
         }
 
         #header-wrapper {
-            height: 100%;
+            //height: 100%;
             display: flex;
             flex-direction: column;
 
