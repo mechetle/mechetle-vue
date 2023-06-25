@@ -9,7 +9,7 @@
             {{styles}}
         </component>
 
-        <header>
+        <header class="project-header">
             <div class="border-top-naturalize"></div>
             <Container id="header-wrapper" class="fluid">
                 <GridX id="header-text">
@@ -57,19 +57,21 @@
                         </template>
                     </Cell>
                     <Cell id="display-item" class="large-10">
-                        <!-- Video / header image goes here-->
-                        <nuxt-img 
-                            class="rellax"
-                            :class="{'loaded': loaded}"
-                            data-rellax-speed="-2" 
-                            data-rellax-percentage="0.5"
-                            format="webp"
-                            :src="postShown.img" 
-                            :alt="alt" 
-                            height=950
-                            width=1690
-                            @load="loadedIMG()"
-                        ></nuxt-img>
+                        <div id="display-item-content">
+                            <!-- Video / header image goes here-->
+                            <nuxt-img
+                                class="rellax"
+                                :class="{'loaded': loaded}"
+                                data-rellax-speed="-1.75"
+                                data-rellax-percentage="0.5"
+                                format="webp"
+                                :src="postShown.img"
+                                :alt="alt"
+                                height=950
+                                width=1690
+                                @load="loadedIMG()"
+                            ></nuxt-img>
+                        </div>
                     </Cell>
                 </GridX>
             </Container>
@@ -218,7 +220,7 @@ let date = new Date(postShown.value.finishDate)
 let date_finished = date.toLocaleDateString(
     "en-GB", 
     { 
-        weekday: 'long', 
+        weekday: 'short', 
         year: 'numeric', 
         month: 'long', 
         day: 'numeric' 
@@ -365,7 +367,7 @@ function loadedIMG() {
         }
     }
 
-    header {
+    header.project-header {
         background: none;
         height: 120vh;
         position: relative;
@@ -399,11 +401,20 @@ function loadedIMG() {
         }
         
         #display-item {
+            $br: 0.75em;
+
             height: 100%;
+            max-height: 75vh;
             background: #001C38;
-            border-radius: 0.75em;
+            border-radius: $br;
             view-transition-name: selected-project;
-            overflow: hidden;
+            
+            #display-item-content {
+                border-radius: $br;
+                overflow: hidden;
+                height: 100%;
+                display: flex;
+            }
 
             img {
                 width: 110%;
@@ -447,8 +458,8 @@ function loadedIMG() {
         
         
         .fluid {
-            padding-right: 6.8rem !important;
-            padding-left: 6.8rem !important;
+            padding-right: 6.8rem;
+            padding-left: 6.8rem;
         }
 
         .breadcrumb {

@@ -14,6 +14,19 @@ import NavMain from '../components/layout/navigation/nav-main.vue'
 
 <style lang="scss">
 
+/* Large only */
+@media screen and (min-width: 64em) and (max-width: 1500px) {
+  html {
+    font-size: 100%;
+  }
+
+  .project-header .fluid {
+    //max-width: 75rem !important;
+    padding-right: 1.6rem !important;
+    padding-left: 1.6rem !important;
+  }
+}
+
 .page-enter-from{
     opacity: 0;
     transform: translateY(-10px);
