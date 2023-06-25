@@ -24,6 +24,7 @@ import NavMain from '../components/layout/navigation/nav-main.vue'
     //max-width: 75rem !important;
     padding-right: 1.6rem !important;
     padding-left: 1.6rem !important;
+    display: flex;
   }
 }
 

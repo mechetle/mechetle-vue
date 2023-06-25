@@ -415,6 +415,7 @@ function loadedIMG() {
                 border-radius: $br;
                 overflow: hidden;
                 height: 100%;
+                max-height: 75vh;
                 display: flex;
             }
 
