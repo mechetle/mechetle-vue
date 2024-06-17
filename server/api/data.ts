@@ -10,7 +10,7 @@ the data.
 // older versions of node below v18 don't have fetch.
 //import fetch from "node-fetch";
 //import fetch from 'node-fetch-native'
-const api_url = `https://v1.mache.mechetle.com`;
+const api_url = `https://mache.mechetle.com`;
 
 export default defineEventHandler(async (event) => {
   let req = event.req;
